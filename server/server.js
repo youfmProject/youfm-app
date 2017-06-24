@@ -7,10 +7,13 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.js';
 import bodyParser from 'body-parser';
+import _ from 'lodash';
+import * as swaggerTools from 'swagger-tools';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const port = process.env.PORT || 3000;
 const app = express();
+const options = {};
 app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, '../static')));
 
@@ -52,9 +55,59 @@ if (isDeveloping) {
   });
 }
 
-app.listen(port, '0.0.0.0', (err) => {
+var getAPIDoc = function(apiVersion) {
+  apiVersion = apiVersion || 'v1';
+  return require('../app/api/' + apiVersion + '/youFm.json');
+};
+
+var mountAPI = function(app, swaggerDoc, options) {
+  
+  swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
+    
+    app.use(middleware.swaggerMetadata());
+
+    app.use(middleware.swaggerValidator({validateResponse : true}));
+
+    app.use(middleware.swaggerRouter(options));
+
+    app.use(errorHandler);
+  });
+};
+
+var errorHandler = function(err, req, res, next) {
+  if(res.headersSent) {
+    return next(err);
+  }
+
+  if(err.failedValidation) {
+    if(res.statusCode === 400) {
+      res.status(400).json({message: 'Validation Error', details : err.results, text: err.toString()});
+    }
+    else {
+      res.status(500).json({message: 'Validation Error', details : err.results, text: err.toString()});
+    }
+  }
+  else {
+    next(err);
+  }
+};
+
+_.defaults(options, {
+  controllers: __dirname + '/controllers',
+  useStubs: isDeveloping ? true : false,
+  apis: ['v1']
+});
+
+
+
+options.apis.forEach(function (apiVersion) {
+  var swaggerDoc = getAPIDoc(apiVersion);
+  mountAPI(app, swaggerDoc, options);
+});
+
+app.listen(port, 'localhost', (err) => {
   if (err) {
     console.log(err);
   }
-  console.info('Server running on http://0.0.0.0:%s/.', port);
+  console.info('Server running on http://localhost:%s/.', port);
 });

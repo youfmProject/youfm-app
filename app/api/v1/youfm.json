@@ -1,0 +1,124 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "version":"v1",
+        "title": "YouFm data schema",
+        "description": "This API is the spec for managing data being fed into the youfm player"
+    },
+    "schemes":[
+        "https",
+        "http"
+    ],
+    "consumes":[
+        "application/json"
+    ],
+    "produces":[
+        "application/json"
+    ],
+    "host":"youfm.com",
+    "basePath":"/api/v1",
+    "paths":{
+        "/albums":{
+            "get":{
+                "x-swagger-router-controller": "albums",
+                "operationId": "getAlbums",
+                "tags": [
+                    "/"
+                ],
+                "description": "This API returns the intial lists of albums needed to render the landing page",
+                "parameters":[],
+                "responses":{
+                    "200": {
+                        "description": "Get the album details",
+                        "schema":{
+                            "$ref": "#/definitions/albums"
+                        }
+                    },
+                    "default":{
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "albums":{
+            "type":"object",
+            "properties":{
+                "newRelease":{
+                    "type": "array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "artist": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "albumType": {
+                                "type": "string"
+                            },
+                            "images": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "featured":{
+                    "type":"array",
+                    "items":{
+                        "id":{
+                            "type":"string"   
+                        },
+                        "images":{
+                            "type": "string"
+                        },
+                        "tracks": {
+                            "type":"string"
+                        },
+                        "name":{
+                            "type": "string"   
+                        }
+                    }
+                },
+                "billboard":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type":"string"   
+                            },
+                            "rank":{
+                                "type":"string"   
+                            },
+                            "artist":{
+                                "type":"string"   
+                            },
+                            "image":{
+                                "type":"string"   
+                            }
+                        } 
+                    }
+                }
+            }
+        },
+        "Message":{
+            "required":[
+                "message"
+            ],
+            "properties":{
+                "message":{
+                    "type": "string"
+                }   
+            }
+        }
+    }
+}
