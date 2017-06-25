@@ -7,11 +7,7 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        <div className={styles.container}>
-          <h2>Home</h2>
-          <a className={styles.logo} />
-          <Link to="/counter">Go to Counter</Link>
-        </div>
+        <h1> Welcome to youfm.org </h1>
       </div>
     );
   }
