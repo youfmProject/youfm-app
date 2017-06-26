@@ -42,6 +42,64 @@
                     }
                 }
             }
+        },
+        "/spotify":{
+            "get":{
+                "x-swagger-router-controller": "search",
+                "operationId": "searchSpotify",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for searching a keyword in spotify",
+                "parameters":[
+                    {
+
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Search results for spotify",
+                        "schema": {
+                            "$ref": "#/definitions/spotify"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        },
+        "/youtube": {
+            "get":{
+                "x-swagger-router-controller": "search",
+                "operationId": "searchYoutube",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for searching a keyword in youtube",
+                "parameters":[
+                    {
+
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Search results for youtube",
+                        "schema": {
+                            "$ref": "#/definitions/youtube"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
         }
     },
     "definitions":{
@@ -108,6 +166,16 @@
                         } 
                     }
                 }
+            }
+        },
+        "spotify":{
+        },
+        "youtube":{
+            "type":"object",
+            "properties":{
+                "youtubeId": {
+                    "type":"string"
+                }   
             }
         },
         "Message":{
