@@ -52,6 +52,7 @@
   "dependencies": {
     "billboard-hot-100": "^1.0.4",
     "body-parser": "^1.15.1",
+    "browserify-zlib": "^0.2.0",
     "express": "^4.13.4",
     "font-awesome": "^4.6.1",
     "postcss": "^5.0.19",
@@ -64,6 +65,6 @@
     "redux-thunk": "^2.0.1",
     "spotify-web-api-node": "^2.4.0",
     "swagger-tools": "^0.9.16",
-    "youtube-search":"^1.0.0"
+    "youtube-search": "^1.0.0"
   }
 }
