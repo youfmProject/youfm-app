@@ -51,16 +51,12 @@
                     "/"
                 ],
                 "description": "This is the API for searching a keyword in spotify",
-                "parameters":[
-                    {
-
-                    }
-                ],
+                "parameters":[],
                 "responses":{
                     "200":{
                         "description": "Search results for spotify",
                         "schema": {
-                            "$ref": "#/definitions/spotify"
+                            "$ref": "#/definitions/youtube"
                         }
                     },
                     "default": {
@@ -80,11 +76,7 @@
                     "/"
                 ],
                 "description": "This is the API for searching a keyword in youtube",
-                "parameters":[
-                    {
-
-                    }
-                ],
+                "parameters":[],
                 "responses":{
                     "200":{
                         "description": "Search results for youtube",
@@ -106,7 +98,7 @@
         "albums":{
             "type":"object",
             "properties":{
-                "newRelease":{
+                "newReleases":{
                     "type": "array",
                     "items":{
                         "type":"object",
@@ -132,17 +124,20 @@
                 "featured":{
                     "type":"array",
                     "items":{
-                        "id":{
-                            "type":"string"   
-                        },
-                        "images":{
-                            "type": "string"
-                        },
-                        "tracks": {
-                            "type":"string"
-                        },
-                        "name":{
-                            "type": "string"   
+                        "type":"object",
+                        "properties":{
+                            "id":{
+                                "type":"string"   
+                            },
+                            "images":{
+                                "type": "string"
+                            },
+                            "tracks": {
+                                "type":"string"
+                            },
+                            "name":{
+                                "type": "string"   
+                            }
                         }
                     }
                 },
@@ -167,8 +162,6 @@
                     }
                 }
             }
-        },
-        "spotify":{
         },
         "youtube":{
             "type":"object",
