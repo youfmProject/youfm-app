@@ -57,7 +57,7 @@ if (isDeveloping) {
 
 var getAPIDoc = function(apiVersion) {
   apiVersion = apiVersion || 'v1';
-  return require(path.join(__dirname,'../api/' + apiVersion + '/youFm.json'));
+  return require(path.join(__dirname,'../api/' + apiVersion + '/youfm.json'));
 };
 
 var mountAPI = function(app, swaggerDoc, options) {
