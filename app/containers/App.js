@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import DevTools from './DevTools';
 
 export default class App extends Component {
   static propTypes = {
@@ -10,14 +9,6 @@ export default class App extends Component {
     return (
       <div>
         {this.props.children}
-        {
-          (() => {
-            if (process.env.NODE_ENV !== 'production') {
-
-              return <DevTools />;
-            }
-          })()
-        }
       </div>
     );
   }

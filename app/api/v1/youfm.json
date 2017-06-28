@@ -15,7 +15,6 @@
     "produces":[
         "application/json"
     ],
-    "host":"youfm.com",
     "basePath":"/api/v1",
     "paths":{
         "/albums":{

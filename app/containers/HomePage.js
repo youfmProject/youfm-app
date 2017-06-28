@@ -1,10 +1,20 @@
-import React, { Component } from 'react';
-import Home from '../components/Home';
+import { connect } from 'react-redux';
 
-export default class HomePage extends Component {
-  render() {
-    return (
-      <Home />
-    );
-  }
+import Home from '../components/Home';
+import * as HomeActions from '../actions/home';
+
+function mapStateToProps(state, props) {
+  return {
+    test:'data'
+  };
 }
+
+function mapDispatchToProps(dispatch) {
+	console.log(HomeActions);
+  return {
+  	...HomeActions,
+    dispatch
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home);
