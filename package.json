@@ -12,7 +12,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "^6.7.6",
     "babel-eslint": "^6.0.2",
     "babel-loader": "^6.2.4",
@@ -47,9 +47,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1",
-    "webpack-hot-middleware": "^2.10.0"
-  },
-  "dependencies": {
+    "webpack-hot-middleware": "^2.10.0",
     "axios":"^0.16.2",
     "billboard-hot-100": "^1.0.4",
     "body-parser": "^1.15.1",
