@@ -163,11 +163,9 @@
             }
         },
         "youtube":{
-            "type":"object",
-            "properties":{
-                "youtubeId": {
-                    "type":"string"
-                }   
+            "type":"array",
+            "items":{
+                "type": "object"   
             }
         },
         "Message":{

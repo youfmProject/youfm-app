@@ -3,7 +3,7 @@ import axios from 'axios';
 export function getYoutubeSearch(){
 	axios({
 	  method:'get',
-	  url:'https://localhost:3000/api/v1/youtube'
+	  url:'/api/v1/youtube'
 	}).then(res=>{
 		console.log(res)
 	});
@@ -15,7 +15,7 @@ export function getYoutubeSearch(){
 export function getSpotifySearch(){
 	axios({
 	  method:'get',
-	  url:'https://localhost:3000/api/v1/spotify'
+	  url:'/api/v1/spotify'
 	}).then(res=>{
 		console.log(res)
 	});
