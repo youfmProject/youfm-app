@@ -10,7 +10,6 @@ function mapStateToProps(state, props) {
 }
 
 function mapDispatchToProps(dispatch) {
-	console.log(HomeActions);
   return {
   	...HomeActions,
     dispatch

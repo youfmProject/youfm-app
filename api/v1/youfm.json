@@ -55,7 +55,7 @@
                     "200":{
                         "description": "Search results for spotify",
                         "schema": {
-                            "$ref": "#/definitions/youtube"
+                            "$ref": "#/definitions/spotify"
                         }
                     },
                     "default": {
@@ -167,6 +167,9 @@
             "items":{
                 "type": "object"   
             }
+        },
+        "spotify":{
+            "type":"object"
         },
         "Message":{
             "required":[
