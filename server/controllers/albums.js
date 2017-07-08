@@ -1,6 +1,6 @@
 'use strict';
 
-import Albums from '../models/Albums';
+import AlbumModel from '../models/Albums';
 
 const callback = (method, response) => {
     return (err, res) => {
@@ -11,7 +11,7 @@ const callback = (method, response) => {
 
 module.exports = {
     getAlbums: (req, res, next) => {
-        let Albums = new Albums();
+        let Albums = new AlbumModel();
         Albums.getAlbums(req, callback('GET', res));
     }
 }

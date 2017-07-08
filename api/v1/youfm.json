@@ -50,7 +50,14 @@
                     "/"
                 ],
                 "description": "This is the API for searching a keyword in spotify",
-                "parameters":[],
+                "parameters":[
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Search Keyword for spotify search"
+                    }
+                ],
                 "responses":{
                     "200":{
                         "description": "Search results for spotify",
@@ -75,7 +82,14 @@
                     "/"
                 ],
                 "description": "This is the API for searching a keyword in youtube",
-                "parameters":[],
+                "parameters":[
+                    {
+                        "name": "song",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Search Keyword for youtube search"
+                    }
+                ],
                 "responses":{
                     "200":{
                         "description": "Search results for youtube",
@@ -120,7 +134,7 @@
                         }
                     }
                 },
-                "featured":{
+                "popular":{
                     "type":"array",
                     "items":{
                         "type":"object",
@@ -165,11 +179,36 @@
         "youtube":{
             "type":"array",
             "items":{
-                "type": "object"   
+                "type": "object",
+                "properties":{
+                    "id":{
+                        "type":"string"   
+                    },
+                    "name":{
+                        "type":"string"
+                    }
+                } 
             }
         },
         "spotify":{
-            "type":"object"
+            "type":"array",
+            "items": {
+                "type":"object",
+                "properties": {
+                    "name":{
+                        "type":"string"
+                    },
+                    "albumName":{
+                        "type":"string"
+                    },
+                    "artist":{
+                        "type":"string"
+                    },
+                    "image":{
+                        "type":"string"
+                    }
+                }
+            }
         },
         "Message":{
             "required":[

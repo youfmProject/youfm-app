@@ -15,7 +15,7 @@ export function getYoutubeSearch(){
 export function getSpotifySearch(){
 	axios({
 	  method:'get',
-	  url:'/api/v1/spotify'
+	  url:'/api/v1/albums'
 	}).then(res=>{
 		console.log(res)
 	});
