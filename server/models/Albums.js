@@ -4,6 +4,7 @@ import _ from 'lodash';
 import async from 'async';
 import spotifyClient from 'spotify-web-api-node';
 import billboardClient from 'billboard-hot-100';
+import request from 'request';
 
 var spotify = new spotifyClient({
     clientId : '9e8b29bd18634b57bad77f5769cf576f',
@@ -12,6 +13,10 @@ var spotify = new spotifyClient({
 });
 
 class Albums {
+    constructor() {
+        /*Can set context here*/
+    }
+
     getAlbums(req, callback){
         async.waterfall([
             function(cb){
@@ -24,8 +29,8 @@ class Albums {
                 });
             },
             function(accessToken, cb){
-                getSpotifyAlbums(accessToken, cb);
-            }
+                this.getSpotifyAlbums(accessToken, cb);
+            }.bind(this)
         ],function(er, results){
             callback(null, results);    
         });   
@@ -50,27 +55,30 @@ class Albums {
                         });
                         callB(null, newReleaseList);    
                     }else {
-                        cb(true, null);
+                        callB(true, null);
                     }
                     
                 });
             },
-            featured: function(callB) {
-                spotify.getFeaturedPlaylists({ limit : 10, offset: 0, country: 'US', locale: 'en_US', timestamp:'2017-06-06T09:00:00' }, function(error, response){
-                    var playlists = _.get(response.body, 'playlists.items', []);
-                    var featuredPlaylist = [];
-                    _.forEach(playlists, function(playlist){
-                        var feature = {
-                            id: playlist.id,
-                            name: playlist.name,
-                            image: _.get(playlist, 'images[0].url', ''),
-                            tracks: _.get(playlist, 'tracks.href', '')
-                        };
-                        featuredPlaylist.push(feature);
-                    });
-                    callB(null, featuredPlaylist);
-                })
-                
+            popular: function(callB) {
+                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/25/explicit/json', json: true}, function (err, results) {
+                    if(!err && results){
+                        var tracks = _.get(results, 'body.feed.results', []);
+                        var popularSongs = [];
+                        _.forEach(tracks, function(track){
+                            var popularSong = {
+                                id: track.id,
+                                name: track.name,
+                                artist: track.artistName,
+                                image: track.artworkUrl00
+                            };
+                            popularSongs.push(popularSong);
+                        });
+                        return callB(null, popularSongs);
+                    }
+                    callB(null, null);
+                });
+             
             },
             billboard: function(callB){
                 billboardClient.init().then(function(billboard){
@@ -91,7 +99,6 @@ class Albums {
                 });
             }
         }, function(err, results) {
-            console.log(JSON.stringify(results));
             cb(null, results);
         });
     }

@@ -11,17 +11,25 @@ class youtube {
 		/*Can set context here*/
 	}
 
-    searchYoutube(req, callback) {
-    	var opts = {
-		  maxResults: 10,
-		  key: constants.youtubeAPIKey
-		};
-		youtubeSearch('deadmau5', opts, function(err, results) {
-		  if(err) return console.log(err);
-		  console.dir(results);
-		  callback(null, results);
+	searchYoutube(req, callback) {
+		var options = {
+			maxResults: 15,
+			key: constants.youtubeAPIKey
+		},
+		keyword = _.get(req, 'query.song', 'coldplay yellow');
+		youtubeSearch(keyword, options, function(err, results) {
+			if(err) return callback(null, []);
+			var songs =[];
+			_.forEach(results, function(result){
+				songs.push({
+					id: result.id,
+					name: result.title,
+					image: _.get(result, 'thumbnails.medium.url', '')
+				});
+			});
+			callback(null, songs);
 		});
-    }
+	}
 }
 
 export default youtube;
