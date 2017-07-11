@@ -1,11 +1,17 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, Router } from 'react-router';
 import App from './containers/App';
-import HomePage from './containers/HomePage';
-
+import Home from './containers/Home';
+import Search from './containers/Search';
+import Playlist from './containers/Playlist';
 
 export default (
-  <Route path="/" component={App}>
-    <IndexRoute component={HomePage} />
-  </Route>
+  	<Route path="/" component={App}>
+  		<Route path="/home/:play" component={Home}/>
+		<Route path="/search/:list/:play" component={Search}/>
+		<Route path="/heavyRotation/:list/:play" component={Playlist}/>
+		<Route path="/nowPlaying/:list/:play" component={Playlist}/>
+		<Route path="/new/:list/:play" component={Playlist}/>
+		<Route path="/mostPopular/:list/:play" component={Playlist}/>
+	</Route>
 );

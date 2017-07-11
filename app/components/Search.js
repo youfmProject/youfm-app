@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import SideBar from './SideBar';
 import Player from './Player';
 
-export default class Home extends Component {
+export default class Search extends Component {
 
   render() {
     return (
       <div>
-      	HOME PAGE 
+      	SEARCH
       <SideBar />
       <Player />
       </div>

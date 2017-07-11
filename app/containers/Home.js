@@ -5,7 +5,7 @@ import * as HomeActions from '../actions/home';
 
 function mapStateToProps(state, props) {
   return {
-    test:'data'
+    tracks:state.home.tracks
   };
 }
 

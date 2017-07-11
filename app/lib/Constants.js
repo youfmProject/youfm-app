@@ -1,0 +1,5 @@
+module.exports={
+	'HOME' : {
+		SPOTIFY_SEARCH_COMPLETE:'SPOTIFY_SEARCH_COMPLETE'
+	}
+}

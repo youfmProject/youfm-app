@@ -43,7 +43,7 @@ if (isDeveloping) {
 
   app.use(devMiddleware);
   app.use(hotMiddleware);
-  app.get('/', (req, res) => {
+  app.get('/*', (req, res) => {
     res.write(devMiddleware.fileSystem.readFileSync(path.resolve(__dirname, '../dist/index.html')));
     res.end();
   });
