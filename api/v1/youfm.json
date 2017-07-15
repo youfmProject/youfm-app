@@ -173,6 +173,37 @@
                             }
                         } 
                     }
+                },
+                "albums":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "id":{
+                                "type":"string"   
+                            },
+                            "images":{
+                                "type": "string"
+                            },
+                            "tracks": {
+                                "type":"string"
+                            },
+                            "name":{
+                                "type": "string"   
+                            }
+                        }
+                    }
+                },
+                "images":{
+                    "type":"object",
+                    "properties":{
+                        "jumbo":{
+                            "type":"string"
+                        },
+                        "logo": {
+                            "type":"string"
+                        }   
+                    }
                 }
             }
         },
