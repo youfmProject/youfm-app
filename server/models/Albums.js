@@ -117,10 +117,10 @@ class Albums {
                         var topAlbums = [];
                         _.forEach(albums, function(album){
                             topAlbums.push({
-                                id: track.id,
-                                name: track.name,
-                                artist: track.artistName,
-                                image: track.artworkUrl00
+                                id: album.id,
+                                name: album.name,
+                                artist: album.artistName,
+                                image: album.artworkUrl00
                             });
                         });
                         return callB(null, topAlbums);
