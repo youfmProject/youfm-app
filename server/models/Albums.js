@@ -5,6 +5,7 @@ import async from 'async';
 import spotifyClient from 'spotify-web-api-node';
 import billboardClient from 'billboard-hot-100';
 import request from 'request';
+import path from 'path';
 
 var spotify = new spotifyClient({
     clientId : '9e8b29bd18634b57bad77f5769cf576f',
@@ -26,12 +27,16 @@ class Albums {
                     cb(null, spotify);
                 }, function(err) {
                     console.log('Something went wrong when retrieving an access token', err);
+                    cb(err, null);
                 });
             },
-            function(accessToken, cb){
-                this.getSpotifyAlbums(accessToken, cb);
+            function(spotify, cb){
+                this.getSpotifyAlbums(spotify, cb);
             }.bind(this)
-        ],function(er, results){
+        ],function(err, results){
+            if(err){
+                return callback(true, null);
+            }
             callback(null, results);    
         });   
     }
@@ -95,10 +100,38 @@ class Albums {
                         });
                     callB(null, billBoardSongs);
                 }).catch(function(err){
-                    console.log(err)
+                    callB(err, null);
+                });
+            },
+            images: function(callB) {
+                let imageList = {
+                    jumbo: path.resolve(__dirname ,'../../app/images/u2-home-bg.png'),
+                    logo: path.resolve(__dirname ,'../../app/images/youFm.svg')
+                }
+                callB(null, imageList);
+            },
+            albums: function(callB){
+                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/5/explicit/json', json: true}, function (err, results) {
+                    if(!err && results){
+                        var albums = _.get(results, 'body.feed.results', []);
+                        var topAlbums = [];
+                        _.forEach(albums, function(album){
+                            topAlbums.push({
+                                id: track.id,
+                                name: track.name,
+                                artist: track.artistName,
+                                image: track.artworkUrl00
+                            });
+                        });
+                        return callB(null, topAlbums);
+                    }
+                    callB(err, null);
                 });
             }
         }, function(err, results) {
+            if(err){
+                return cb(err, null);
+            }
             cb(null, results);
         });
     }
