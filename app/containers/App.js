@@ -9,9 +9,6 @@ export default class App extends Component {
   render() {
     return (
       <div>
-      <Link to="/home">/users</Link><br/>
-      <Link to="/search">search</Link><br/>
-      <Link to="/playlist">play</Link><br/>
         {this.props.children}
       </div>
     );

@@ -1,14 +1,19 @@
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import Playlist from '../components/Playlist';
+import * as HomeActions from '../actions/home';
 
 function mapStateToProps(state, props) {
-  return {
-  };
+	let playlistName = props.location.pathname.split('/')[1];
+	return {
+		trackList:_.get(state.playlist,playlistName,state.playlist[props.location.pathname])
+	};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+  	...HomeActions,
     dispatch
   };
 }

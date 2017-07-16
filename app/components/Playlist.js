@@ -3,13 +3,31 @@ import SideBar from './SideBar';
 import Player from './Player';
 
 export default class Playlist extends Component {
+
+  componentDidMount(){
+    const {dispatch,getHomeData} = this.props;
+    return dispatch(getHomeData());
+  }
+
+  buildPlaylist(tracks = []){
+    let fields=[];
+    tracks.map((track)=>{
+      fields.push(<div>
+        <p>{track.artist}</p>
+        <p>{track.name}</p>
+      </div>);
+    })
+    return fields
+  }
+
   render() {
+    const { trackList } = this.props;
     return (
-    	<div>
-    		PLAYLIST
-    		<h2>{this.props.params.list}</h2>
-    		<h2>{this.props.params.play}</h2>
-		</div>
-    );
+      <div style={{float:'left', width:'600px'}}>
+        <SideBar />
+        <Player />
+        {this.buildPlaylist(trackList)}
+      </div>
+      );
   }
 }

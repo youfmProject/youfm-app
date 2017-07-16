@@ -5,7 +5,8 @@ import * as HomeActions from '../actions/home';
 
 function mapStateToProps(state, props) {
   return {
-    tracks:state.home.tracks
+    spotlight:state.home.albums,
+    jumbotron:state.home.images.jumbo
   };
 }
 
