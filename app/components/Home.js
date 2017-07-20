@@ -5,8 +5,10 @@ import Player from './Player';
 export default class Home extends Component {
 
 	componentDidMount(){
-		const {dispatch,getHomeData} = this.props;
+		const {dispatch,getHomeData,inSync,params,playerPlay} = this.props;
+		inSync ? dispatch(playerPlay(inSync)) : null;
 		return dispatch(getHomeData());
+
 	}	
 
 	buildSpotLight(spotlight){
@@ -25,10 +27,12 @@ export default class Home extends Component {
 	const { spotlight } = this.props;
 	// ADD HOME CLASS
 	return (
-		<div style={{float:'left', width:'600px'}}>
+		<div>
 			<SideBar />
-			<Player />
+			<Player {...this.props} />
+			<div>
 			{this.buildSpotLight(spotlight)}
+			</div>
 		</div>
 		);
 	}

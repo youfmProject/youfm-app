@@ -7,5 +7,9 @@ module.exports={
 		SET_PLAYLIST_DATA:'SET_PLAYLIST_DATA'
 	},
 	'SEARCH':{},
-	'NOW_PLAYING':{}
+	'NOW_PLAYING':{},
+	'PLAYER':{
+		TOGGLE_PLAY:'TOGGLE_PLAY',
+		START_PLAY:'START_PLAY'
+	}
 }

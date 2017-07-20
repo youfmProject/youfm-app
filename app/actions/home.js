@@ -5,7 +5,6 @@ import { batchActions } from 'redux-batched-actions'
 const { HOME, PLAYLIST} = Constants;
 
 let spotifySearchComplete=(tracks)=>{
-	console.log('reached here');
 	return {
 		type:HOME.SPOTIFY_SEARCH_COMPLETE,
 		tracks
