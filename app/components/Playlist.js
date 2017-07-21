@@ -5,7 +5,8 @@ import Player from './Player';
 export default class Playlist extends Component {
 
   componentDidMount(){
-    const {dispatch,getHomeData} = this.props;
+    const {dispatch,getHomeData,inSync,playerPlay} = this.props;
+    inSync ? dispatch(playerPlay(inSync)) : null;
     return dispatch(getHomeData());
   }
 
@@ -25,7 +26,7 @@ export default class Playlist extends Component {
     return (
       <div style={{float:'left', width:'600px'}}>
         <SideBar />
-        <Player />
+        <Player {...this.props} />
         {this.buildPlaylist(trackList)}
       </div>
       );

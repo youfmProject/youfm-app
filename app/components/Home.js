@@ -5,7 +5,7 @@ import Player from './Player';
 export default class Home extends Component {
 
 	componentDidMount(){
-		const {dispatch,getHomeData,inSync,params,playerPlay} = this.props;
+		const {dispatch,getHomeData,inSync,playerPlay} = this.props;
 		inSync ? dispatch(playerPlay(inSync)) : null;
 		return dispatch(getHomeData());
 
