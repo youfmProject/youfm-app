@@ -5,6 +5,7 @@ import createLogger from 'redux-logger';
 import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import rootReducer from '../reducers';
+import { enableBatching } from 'redux-batched-actions';
 
 const logger = createLogger({
   level: 'info',
@@ -23,7 +24,7 @@ const enhancer = compose(
 );
 
 export default function configureStore(initialState) {
-  const store = createStore(rootReducer, initialState, enhancer);
+  const store = createStore(enableBatching(rootReducer), initialState, enhancer);
 
   if (module.hot) {
     module.hot.accept('../reducers', () =>

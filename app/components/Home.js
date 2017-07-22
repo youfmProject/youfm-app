@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import styles from './Home.css';
-
 
 export default class Home extends Component {
 
-  hityoutubeSearch(){
-    const {getYoutubeSearch, dispatch} = this.props;
-    dispatch(getYoutubeSearch());
-  }
+	componentDidMount(){
+		const {dispatch,getHomeData} = this.props;
+		return dispatch(getHomeData());
+	}	
 
-  hitspotifySearch(){
-    const {getSpotifySearch, dispatch} = this.props;
-    dispatch(getSpotifySearch());
-  }
+	buildSpotLight(spotlight){
+		let fields= [];
+		// ADD ALBUM CLASS
+		spotlight.map((album)=>{
+			fields.push(<div style={{height:'100px',width:'200px', float:'left'}}>
+				<p>{album.artist}</p>
+				<p>{album.name}</p>
+			</div>);
+		});
+		return fields;
+	}
 
-  render() {
-    return (
-      <div>
-        <h1> Welcome to youfm.org </h1>
-        <button onClick={()=>{this.hityoutubeSearch()}}>Search youtube</button>
-        <button onClick={()=>{this.hitspotifySearch()}}>Search spotify</button>
-      </div>
-    );
-  }
+	render() {
+	const { spotlight } = this.props;
+	// ADD HOME CLASS
+	return (
+		<div>
+			<div>
+			{this.buildSpotLight(spotlight)}
+			</div>
+		</div>
+		);
+	}
 }

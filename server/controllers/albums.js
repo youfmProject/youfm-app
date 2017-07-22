@@ -12,6 +12,7 @@ const callback = (method, response) => {
 module.exports = {
     getAlbums: (req, res, next) => {
         let Albums = new AlbumModel();
+        console.log('hit Albums');
         Albums.getAlbums(req, callback('GET', res));
     }
 }

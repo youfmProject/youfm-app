@@ -1,15 +1,24 @@
-import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-export default class App extends Component {
-  static propTypes = {
-    children: PropTypes.element.isRequired
+import App from '../components/App';
+import * as HomeActions from '../actions/home';
+import * as PlayerActions from '../actions/player';
+
+function mapStateToProps(state, props) {
+  let inSync = (props.params.play !== state.player.id) ? props.params.play : false;
+  return {
+    children:props.children,
+    player:state.player,
+    inSync
   };
-
-  render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
-  }
 }
+
+function mapDispatchToProps(dispatch) {
+  return {
+    ...HomeActions,
+    ...PlayerActions,
+    dispatch
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
