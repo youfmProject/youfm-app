@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Search from './Search';
 
 export default class Home extends Component {
 
 	componentDidMount(){
-		const {dispatch,getHomeData} = this.props;
+		const {dispatch, getHomeData} = this.props;
 		return dispatch(getHomeData());
 	}	
 
@@ -25,6 +26,7 @@ export default class Home extends Component {
 	return (
 		<div>
 			<div>
+			<Search/>
 			{this.buildSpotLight(spotlight)}
 			</div>
 		</div>
