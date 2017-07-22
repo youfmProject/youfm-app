@@ -2,12 +2,12 @@ import axios from 'axios';
 import Constants from '../lib/Constants';
 import { batchActions } from 'redux-batched-actions'
 
-const { HOME, PLAYLIST} = Constants;
+const { HOME, PLAYLIST, SEARCH} = Constants;
 
 let spotifySearchComplete=(tracks)=>{
 	return {
-		type:HOME.SPOTIFY_SEARCH_COMPLETE,
-		tracks
+		type:SEARCH.SPOTIFY_SEARCH_COMPLETE,
+		tracks: tracks
 	}
 }
 
@@ -49,13 +49,24 @@ export function getYoutubeSearch(){
 	}
 }
 
-export function getSpotifySearch(){
+export function getSpotifySearch(searchKey){
 	return(dispatch,getState)=>{
 		axios({
 		  method:'get',
-		  url:'/api/v1/spotify'
+		  url:'/api/v1/spotify?search='+searchKey
 		}).then(res=>{
-			dispatch(spotifySearchComplete(res.data.tracks.items));
+			dispatch(batchActions([
+      			spotifySearchComplete(res.data),
+      			searchKeyword('')
+    			])
+    		);
 		});
 	}
+}
+
+export function searchKeyword(data){
+	return {
+		type: SEARCH.EDIT_SEARCH_KEY,
+		searchKey: data
+	};
 }
