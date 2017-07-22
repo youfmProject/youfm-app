@@ -8,9 +8,7 @@ function mapStateToProps(state, props) {
 	let inSync = (props.params.play !== state.player.id) ? props.params.play : false;
 	return {
 		spotlight:state.home.albums,
-		jumbotron:state.home.images.jumbo,
-		player:state.player,
-		inSync
+		jumbotron:state.home.images.jumbo
 	};
 }
 

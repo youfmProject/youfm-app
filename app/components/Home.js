@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
-import SideBar from './SideBar';
-import Player from './Player';
 
 export default class Home extends Component {
 
 	componentDidMount(){
-		const {dispatch,getHomeData,inSync,playerPlay} = this.props;
-		inSync ? dispatch(playerPlay(inSync)) : null;
+		const {dispatch,getHomeData} = this.props;
 		return dispatch(getHomeData());
-
 	}	
 
 	buildSpotLight(spotlight){
@@ -28,8 +24,6 @@ export default class Home extends Component {
 	// ADD HOME CLASS
 	return (
 		<div>
-			<SideBar />
-			<Player {...this.props} />
 			<div>
 			{this.buildSpotLight(spotlight)}
 			</div>

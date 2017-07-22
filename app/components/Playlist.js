@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import SideBar from './SideBar';
-import Player from './Player';
-
 export default class Playlist extends Component {
 
   componentDidMount(){
-    const {dispatch,getHomeData,inSync,playerPlay} = this.props;
-    inSync ? dispatch(playerPlay(inSync)) : null;
+    const {dispatch,getHomeData} = this.props;
     return dispatch(getHomeData());
   }
 
@@ -25,8 +21,6 @@ export default class Playlist extends Component {
     const { trackList } = this.props;
     return (
       <div style={{float:'left', width:'600px'}}>
-        <SideBar />
-        <Player {...this.props} />
         {this.buildPlaylist(trackList)}
       </div>
       );
