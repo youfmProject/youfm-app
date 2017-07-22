@@ -7,11 +7,8 @@ import * as PlayerActions from '../actions/player';
 
 function mapStateToProps(state, props) {
 	let playlistName = props.location.pathname.split('/')[1];
-	let inSync = (props.params.play !== state.player.id) ? props.params.play : false;
 	return {
-		trackList:_.get(state.playlist,playlistName,state.playlist[props.location.pathname]),
-		player:state.player,
-		inSync
+		trackList:_.get(state.playlist,playlistName,state.playlist[props.location.pathname])
 	};
 }
 
