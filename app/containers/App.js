@@ -9,6 +9,8 @@ function mapStateToProps(state, props) {
   return {
     children:props.children,
     player:state.player,
+    searchKey: state.search.searchKey,
+    tracks: state.search.tracks,
     inSync
   };
 }

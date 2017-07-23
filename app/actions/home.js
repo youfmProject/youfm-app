@@ -50,11 +50,13 @@ export function getYoutubeSearch(){
 }
 
 export function getSpotifySearch(searchKey){
+	console.log("Shreyas here");
 	return(dispatch,getState)=>{
 		axios({
 		  method:'get',
 		  url:'/api/v1/spotify?search='+searchKey
 		}).then(res=>{
+			console.log("results:", res.data);
 			dispatch(batchActions([
       			spotifySearchComplete(res.data),
       			searchKeyword('')

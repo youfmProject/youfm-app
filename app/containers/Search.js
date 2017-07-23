@@ -7,7 +7,7 @@ import * as HomeActions from '../actions/home';
 
 function mapStateToProps(state, props) {
   	return {
-      searchTracks: state.search.tracks,
+      tracks: state.search.tracks,
       searchKey: state.search.searchKey
 	};
 }

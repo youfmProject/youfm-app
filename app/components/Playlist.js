@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 export default class Playlist extends Component {
 
-  componentDidMount(){
-    const {dispatch,getHomeData} = this.props;
-    return dispatch(getHomeData());
-  }
-
   buildPlaylist(tracks = []){
     let fields=[];
     tracks.map((track)=>{
       fields.push(<div>
-        <p>{track.artist}</p>
-        <p>{track.name}</p>
+        <p style={{color: 'red'}}>{track.artist}</p>
+        <p style={{color: 'red'}}>{track.name}</p>
       </div>);
     })
     return fields
