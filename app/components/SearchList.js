@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-export default class Playlist extends Component {
+export default class SearchList extends Component {
 
   componentDidMount(){
-    const {dispatch,getHomeData} = this.props;
+    const {dispatch, getHomeData} = this.props;
     return dispatch(getHomeData());
   }
     
@@ -18,10 +18,10 @@ export default class Playlist extends Component {
   }
 
   render() {
-    const { trackList } = this.props;
+    const { tracks } = this.props;
     return (
       <div style={{float:'left', width:'600px'}}>
-        {this.buildPlaylist(trackList)}
+        {this.buildPlaylist(tracks)}
       </div>
       );
   }

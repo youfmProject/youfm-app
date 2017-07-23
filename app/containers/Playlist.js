@@ -7,8 +7,9 @@ import * as PlayerActions from '../actions/player';
 
 function mapStateToProps(state, props) {
 	let playlistName = props.location.pathname.split('/')[1];
+	
 	return {
-		trackList:_.get(state.playlist,playlistName,state.playlist[props.location.pathname])
+		trackList:  _.get(state.playlist,playlistName,state.playlist[props.location.pathname])
 	};
 }
 

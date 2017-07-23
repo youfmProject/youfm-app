@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Search from './Search';
 
 export default class Home extends Component {
 
@@ -13,8 +12,8 @@ export default class Home extends Component {
 		// ADD ALBUM CLASS
 		spotlight.map((album)=>{
 			fields.push(<div style={{height:'100px',width:'200px', float:'left'}}>
-				<p>{album.artist}</p>
-				<p>{album.name}</p>
+				<p style={{color: 'red'}}>{album.artist}</p>
+				<p style={{color: 'red'}}>{album.name}</p>
 			</div>);
 		});
 		return fields;
@@ -26,8 +25,7 @@ export default class Home extends Component {
 	return (
 		<div>
 			<div>
-			<Search/>
-			{this.buildSpotLight(spotlight)}
+				{this.buildSpotLight(spotlight)}
 			</div>
 		</div>
 		);

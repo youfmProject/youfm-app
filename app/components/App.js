@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import SideBar from './SideBar';
 import Player from './Player';
-
+import Search from './Search';
 export default class App extends Component {
 
   componentDidMount(){
@@ -15,6 +15,7 @@ export default class App extends Component {
       <div>
         <SideBar />
         <Player {...this.props} />
+        <Search {...this.props}/>
         {children}
       </div>
     );

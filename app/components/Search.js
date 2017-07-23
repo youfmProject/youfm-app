@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import { form, Button, FormControl, FormGroup, ControlLabel, HelpBlock } from 'react-bootstrap';
-import { batchActions } from 'redux-batched-actions'
+import { Form, Button, FormControl, FormGroup, ControlLabel, HelpBlock, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
+import { batchActions } from 'redux-batched-actions';
+import Playlist from './Playlist';
 
 export default class Search extends Component {
   
-  buildPlaylist(tracks){
-    let fields=[];
-    tracks.map((track)=>{
-      fields.push(<div>
-        <span>{track.artist}</span>
-        <span>  </span>
-        <span>{track.name}</span>
-      </div>);
-    })
-    return fields
-  }
 
   render() {
-    const {dispatch, searchKey, searchKeyword, onSearch, getSpotifySearch, searchTracks} = this.props; 
-   
+    const {dispatch, searchKey, searchKeyword, onSearch, getSpotifySearch, tracks, getHomeData} = this.props; 
     let onChange = function(e){ 
       dispatch(searchKeyword(e.target.value));
+    }
+
+    let onBlur = function(){
+      dispatch(getSpotifySearch(searchKey));
     }
 
     let onClick = function(){
@@ -28,26 +21,15 @@ export default class Search extends Component {
     }
     return (
       <div>
-      	SEARCH
-        <form>
-        <FormGroup
-          controlId="formBasicText"
-        >
-          <FormControl
-            type="text"
-            value={searchKey}
-            placeholder="Search song/album/artist"
-            onChange={onChange.bind(this)}
-          />
-          <FormControl.Feedback />
-          <Button bsStyle="primary" onClick={onClick.bind(this)}>
-          Search
+        <Form inline>
+          <FormGroup controlId="formInlineEmail">
+            <FormControl type="search" placeholder="Search song" onChange= {onChange.bind(this)} onBlur= {onBlur.bind(this)} />
+          </FormGroup>
+          {' '}
+          <Button type="submit" onClick={onClick.bind(this)}>
+            Search
           </Button>
-        </FormGroup>
-      </form>
-      <div>
-        {this.buildPlaylist(searchTracks)}
-      </div>
+        </Form>
       </div>
     );
   }
