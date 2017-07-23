@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Search from '../components/Search';
+import SearchList from '../components/SearchList';
 
 import * as PlayerActions from '../actions/player';
 import * as HomeActions from '../actions/home';
@@ -20,4 +20,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Search);
+export default connect(mapStateToProps,mapDispatchToProps)(SearchList);

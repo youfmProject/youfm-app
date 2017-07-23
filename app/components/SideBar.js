@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 export default class SideBar extends Component {
   render() {
   	// ADD SIDEBAR CLASS
+
     return (
     	<div className="rails" style={{float:'left', width:'100px'}}>
     		<ul>
