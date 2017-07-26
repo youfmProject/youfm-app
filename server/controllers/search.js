@@ -16,7 +16,6 @@ module.exports = {
         Search.searchSpotify(req, callback('GET', res));
     },
     searchYoutube: (req, res, next) => {
-        console.log('reached here controller');
         let Search = new youtubeModel();
         Search.searchYoutube(req, callback('GET', res));
     }
