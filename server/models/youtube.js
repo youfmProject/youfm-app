@@ -16,7 +16,7 @@ class youtube {
 			maxResults: 15,
 			key: constants.youtubeAPIKey
 		},
-		keyword = _.get(req, 'query.song', 'coldplay yellow');
+		keyword = _.get(req, 'query.search','');
 		youtubeSearch(keyword, options, function(err, results) {
 			if(err) return callback(null, []);
 			var songs =[];

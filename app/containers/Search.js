@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import SearchList from '../components/SearchList';
 

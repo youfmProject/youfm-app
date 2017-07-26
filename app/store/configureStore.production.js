@@ -12,3 +12,5 @@ const enhancer = applyMiddleware(thunk, router);
 export default function configureStore(initialState) {
   return createStore(enableBatching(rootReducer), initialState, enhancer);
 }
+
+

@@ -5,7 +5,6 @@ import { Link } from 'react-router'
 import Playlist from './Playlist';
 
 export default class Search extends Component {
-  
 
   render() {
     const {dispatch, searchKey, searchKeyword, onSearch, getSpotifySearch, tracks, getHomeData} = this.props; 
