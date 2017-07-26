@@ -25,8 +25,8 @@ let setPlaylistData=(data)=>{
 }
 
 export function getHomeData(){
-	return(dispatch,getState)=>{
-		axios({
+	return(dispatch, getState)=>{
+		return axios({
 		  method:'get',
 		  url:'/api/v1/albums'
 		}).then(res=>{

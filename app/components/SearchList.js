@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 export default class SearchList extends Component {
 
-  componentDidMount(){
-    const {dispatch, getHomeData} = this.props;
-    return dispatch(getHomeData());
-  }
     
   buildPlaylist(tracks = []){
     let fields=[];
