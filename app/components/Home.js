@@ -19,7 +19,6 @@ export default class Home extends Component {
 	// ADD HOME CLASS
 	return (
 		<div>
-			"Shreyas"
 			<div>
 				{this.buildSpotLight(spotlight)}
 			</div>
