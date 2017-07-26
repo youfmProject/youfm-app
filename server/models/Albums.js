@@ -116,11 +116,12 @@ class Albums {
                         var albums = _.get(results, 'body.feed.results', []);
                         var topAlbums = [];
                         _.forEach(albums, function(album){
+                            console.log("ALBUM ART:::", JSON.stringify(album));
                             topAlbums.push({
                                 id: album.id,
                                 name: album.name,
                                 artist: album.artistName,
-                                image: album.artworkUrl00
+                                image: album.artworkUrl100
                             });
                         });
                         return callB(null, topAlbums);

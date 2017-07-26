@@ -24,18 +24,16 @@ let setPlaylistData=(data)=>{
 	}
 }
 
-export function getHomeData(){
-	return(dispatch,getState)=>{
-		axios({
-		  method:'get',
-		  url:'/api/v1/albums'
-		}).then(res=>{
-			dispatch(batchActions([
-				setHomeData(res.data),
-				setPlaylistData(res.data)
-			]));
-		});
-	}
+export const getHomeData = () => (dispatch, getState) =>{
+	return axios({
+		method:'get',
+		url:'/api/v1/albums'
+	}).then(res=>{
+		dispatch(batchActions([
+			setHomeData(res.data),
+			setPlaylistData(res.data)
+		]));
+	});
 }
 
 export function getYoutubeSearch(){
