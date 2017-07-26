@@ -6,7 +6,8 @@ export default class Home extends Component {
 		let fields= [];
 		// ADD ALBUM CLASS
 		spotlight.map((album)=>{
-			fields.push(<div style={{height:'100px',width:'200px', float:'left'}}>
+			fields.push(<div style={{height:'300px',width:'200px', float:'left'}}>
+				<p style={{backgroundImage: 'url('+album.image+')', height:'200px', width:'200px', margin: '15px'}}/>
 				<p style={{color: 'red'}}>{album.artist}</p>
 				<p style={{color: 'red'}}>{album.name}</p>
 			</div>);
