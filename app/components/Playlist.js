@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DragSortableList from 'react-drag-sortable'
 import { Glyphicon } from 'react-bootstrap';
+import classNames from 'classnames';
 import Track from './Track';
 export default class Playlist extends Component {
     
@@ -18,9 +19,9 @@ export default class Playlist extends Component {
     let onSort = function(sortedList) {
       // fire action to reset store order
     }
-
+    var playlistClass = classNames('song-list', 'song');
     return (
-      <div style={{float:'left', width:'900px', marginLeft:'150px', height:'700px', overflow:'auto'}}>
+      <div className={playlistClass}>
         <DragSortableList items={this.buildPlaylist(trackList)} onSort={onSort} type="vertical"/>
       </div>
       );
