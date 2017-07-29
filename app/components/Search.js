@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Form, Button, FormControl, FormGroup, ControlLabel, HelpBlock, Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
 import { batchActions } from 'redux-batched-actions';
+import classNames from 'classNames';
 import { Link } from 'react-router'
 import Playlist from './Playlist';
 
 export default class Search extends Component {
 
   render() {
-    const {dispatch, searchKey, searchKeyword, onSearch, getSpotifySearch, tracks, getHomeData} = this.props; 
+    const {dispatch, searchKey, searchKeyword, onSearch, getSpotifySearch, tracks, searchView, getHomeData} = this.props; 
     
     let onChange = function(e){ 
       dispatch(searchKeyword(e.target.value));
@@ -16,19 +16,29 @@ export default class Search extends Component {
     let onClick = function(){
       dispatch(getSpotifySearch(searchKey));
     }
+
+    let homeSearch = (
+      <div>
+        <form onSubmit={onClick.bind(this)}>
+          <Link to="/search" activeClassName="active" onlyActiveOnIndex={true}>
+            <input className={classNames('banner__search')} value = {searchKey} onChange= {onChange.bind(this)} placeholder="Search song"/>
+          </Link>
+        </form>
+      </div>
+    );
+      
+      let ContextSearch = (
+        <div className={classNames("songs__search")} style = {{marginLeft: '5.5em'}}>
+          <div className={classNames("songs__search__field")}>
+            <span className={classNames("icon-search-icon songs__search__icon-1")}/>
+            <input className={classNames("songs__search__input")} style={{width:'95%'}} type="text" placeholder="Type in a song or artist name"></input>
+            <span className={classNames("icon-enter-icon songs__search__icon-2")} style={{right: '8em'}}>Press &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; enter to search</span>
+          </div>
+        </div>
+      );
     return (
       <div>
-        <Form inline>
-          <FormGroup controlId="formInlineEmail">
-            <FormControl type="search" placeholder="Search song" value = {searchKey} onChange= {onChange.bind(this)}/>
-          </FormGroup>
-          {' '}
-          <Link to="/search" activeClassName="active">
-            <Button type="submit" onClick={onClick.bind(this)}>
-              Search
-            </Button>
-          </Link>
-        </Form>
+        {searchView === 'home' ? homeSearch : ContextSearch}  
       </div>
     );
   }
