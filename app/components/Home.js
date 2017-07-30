@@ -8,8 +8,8 @@ export default class Home extends Component {
 		spotlight.map((album)=>{
 			fields.push(<div style={{height:'300px',width:'200px', float:'left'}}>
 				<p style={{backgroundImage: 'url('+album.image+')', height:'180px', width:'180px', margin: '0 0 10px 0'}}/>
-				<p style={{color: 'red'}}>{album.artist}</p>
-				<p style={{color: 'red'}}>{album.name}</p>
+				<p className= {classNames('song__title')}>{album.name}</p>
+				<p className={classNames('song__artist')}>{album.artist}</p>
 			</div>);
 		});
 		return fields;
