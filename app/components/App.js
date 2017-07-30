@@ -15,10 +15,10 @@ export default class App extends Component {
   render() {
     const {children} = this.props;
     return (
-      <div className = {classNames('rail')}>
+      <div className = {classNames('rails')}>
         <Grid style = {{margin: '10px', padding: '5px'}} fluid = {true}>
           <Row>
-            <Col xs={5} md={3} style = {{marginLeft:'10px'}}>
+            <Col xs={1} md={2} style = {{marginLeft:'10px'}}>
               <Row>
                 <SideBar />
               </Row>
@@ -29,7 +29,7 @@ export default class App extends Component {
                 {''}
               </Row>
             </Col>
-            <Col xs={8} md={9} style = {{marginLeft:'-50px'}}>
+            <Col md={9} xs={4} className ={classNames('rail', 'rail--center')} style={{marginLeft: '30px'}}>
               <Search {...this.props}/>
               {children}
             </Col>

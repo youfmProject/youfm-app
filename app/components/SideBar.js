@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
+import classNames from 'classNames';
 export default class SideBar extends Component {
   render() {
   	// ADD SIDEBAR CLASS
 
     return (
-    	<div className="rails" style={{float:'left', width:'100px'}}>
-    		<ul>
+			<div className={classNames('rail', 'rail--left')}>
+    	<div className={classNames('navigation--main')}>
+    		<ul className={classNames('navigation')}>
     			<li><Link to="/heavyRotation" activeClassName="active">Heavy Rotation</Link></li>
     			<li><Link to="/mostPopular" activeClassName="active">Most Popular</Link></li>
     			<li><Link to="/newReleases" activeClassName="active">New & Fresh</Link></li>
@@ -14,6 +16,7 @@ export default class SideBar extends Component {
 					<li><Link to="/login" activeClassName="active">Login</Link></li>
 					<li><Link to="/register" activeClassName="active">Register</Link></li>
     		</ul>
+		</div>
 		</div>
     );
   }
