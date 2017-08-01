@@ -1,9 +1,11 @@
 import axios from 'axios';
 import Constants from '../lib/Constants';
-import { batchActions } from 'redux-batched-actions'
+import { batchActions } from 'redux-batched-actions';
 import * as PlayerActions from './player';
+import * as NowPlayingActions from './nowPlaying';
+import {browserHistory} from 'react-router';
 
-const { HOME, PLAYLIST, SEARCH} = Constants;
+const { HOME, PLAYLIST, SEARCH, NOW_PLAYING} = Constants;
 
 let spotifySearchComplete=(tracks)=>{
 	return {
@@ -35,18 +37,6 @@ export const getHomeData = () => (dispatch, getState) =>{
 			setPlaylistData(res.data)
 		]));
 	});
-}
-
-/* for Demo purposes only, this data should be dumped somewhere and player should pick it up from there */
-export function searchYoutubeAndPlay(track){
-		return(dispatch,getState)=>{
-		axios({
-		  method:'get',
-		  url:'/api/v1/youtube?search='+track.name+' '+track.artist
-		}).then(res=>{
-			dispatch(PlayerActions.playerPlay(res.data[0].id));
-		});
-	}
 }
 
 export function getYoutubeSearch(){

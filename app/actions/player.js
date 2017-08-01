@@ -16,3 +16,14 @@ export function playerPlay(id){
 		id
 	}
 }
+
+// export function setPlayerPlayId(){
+// 	return(dispatch,getState)=>{
+// 		const state = getState();
+// 		let playIndex = state.nowPlaying.playIndex;
+// 		if(playIndex !== 'notSet'){
+// 			let playerID = state.nowPlaying.queue[playIndex].id
+// 			dispatch(playerPlay(playerID));
+// 		}
+// 	}
+// }
