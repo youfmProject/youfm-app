@@ -16,25 +16,15 @@ export default class App extends Component {
     const {children} = this.props;
     return (
       <div className = {classNames('rails')}>
-        <Grid style = {{margin: '10px', padding: '5px'}} fluid = {true}>
-          <Row>
-            <Col xs={1} md={2} style = {{marginLeft:'10px'}}>
-              <Row>
-                <SideBar />
-              </Row>
-              <Row style ={{paddingBottom:'100px'}}>
-                <Player {...this.props} />
-              </Row>
-              <Row>
-                {''}
-              </Row>
-            </Col>
-            <Col md={9} xs={4} className ={classNames('rail', 'rail--center')} style={{marginLeft: '30px'}}>
-              <Search {...this.props}/>
-              {children}
-            </Col>
-          </Row>
-        </Grid>
+        <div className={classNames('rail', 'rail--left')}>
+          <SideBar />
+          </div>
+          <Player {...this.props} />
+          <div className={classNames('rail', 'rail--center')}>
+             <Search {...this.props}/>
+             {children}
+             
+          </div>
       </div>
     );
   }

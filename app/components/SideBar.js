@@ -6,7 +6,12 @@ export default class SideBar extends Component {
   	// ADD SIDEBAR CLASS
 
     return (
-			<div className={classNames('rail', 'rail--left')}>
+			<div className={classNames('rail', 'rail--left')} style={{overflow: 'auto'}}>
+				<div className={classNames("navigation__mobile")}>
+					<div id="nav-icon3">
+						<span></span><span></span><span></span><span></span>
+					</div>
+				</div>
     	<div className={classNames('navigation--main')}>
     		<ul className={classNames('navigation')}>
     			<li><Link to="/heavyRotation" activeClassName="active">Heavy Rotation</Link></li>
