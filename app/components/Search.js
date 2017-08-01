@@ -33,12 +33,12 @@ export default class Search extends Component {
         <div className={classNames("songs__search")} style = {{marginLeft: '5em'}}>
           <div className={classNames("songs__search__field")}>
             <span className={classNames("icon-search-icon songs__search__icon-1")}/>
-              <form onSubmit={onClick.bind(this)}>
+             
                 <Link to="/search" activeClassName="active" onlyActiveOnIndex={true}>
                   <input className={classNames("songs__search__input")} style={{width:'95%'}} type="text" placeholder="Type in a song or artist name" value = {searchKey} onChange= {onChange.bind(this)}/>
                 </Link>
-              </form>
             <span className={classNames("icon-enter-icon songs__search__icon-2")} style={{right: '8em'}}>Press &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; enter to search</span>
+            <button style={{marginRight: '-100px'}} onClick={onClick.bind(this)}>search</button>
           </div>
         </div>
       );

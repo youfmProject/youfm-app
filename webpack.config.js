@@ -23,7 +23,6 @@ module.exports = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new ExtractTextPlugin('assets/css/[name].css'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
@@ -39,18 +38,10 @@ module.exports = {
     }, {
       test: /\.json?$/,
       loader: 'json'
-    }, {
-      test: /\.global\.css$/,
-      loaders: [
-        'style-loader',
-        'css-loader'
-      ]
-    }, {
-      test: /^((?!\.global).)*\.css$/,
-      loaders: [
-        'style-loader',
-        'css-loader'
-      ]
+    },
+    {
+      test: /\.less$/,
+      loader: "style!css!less?cleancss=true&yuicompress=true"
     }, {
       test: /\.(png|jpg|svg)$/,
       loader: 'file-loader'

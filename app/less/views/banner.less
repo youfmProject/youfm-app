@@ -1,0 +1,81 @@
+// Main Banner
+
+.banner--main {
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 60%;
+	background: url("../../images/u2-home-bg.png") top center no-repeat;
+	background-size: cover;
+
+  	&:before {
+			z-index: 200;
+			content: '';
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			background: linear-gradient(to bottom, transparent, @youFM-black--light 90%);
+	}
+
+	@media (max-width: @screen-md) {
+		height: auto;
+	}
+
+}
+
+.banner__content {
+	z-index: 300;
+	position: absolute;
+	top: 300px;
+	width: 100%;
+}
+
+.banner__logo {
+	display: block;
+	max-width: 230px;
+	height: auto;
+	margin: 0 auto 50px;
+	background: url("../../logos/youfm-logo.svg") center center no-repeat;
+}
+
+.banner__search {
+
+	display: block;
+	width: 75%;
+	height: 66px;
+	padding: 0 25px 0 50px;
+	margin: 0 auto 60px;
+	border-radius: 100px;
+	background: #ffffff;
+	border: solid 1px #ddd;
+	font-size: 21px;
+	font-weight: 300;
+	letter-spacing: 0.7px;
+	text-align: left;
+	color: #000;
+
+	@media (max-width: @screen-md) {
+		font-size: @text-md;
+		padding: 0 @spacing-sm 0 @spacing-lg;
+	}
+
+	&:focus{
+		outline: 0;
+	}
+
+	&::placeholder {
+
+		color: #ddd;
+
+		@media (max-width: @screen-sm) {
+			font-size: @text-sm;
+		}
+
+	}
+
+}
