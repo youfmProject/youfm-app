@@ -1,0 +1,108 @@
+// Modals
+
+.modal-content {
+	border-radius: 0;
+	border: 1px solid #515161;
+}
+
+.modal-body {
+	padding: 60px 60px 0;
+	background: #1a1a21;
+}
+
+.modal-footer {
+	padding: 15px 60px 45px;
+	text-align: center;
+	background: #1a1a21;
+	border: none;
+}
+
+.modal__title {
+	margin: 0 0 15px;
+	font-size: 21px;
+	line-height: 37px;
+	color: #c4c4ce;
+}
+
+.modal__subtitle {
+	font-size: 18px;
+	font-weight: 300;
+	color: #959595;
+}
+
+.modal__link {
+	margin: 0 0 0 6px;
+	font-size: 18px;
+	font-weight: 500;
+	color: #23d7f5;
+}
+
+.modal__input {
+
+	display: block;
+	width: 100%;
+	padding: 15px 20px;
+	margin: 15px 0 0;
+	background: #e7e7f1;
+	border: solid 1px #515161;
+	font-size: 15px;
+	font-weight: 300;
+	letter-spacing: 0.7px;
+	text-align: left;
+	color: #000;
+
+	@media (max-width: @screen-md) {
+		font-size: @text-md;
+		padding: 0 @spacing-sm 0 @spacing-lg;
+	}
+
+	&:first-of-type {
+		margin: 0;
+	}
+
+	&:focus{
+		outline: 0;
+	}
+
+	&::placeholder {
+
+		color: #707086;
+
+		@media (max-width: @screen-sm) {
+			font-size: @text-sm;
+		}
+
+	}
+
+}
+
+.checkbox {
+	margin: 15px 0 5px;
+}
+
+.checkbox input {
+    position: relative !important;
+    width: 20px;
+    height: 20px;
+    margin: 2px 5px 0;
+    float: left;
+}
+
+.checkbox label {
+	width: 100%;
+	font-size: 15px;
+	color: #bdbdc8;
+}
+
+.modal__close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    color: #979797;
+}
+
+@media (min-width: 768px) {
+	.modal-dialog {
+	    margin: 100px auto;
+	}
+}

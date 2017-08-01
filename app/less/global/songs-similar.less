@@ -1,0 +1,97 @@
+// Songs Similar
+
+.songs--similar {
+  padding: @spacing-lg;
+
+  .song {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    margin-bottom: @spacing-lg;
+
+    &__art {
+      margin-right: @spacing-sm;
+      position: relative;
+
+      img {
+        max-width: 30px;
+      }
+
+      i {
+        display: none;
+        position: absolute;
+        color: @white;
+        top: 5px;
+        left: 5px;
+        font-size: 20px;
+
+        -moz-transition-duration: .25s; /* Firefox 4 */
+        -webkit-transition-duration: .25s; /* Safari and Chrome */
+        -o-transition-duration: .25s; /* Opera */
+           transition-duration: .25s;
+
+        &:hover {
+          cursor: pointer;
+          font-size: 26px;
+          top: 2px;
+          left: 2px;
+
+          -moz-transition-duration: .25s; /* Firefox 4 */
+          -webkit-transition-duration: .25s; /* Safari and Chrome */
+          -o-transition-duration: .25s; /* Opera */
+             transition-duration: .25s;
+        }
+      }
+
+    }
+
+    &__info {
+      display: flex;
+      flex-flow: column wrap;
+    }
+
+    &__name {
+      color: @white;
+      text-transform: uppercase;
+      width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__artists {
+      color: #A2A2A2;
+      width: 100px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      .song__artist {
+        &:after {
+          content: ",";
+        }
+        &:last-child {
+          &:after {
+            content: "";
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .song__art {
+
+        img {
+          opacity: .4;
+        }
+
+        i {
+          display: block;
+        }
+      }
+    }
+
+  }
+
+}
