@@ -25,13 +25,12 @@ export default class App extends Component {
       <div className = {classNames('rails')}>
         <div className={classNames('rail', 'rail--left')}>
           <SideBar {...this.props} />
-          </div>
-          
-          <div className={classNames('rail', 'rail--center')}>
-             <Search {...this.props}/>
-             {children}
-            <Player {...this.props} />   
-          </div>
+        </div>
+        <div className={classNames('rail', 'rail--center')}>
+          <Search {...this.props}/>
+          {children}
+          <Player {...this.props} />   
+        </div>
       </div>
     );
   }

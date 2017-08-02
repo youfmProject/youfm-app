@@ -19,7 +19,8 @@ export default class Search extends Component {
 
     let homeSearch = (
       <div className={classNames('banner--main')}>
-        <div className={classNames('banner__content')}>    
+        <div className={classNames('banner__content')}>   
+          <div className={classNames("banner__logo")} /> 
           <input className={classNames('banner__search')} value = {searchKey} onChange= {onChange.bind(this)} placeholder="Type in a song or artist name" onKeyPress={onClick.bind(this)}/>
         </div>
       </div>
