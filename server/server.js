@@ -6,13 +6,15 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../webpack.config.js';
 import bodyParser from 'body-parser';
+import session from 'express-session';
 import _ from 'lodash';
 import * as swaggerTools from 'swagger-tools';
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const app = express();
 const options = {};
+app.use(session({secret: 'liveJam'}))
 app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, '../static')));
 
