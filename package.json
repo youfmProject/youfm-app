@@ -68,6 +68,7 @@
     "redux-thunk": "^2.0.1",
     "request": "^2.81.0",
     "rimraf": "^2.5.2",
+    "session-memory-store": "^0.2.2",
     "spotify-web-api-node": "^2.4.0",
     "stats-webpack-plugin": "^0.3.1",
     "style-loader": "^0.13.2",
