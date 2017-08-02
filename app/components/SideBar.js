@@ -4,7 +4,7 @@ import classNames from 'classNames';
 export default class SideBar extends Component {
   render() {
   	// ADD SIDEBAR CLASS
-
+    const query = this.props.params.play;
     return (
 			<div className={classNames('rail', 'rail--left')} style={{overflow: 'auto'}}>
 				<div className={classNames("navigation__mobile")}>
@@ -14,10 +14,10 @@ export default class SideBar extends Component {
 				</div>
     	<div className={classNames('navigation--main')}>
     		<ul className={classNames('navigation')}>
-    			<li><Link to="/heavyRotation" activeClassName="active">Heavy Rotation</Link></li>
-    			<li><Link to="/mostPopular" activeClassName="active">Most Popular</Link></li>
-    			<li><Link to="/newReleases" activeClassName="active">New & Fresh</Link></li>
-    			<li><Link to="/nowPlaying" activeClassName="active">Now Playing</Link></li>
+          <li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
+          <li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
+          <li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
+          <li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
 					<li><Link to="/login" activeClassName="active">Login</Link></li>
 					<li><Link to="/register" activeClassName="active">Register</Link></li>
     		</ul>

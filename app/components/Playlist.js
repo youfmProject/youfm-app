@@ -5,24 +5,23 @@ import classNames from 'classnames';
 import Track from './Track';
 export default class Playlist extends Component {
     
-  buildPlaylist(tracks = []){
+  buildPlaylist(tracks = [], playlistName){
     let fields=[];
     tracks.map((track)=>{
-      fields.push({content: (<Track track={track} {...this.props}/>)});
+      fields.push({content: (<Track track={track} playlistName={playlistName} {...this.props}/>)});
     })
     return fields
   }
 
   render() {
-    const { trackList } = this.props;
-
+    const { trackList, playlistName } = this.props;
     let onSort = function(sortedList) {
       // fire action to reset store order
     }
     var playlistClass = classNames('song-list', 'song');
     return (
-      <div className={playlistClass}>
-        <DragSortableList items={this.buildPlaylist(trackList)} onSort={onSort} type="vertical"/>
+      <div className={playlistClass} style={{marginLeft:'200px'}}>
+        <DragSortableList items={this.buildPlaylist(trackList, playlistName)} onSort={onSort} type="vertical"/>
       </div>
       );
   }

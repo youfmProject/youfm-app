@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
+import { batchActions } from 'redux-batched-actions';
+import { browserHistory } from 'react-router'
 import classNames from 'classnames';
 
 export default class Track extends Component {
   render() {
-    const {track, searchYoutubeAndPlay, dispatch} = this.props;
+    const {track, instantPlay, addToQueue, dispatch, location, playlistName} = this.props;
     var songClass = classNames('song');
     return (
     <div key={track.id} className={songClass}>
         <span className={classNames('song__play')}>
-            <i class="icon-play-icon"></i>
+            <i className="icon-play-icon" onClick={()=> {
+                dispatch(instantPlay(track.name+' '+track.artist, playlistName))}}>
+            </i>
         </span>
         <span className={classNames('song__favorite')}> Fav </span>
         <span className={classNames('song__num')}>#</span>
@@ -20,6 +24,3 @@ export default class Track extends Component {
     );
   }
 }
-
-//style={{borderTop : '1px solid #282832',padding:'8px 15px',color : '#FFFFFF'}}
-//<button onClick={()=> dispatch(searchYoutubeAndPlay(track))}>PLAY</button>
