@@ -4,6 +4,7 @@ import { batchActions } from 'redux-batched-actions';
 import * as PlayerActions from './player';
 import * as NowPlayingActions from './nowPlaying';
 import {browserHistory} from 'react-router';
+import * as RoutingActions from './routing';
 
 const { HOME, PLAYLIST, SEARCH, NOW_PLAYING} = Constants;
 
@@ -57,8 +58,8 @@ export function getSpotifySearch(searchKey){
 		  url:'/api/v1/spotify?search='+searchKey
 		}).then(res=>{
 			dispatch(batchActions([
-      			spotifySearchComplete(res.data),
-      			searchKeyword('')
+				RoutingActions.locationChange('/search'),
+      			spotifySearchComplete(res.data)
     			])
     		);
 		});

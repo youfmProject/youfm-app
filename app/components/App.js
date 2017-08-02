@@ -3,8 +3,6 @@ import SideBar from './SideBar';
 import Player from './Player';
 import Search from './Search';
 import classNames from 'classNames';
-import path from 'path';
-import {Grid, Col, Row} from 'react-bootstrap';
 export default class App extends Component {
 
   componentDidUpdate(){
@@ -27,13 +25,12 @@ export default class App extends Component {
       <div className = {classNames('rails')}>
         <div className={classNames('rail', 'rail--left')}>
           <SideBar {...this.props} />
-          </div>
-          <Player {...this.props} />
-          <div className={classNames('rail', 'rail--center')}>
-             <Search {...this.props}/>
-             {children}
-             
-          </div>
+        </div>
+        <div className={classNames('rail', 'rail--center')}>
+          <Search {...this.props}/>
+          {children}
+          <Player {...this.props} />   
+        </div>
       </div>
     );
   }

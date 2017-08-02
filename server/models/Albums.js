@@ -19,6 +19,11 @@ class Albums {
     }
 
     getAlbums(req, callback){
+        var results = _.get(req, 'session.albums', false);
+        console.log("ALBUMS:::", results);
+        if(results){
+            return callback(null, results);
+        }
         async.waterfall([
             function(cb){
                 spotify.clientCredentialsGrant()
@@ -37,6 +42,7 @@ class Albums {
             if(err){
                 return callback(true, null);
             }
+            req.session.albums = results;
             callback(null, results);    
         });   
     }
@@ -75,7 +81,7 @@ class Albums {
                                 id: track.id,
                                 name: track.name,
                                 artist: track.artistName,
-                                image: track.artworkUrl00
+                                image: track.artworkUrl100
                             };
                             popularSongs.push(popularSong);
                         });
@@ -93,7 +99,7 @@ class Albums {
                             var billBoardSong = {
                                 name: song.name,
                                 artist: song.artist,
-                                image: song.artist,
+                                image: song.image,
                                 rank: song.rank
                             };
                             billBoardSongs.push(billBoardSong);
@@ -116,7 +122,6 @@ class Albums {
                         var albums = _.get(results, 'body.feed.results', []);
                         var topAlbums = [];
                         _.forEach(albums, function(album){
-                            console.log("ALBUM ART:::", JSON.stringify(album));
                             topAlbums.push({
                                 id: album.id,
                                 name: album.name,

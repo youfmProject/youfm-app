@@ -5,6 +5,7 @@ import * as HomeActions from '../actions/home';
 import * as PlayerActions from '../actions/player';
 import * as AppActions from '../actions/app';
 import * as NowPlayingActions from '../actions/nowPlaying';
+import * as RoutingActions from '../actions/routing';
 
 function mapStateToProps(state, props) {
   let inSync = (props.params.play !== state.player.id) ? props.params.play : false;
