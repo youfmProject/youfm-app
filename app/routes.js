@@ -18,6 +18,5 @@ export default (
 		<Route path="/mostPopular(/:play)(/:list)" component={Playlist} />
 		<Route path="/userList(/:play)(/:list)(/:playlist)" component={Playlist} />
 		<Route path="/login" component={Login}/>
-		<Route path="/register" component={Login}/>
 	</Route>
 );
