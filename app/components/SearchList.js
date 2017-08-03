@@ -8,7 +8,7 @@ export default class SearchList extends Component {
   buildPlaylist(tracks = []){
     let fields=[];
     tracks.map((track)=>{
-      fields.push({content: (<Track track={track} {...this.props}/>)});
+      fields.push({content: (<Track track={track} {...this.props} playlistName={'search'}/>)});
     })
     return fields
   }

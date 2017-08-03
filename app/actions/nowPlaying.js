@@ -60,14 +60,14 @@ export function instantPlay(track,playlistName=false){
 	return(dispatch,getState)=>{
 		const state = getState();
 		callYoutube(track,(data)=>{
+			let route = (playlistName === 'search') ? `/${playlistName}/${state.search.searchKey}/${data[0].id}` : `/${playlistName}/${data[0].id}`;
 			dispatch(
 				batchActions([
-					RoutingActions.locationChange(`/${playlistName}/${data[0].id}`),
-					resetQueue(state.playlist[playlistName]),
-					addToYTQueue(data)//,
-					//setIndex()
-				])
-			);
+				RoutingActions.locationChange(route),
+				resetQueue(state.playlist[playlistName]),
+				addToYTQueue(data)//,
+				//setIndex()
+			]));
 		});
 	}
 }
