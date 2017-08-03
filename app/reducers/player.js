@@ -3,7 +3,7 @@
 const { PLAYER } = Constants;
 
 const InitialState ={
-    id: false,
+    id: null,
     playing: true,
     volume: 0.8,
     played: 0,
