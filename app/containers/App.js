@@ -11,6 +11,9 @@ function mapStateToProps(state, props) {
   let inSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
   let playerHasBooted = (state.nowPlaying.playIndex === 'notSet') ? false: true;
+  let serachParam = decodeURI(props.params.list);
+  let isSearchSync =  serachParam !== state.search.searchComplete ? serachParam : false;
+  
   return {
     children:props.children,
     player:state.player,
@@ -20,7 +23,8 @@ function mapStateToProps(state, props) {
     showLogin: state.app.showLogin,
     searchView: searchView,
     inSync,
-    playerHasBooted
+    playerHasBooted,
+    isSearchSync
   };
 }
 

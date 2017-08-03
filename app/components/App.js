@@ -10,11 +10,13 @@ export default class App extends Component {
   } 
 
   componentDidMount(){
+    const {dispatch,isSearchSync, getSpotifySearch} = this.props;
     this.checkForPlayerID();
+    isSearchSync ? dispatch(getSpotifySearch(isSearchSync)) : null;
   }
 
   checkForPlayerID(){
-    const {dispatch,inSync,playerPlay, playerHasBooted,bootPlayer} = this.props;
+    const {dispatch,inSync,playerPlay, playerHasBooted,bootPlayer, isSearchSync, getSpotifySearch} = this.props;
     inSync ? dispatch(playerPlay(inSync)) : null;
     !playerHasBooted ? dispatch(bootPlayer(inSync)): null;
   }

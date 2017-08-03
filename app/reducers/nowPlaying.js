@@ -6,6 +6,7 @@ const initialState = {
 	queue:[],
 	ytQueue:[],
 	playIndex:'notSet',
+  ytIndex:0,
 }
 
 const nowPlaying = (state = initialState, action) => {

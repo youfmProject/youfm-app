@@ -8,6 +8,9 @@ export default class Player extends Component {
 		const {dispatch,togglePlay} = this.props;
 		dispatch(togglePlay());
 	}
+	nextVideo(){
+		console.log('youtube error detected');
+	}
 
   	render() {
 	  	const {player} = this.props;
@@ -20,6 +23,7 @@ export default class Player extends Component {
 							playing={player.playing} 
 							height={236}
 							width={420}
+							onError={()=>this.nextVideo()}
 						/> : null }
 				</div>
 				<div className={classNames("controls--main")}>

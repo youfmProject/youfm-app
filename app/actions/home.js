@@ -8,10 +8,11 @@ import * as RoutingActions from './routing';
 
 const { HOME, PLAYLIST, SEARCH, NOW_PLAYING} = Constants;
 
-let spotifySearchComplete=(tracks)=>{
+let spotifySearchComplete=(searchKey,tracks)=>{
 	return {
 		type:SEARCH.SPOTIFY_SEARCH_COMPLETE,
-		tracks: tracks
+		tracks,
+		searchKey
 	}
 }
 
@@ -21,10 +22,18 @@ let setHomeData=(data)=>{
 		data
 	}
 }
-let setPlaylistData=(data)=>{
+let setInitialPlaylist=(data)=>{
+	return {
+		type:PLAYLIST.SET_INITIAL_PLAYLIST_DATA,
+		data
+	}
+}
+
+let setPlaylist=(name,data)=>{
 	return {
 		type:PLAYLIST.SET_PLAYLIST_DATA,
-		data
+		data,
+		name
 	}
 }
 
@@ -35,7 +44,7 @@ export const getHomeData = () => (dispatch, getState) =>{
 	}).then(res=>{
 		dispatch(batchActions([
 			setHomeData(res.data),
-			setPlaylistData(res.data)
+			setInitialPlaylist(res.data)
 		]));
 	});
 }
@@ -53,13 +62,15 @@ export function getYoutubeSearch(){
 
 export function getSpotifySearch(searchKey){
 	return(dispatch,getState)=>{
+		let state = getState();
 		axios({
 		  method:'get',
 		  url:'/api/v1/spotify?search='+searchKey
 		}).then(res=>{
 			dispatch(batchActions([
-				RoutingActions.locationChange('/search'),
-      			spotifySearchComplete(res.data)
+				RoutingActions.locationChange(`/search/${searchKey}/${state.player.id}`),
+      			spotifySearchComplete(searchKey,res.data),
+      			setPlaylist('search',res.data)
     			])
     		);
 		});
