@@ -5,6 +5,7 @@ export default class SideBar extends Component {
   render() {
   	// ADD SIDEBAR CLASS
     const query = this.props.params.play;
+		const {locationChange, dispatch} = this.props
     return (
 			<div className={classNames('rail', 'rail--left')} style={{overflow: 'auto'}}>
 				<div className={classNames("navigation__mobile")}>
@@ -13,15 +14,20 @@ export default class SideBar extends Component {
 					</div>
 				</div>
     	<div className={classNames('navigation--main')}>
+					<a href="/home">
+						<img className={classNames("navigation__logo")}/>
+					</a>
     		<ul className={classNames('navigation')}>
           <li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
           <li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
           <li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
           <li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-					<li><Link to="/login" activeClassName="active">Login</Link></li>
-					<li><Link to="/register" activeClassName="active">Register</Link></li>
     		</ul>
-		</div>
+			</div>
+
+			<div className={classNames("navigation--actions")}>
+  				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} data-toggle="modal" data-target="#modalLogin" onClick={()=> {dispatch(locationChange('/login'))}}>Login</button>
+			</div>
 		</div>
     );
   }

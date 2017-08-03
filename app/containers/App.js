@@ -30,6 +30,7 @@ function mapDispatchToProps(dispatch) {
     ...HomeActions,
     ...PlayerActions,
     ...NowPlayingActions,
+    ...RoutingActions,
     dispatch
   };
 }

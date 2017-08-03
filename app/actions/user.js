@@ -2,6 +2,7 @@ import axios from 'axios';
 import Constants from '../lib/Constants';
 import { batchActions } from 'redux-batched-actions'
 import * as AppActions from '../actions/app';
+import * as RoutingActions from './routing';
 
 const { USER } = Constants;
 
@@ -20,7 +21,11 @@ export function submitLogin(user){
 		  url:'/api/v1/login',
           data: user
 		}).then(res=>{
-			dispatch(AppActions.toggleLogin());
+			dispatch(batchActions([
+				RoutingActions.locationChange('/home'),
+      			AppActions.toggleLogin()
+    			])
+    		);
 		});
     }
 }
