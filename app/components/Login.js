@@ -11,7 +11,7 @@ export default class Login extends Component {
         dispatch(editCredentials(field, e.target.value));
       }
       let onClick = function(){
-          dispatch(submitLogin(user));
+          dispatch(submitLogin(user, 'login'));
       }
       
     return (

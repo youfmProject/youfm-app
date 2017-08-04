@@ -10,8 +10,12 @@ const callback = (method, response) => {
 
 
 module.exports = {
+    register: (req, res, next) => {
+        let login = new loginModel();
+        login.registerUser(req, callback('POST', res));
+    },
     login: (req, res, next) => {
         let login = new loginModel();
-        login.loginUser(req, callback('POST', res));
+        login.loginUser(req, callback('PUT', res));
     }
 }

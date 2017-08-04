@@ -11,7 +11,7 @@ export default class Register extends Component {
         dispatch(editCredentials(field, e.target.value));
       }
       let onClick = function(){
-          dispatch(submitLogin(user));
+          dispatch(submitLogin(user, 'register'));
       }
       
     return (

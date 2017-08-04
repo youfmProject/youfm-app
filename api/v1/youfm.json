@@ -109,6 +109,38 @@
         "/login": {
             "post":{
                 "x-swagger-router-controller": "login",
+                "operationId": "register",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for login to liveJam",
+                "parameters":[
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Login Details",
+                        "schema":{
+                            "$ref": "#/definitions/login"   
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            },
+            "put":{
+                "x-swagger-router-controller": "login",
                 "operationId": "login",
                 "tags":[
                     "/"
