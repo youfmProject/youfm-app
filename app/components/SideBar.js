@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classNames';
+import { batchActions } from 'redux-batched-actions';
 export default class SideBar extends Component {
   render() {
   	// ADD SIDEBAR CLASS
     const query = this.props.params.play;
-		const {locationChange, dispatch} = this.props
+		const {children, store, locationChange, dispatch, toggleLogin} = this.props
     return (
 			<div className={classNames('rail', 'rail--left')} style={{overflow: 'auto'}}>
 				<div className={classNames("navigation__mobile")}>
@@ -26,7 +27,13 @@ export default class SideBar extends Component {
 			</div>
 
 			<div className={classNames("navigation--actions")}>
-  				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} data-toggle="modal" data-target="#modalLogin" onClick={()=> {dispatch(locationChange('/login'))}}>Login</button>
+  				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
+					onClick={()=> {dispatch(batchActions([
+								toggleLogin(),
+								locationChange('/Login')
+								])
+							);
+						}} >Login</button>
 			</div>
 		</div>
     );
