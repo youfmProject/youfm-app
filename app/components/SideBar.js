@@ -38,7 +38,7 @@ export default class SideBar extends Component {
 							);
 						}} >Login</button>
 			<div className={classNames("register")}>
-				<div className={classNames("register__title")}>
+				<div className={classNames("register__title")}>Don't have an account?
 					<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
   				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
 					onClick={()=> {dispatch(batchActions([
