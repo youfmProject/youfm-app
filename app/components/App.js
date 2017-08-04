@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import SideBar from './SideBar';
 import Player from './Player';
 import Search from './Search';
+import AppModal from './AppModal'
 import classNames from 'classNames';
 export default class App extends Component {
 
@@ -22,7 +23,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {children} = this.props;
+    const {children, store, showLogin} = this.props;
     return (
       <div className = {classNames('rails')}>
         <div className={classNames('rail', 'rail--left')}>
@@ -30,9 +31,12 @@ export default class App extends Component {
         </div>
         <div className={classNames('rail', 'rail--center')}>
           <Search {...this.props}/>
-          {children}
+          {showLogin ? null : children } 
           <Player {...this.props} />   
         </div>
+        <AppModal {...this.props}>
+					{children ? React.cloneElement(children, {store}): null}
+			  </AppModal>
       </div>
     );
   }

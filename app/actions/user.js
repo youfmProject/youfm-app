@@ -14,10 +14,11 @@ export function editCredentials(field, data){
 	}
 }
 
-export function submitLogin(user){
+export function submitLogin(user, operation){
+	let method = operation === 'register' ? post : put;
     return(dispatch, getState) => {    
         axios({
-		  method:'post',
+		  method: method,
 		  url:'/api/v1/login',
           data: user
 		}).then(res=>{

@@ -12,5 +12,9 @@ class Login {
         var body = _.get(req, 'body', {});
         return callback(true, body);
     }
+    registerUser(req, callback){
+        var body = _.get(req, 'body', {});
+        return callback(true, body);
+    }
 }
 export default Login;
