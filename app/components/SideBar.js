@@ -34,8 +34,9 @@ export default class SideBar extends Component {
 								])
 							);
 						}} >Login</button>
-			</div>
-			<div className={classNames("navigation--actions")}>
+			<div className={classNames("register")}>
+				<div className={classNames("register__title")}>
+					<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
   				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
 					onClick={()=> {dispatch(batchActions([
 								toggleLogin(),
@@ -43,6 +44,8 @@ export default class SideBar extends Component {
 								])
 							);
 						}} >Register</button>
+				</div>
+			</div>
 			</div>
 		</div>
     );
