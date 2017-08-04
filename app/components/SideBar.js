@@ -22,6 +22,9 @@ export default class SideBar extends Component {
           <li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
           <li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
           <li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
+				</ul>
+				<ul  className={classNames('navigation')}>
+					<h4> My Music </h4>
           <li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
     		</ul>
 			</div>
