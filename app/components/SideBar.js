@@ -35,6 +35,15 @@ export default class SideBar extends Component {
 							);
 						}} >Login</button>
 			</div>
+			<div className={classNames("navigation--actions")}>
+  				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
+					onClick={()=> {dispatch(batchActions([
+								toggleLogin(),
+								locationChange('/Register')
+								])
+							);
+						}} >Register</button>
+			</div>
 		</div>
     );
   }

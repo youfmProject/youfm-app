@@ -34,7 +34,7 @@ export default class App extends Component {
           {showLogin ? null : children } 
           <Player {...this.props} />   
         </div>
-        <AppModal {...this.props} title={'LOGIN'}>
+        <AppModal {...this.props}>
 					{children ? React.cloneElement(children, {store}): null}
 			  </AppModal>
       </div>

@@ -4,6 +4,7 @@ import App from './containers/App';
 import Home from './containers/Home';
 import Playlist from './containers/Playlist';
 import Login from './containers/Login';
+import Register from './containers/Register';
 import Search from './containers/Search';
 import * as HomeActions from './actions/home';
 
@@ -18,5 +19,6 @@ export default (
 		<Route path="/mostPopular(/:play)(/:list)" component={Playlist} />
 		<Route path="/userList(/:play)(/:list)(/:playlist)" component={Playlist} />
 		<Route path="/Login" component={Login}/>
+		<Route path="/Register" component={Register}/>
 	</Route>
 );
