@@ -27,6 +27,9 @@ const nowPlaying = (state = initialState, action) => {
   		let queue = Array.from(action.tracks);
   		return Object.assign({},state,{queue})
   	}
+    case NOW_PLAYING.SET_INDEX:{
+      return Object.assign({},state,{playIndex:action.index})
+    }
     default:
       return state
   }

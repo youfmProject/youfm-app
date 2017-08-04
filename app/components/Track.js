@@ -23,7 +23,7 @@ export default class Track extends Component {
         <div key={track.id} className={songClass}>
             <span className={classNames('song__play')}>
                 <i className="icon-play-icon" onClick={()=> {
-                    dispatch(instantPlay(track.name+' '+track.artist, playlistName))}}>
+                    dispatch(instantPlay(track, playlistName))}}>
                 </i>
             </span>
             <span className={classNames('song__favorite')}> Fav </span>
