@@ -13,7 +13,7 @@ export default class Player extends Component {
 	}
 
   	render() {
-	  	const {player} = this.props;
+	  	const {player, dispatch, playPrevious, playNext} = this.props;
 	  	if(player.id){
 	    return (
 			<div>
@@ -32,9 +32,9 @@ export default class Player extends Component {
 
 			<div class="actions">
 				<button className={classNames("action--shuffle")}></button>
-				<button className={classNames("action--previous")}></button>
+				<button className={classNames("action--previous")} onClick={()=>dispatch(playPrevious())}></button>
 				<button className={classNames("action--play")} onClick={()=>this.clickedPlay()}></button>
-				<button className={classNames("action--next")}></button>
+				<button className={classNames("action--next")} onClick={()=>dispatch(playNext())}></button>
 				<button className={classNames("action--repeat")}></button>
 			</div>
 
