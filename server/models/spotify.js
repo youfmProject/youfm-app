@@ -37,21 +37,29 @@ class spotify {
                     .then(function(data) {
                         var searchResults = [];
                         var tracks = _.get(data, 'body.tracks.items', []);
-                        _.forEach(tracks, function(track){
-                            searchResults.push({
-                                image: _.get(track, 'album.images[0].url', ''),
-                                name: track.name,
-                                artist: _.get(track, 'artists[0].name', ''),
-                                albumName: _.get(track, 'album.name', '')
+                        if(tracks.length){
+                            _.forEach(tracks, function(track){
+                                searchResults.push({
+                                    image: _.get(track, 'album.images[0].url', ''),
+                                    name: track.name,
+                                    artist: _.get(track, 'artists[0].name', ''),
+                                    albumName: _.get(track, 'album.name', '')
+                                });
                             });
-                        });
-                        cb(null, searchResults);
+                            cb(null, searchResults);
+                        }
+                        else {
+                            cb(true, []);
+                        }
                     }, function(err) {
                         console.log('Something went wrong!', err);
-                        cb(null, []);
+                        cb(true, []);
                     });
             }
         ], function(err, results) {
+            if(err){
+                return callback(true, []);
+            }
             callback(null, results);
         });
     }

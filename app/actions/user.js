@@ -14,8 +14,14 @@ export function editCredentials(field, data){
 	}
 }
 
+function loginStatus(status){
+	return {
+		type: USER.LOGIN_STATUS,
+		status
+	}
+}
 export function submitLogin(user, operation){
-	let method = operation === 'register' ? post : put;
+	let method = operation === 'register' ? "post" : "put";
     return(dispatch, getState) => {    
         axios({
 		  method: method,
@@ -23,10 +29,14 @@ export function submitLogin(user, operation){
           data: user
 		}).then(res=>{
 			dispatch(batchActions([
+				loginStatus(true),
 				RoutingActions.locationChange('/home'),
       			AppActions.toggleLogin()
     			])
     		);
+		})
+		.catch(function(err){
+			dispatch(loginStatus(false));
 		});
     }
 }

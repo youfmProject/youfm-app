@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import Login from '../components/Login';
+import Register from '../components/Register';
 
 import * as PlayerActions from '../actions/player';
 import * as HomeActions from '../actions/home';
@@ -26,4 +26,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Login);
+export default connect(mapStateToProps,mapDispatchToProps)(Register);

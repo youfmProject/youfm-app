@@ -5,8 +5,9 @@ import Playlist from './Playlist';
 export default class Search extends Component {
 
   render() {
+
     const {dispatch, searchKey, searchKeyword, onSearch, getSpotifySearch, tracks, searchView, getHomeData} = this.props; 
-    
+
     let onChange = function(e){
         dispatch(searchKeyword(e.target.value));
     }
