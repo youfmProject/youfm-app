@@ -8,11 +8,12 @@ import * as RoutingActions from './routing';
 
 const { HOME, PLAYLIST, SEARCH, NOW_PLAYING} = Constants;
 
-let spotifySearchComplete=(searchKey,tracks)=>{
+let spotifySearchComplete=(searchKey,tracks, error)=>{
 	return {
 		type:SEARCH.SPOTIFY_SEARCH_COMPLETE,
 		tracks,
-		searchKey
+		searchKey, 
+		error
 	}
 }
 
@@ -69,10 +70,13 @@ export function getSpotifySearch(searchKey){
 		}).then(res=>{
 			dispatch(batchActions([
 				RoutingActions.locationChange(`/search/${searchKey}/${state.player.id}`),
-      			spotifySearchComplete(searchKey,res.data),
+      			spotifySearchComplete(searchKey,res.data, false),
       			setPlaylist('search',res.data)
     			])
     		);
+		})
+		.catch(err => {
+			dispatch(spotifySearchComplete(searchKey, [], true));
 		});
 	}
 }

@@ -17,12 +17,12 @@ export default class Player extends Component {
 	  	if(player.id){
 	    return (
 			<div>
-				<div style={{bottom:'255px',position:'fixed', left:'0px', height:'50px'}}>
+				<div style={{bottom:'170px',position:'fixed', left:'0px', height:'50px'}}>
 					{player.id ? 
 						<ReactPlayer url={`https://www.youtube.com/watch?v=${player.id}`} 
 							playing={player.playing} 
-							height={236}
-							width={420}
+							height={154}
+							width={200}
 							onError={()=>this.nextVideo()}
 						/> : null }
 				</div>

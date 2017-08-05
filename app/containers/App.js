@@ -13,7 +13,6 @@ function mapStateToProps(state, props) {
   let playerHasBooted = (state.nowPlaying.playIndex === 'notSet') ? false: true;
   let searchParam = decodeURI(props.params.list);
   let isSearchSync =  (searchParam !== state.search.searchComplete &&  searchView === 'search' )? searchParam : false;
-
   return {
     children:props.children,
     player:state.player,

@@ -4,6 +4,9 @@ import AlbumModel from '../models/Albums';
 
 const callback = (method, response) => {
     return (err, res) => {
+        if(err){
+            return response.status(500).json(res);
+        }
         return response.status(200).json(res);
     };
 };
