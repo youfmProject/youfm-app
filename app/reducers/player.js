@@ -19,6 +19,9 @@ const player = (state = InitialState, action) => {
     case PLAYER.START_PLAY:{
       return Object.assign({},state,{id:action.id});
     }
+    case PLAYER.PLAYER_RESET:{
+      return Object.assign({},state,{id:''});
+    }
     default:
       return state
   }
