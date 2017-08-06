@@ -22,9 +22,6 @@ function loginStatus(error, status){
 	}
 }
 
-function backToPage() {
-	history.back();
-}
 export function submitLogin(user, operation){
 	let method = operation === 'register' ? "post" : "put";
     return(dispatch, getState) => {    
