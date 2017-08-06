@@ -30,11 +30,31 @@ let setInitialPlaylist=(data)=>{
 	}
 }
 
-let setPlaylist=(name,data)=>{
+let setPlaylist=(name,tracks)=>{
 	return {
 		type:PLAYLIST.SET_PLAYLIST_DATA,
-		data,
+		tracks,
 		name
+	}
+}
+
+export function resetPlaylistOrder(name,data){
+	let tracks = [];
+	data.map((item)=>{
+		tracks.push(item.content.props.track);
+	});
+	if(name === 'nowPlaying'){
+		return {
+			type:NOW_PLAYING.RESET_QUEUE,
+			tracks
+		}
+	}
+	else{
+		return {
+			type:PLAYLIST.SET_PLAYLIST_DATA,
+			tracks,
+			name
+		}
 	}
 }
 

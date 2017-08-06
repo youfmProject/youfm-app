@@ -17,6 +17,12 @@ export function playerPlay(id){
 	}
 }
 
+export function resetPlayer(){
+	return {
+		type:PLAYER.PLAYER_RESET
+	}
+}
+
 // export function setPlayerPlayId(){
 // 	return(dispatch,getState)=>{
 // 		const state = getState();

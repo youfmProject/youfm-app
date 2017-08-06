@@ -7,19 +7,19 @@ import classNames from 'classNames';
 export default class App extends Component {
 
   componentDidUpdate(){
-      this.checkForPlayerID();
+    this.checkForPlayerID();
   } 
 
   componentDidMount(){
-    const {dispatch,isSearchSync, getSpotifySearch} = this.props;
+    const {dispatch,isSearchInSync, getSpotifySearch} = this.props;
     this.checkForPlayerID();
-    isSearchSync ? dispatch(getSpotifySearch(isSearchSync)) : null;
+    isSearchInSync ? dispatch(getSpotifySearch(isSearchInSync)) : null;
   }
 
   checkForPlayerID(){
-    const {dispatch,inSync,playerPlay, playerHasBooted,bootPlayer, isSearchSync, getSpotifySearch} = this.props;
-    inSync ? dispatch(playerPlay(inSync)) : null;
-    !playerHasBooted ? dispatch(bootPlayer(inSync)): null;
+    const {dispatch,isPlayerInSync,playerPlay, isPlayerPlaying, bootPlayer} = this.props;
+    isPlayerInSync ? dispatch(playerPlay(isPlayerInSync)) : null;
+    !isPlayerPlaying ? dispatch(bootPlayer(isPlayerInSync)): null;
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import classNames from 'classNames';
+import Nouislider from 'react-nouislider'; 
 
 export default class Player extends Component {
 
@@ -8,34 +9,35 @@ export default class Player extends Component {
 		const {dispatch,togglePlay} = this.props;
 		dispatch(togglePlay());
 	}
-	nextVideo(){
-		console.log('youtube error detected');
-	}
 
   	render() {
-	  	const {player, dispatch, playPrevious, playNext} = this.props;
+	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat} = this.props;
 	  	if(player.id){
 	    return (
 			<div>
-				<div style={{bottom:'170px',position:'fixed', left:'0px', height:'50px'}}>
+				<div style={{bottom:'150px',position:'fixed', left:'0px', height:'50px'}}>
 					{player.id ? 
 						<ReactPlayer url={`https://www.youtube.com/watch?v=${player.id}`} 
 							playing={player.playing} 
-							height={154}
+							height={136}
 							width={200}
-							onError={()=>this.nextVideo()}
+							onError={()=>dispatch(playNextVideo())}
+							onEnded={()=>dispatch(playNext())}
 						/> : null }
 				</div>
 				<div className={classNames("controls--main")}>
 
-			<div className={classNames("song-progress")}></div>
+			<div className={classNames("song-progress")} style={{background:'#23d7f5'}}>
+				{//<Nouislider style={{background:'#23d7f5'}} range={{min: 0, max: 200}} start={[0, 100]} tooltips/>
+			}
+			</div>
 
 			<div class="actions">
-				<button className={classNames("action--shuffle")}></button>
+				<button className={classNames("action--shuffle")}onClick={()=>dispatch(toggleShuffle())}></button>
 				<button className={classNames("action--previous")} onClick={()=>dispatch(playPrevious())}></button>
 				<button className={classNames("action--play")} onClick={()=>this.clickedPlay()}></button>
 				<button className={classNames("action--next")} onClick={()=>dispatch(playNext())}></button>
-				<button className={classNames("action--repeat")}></button>
+				<button className={classNames("action--repeat")} onClick={()=>dispatch(toggleRepeat())}></button>
 			</div>
 
 			</div>
