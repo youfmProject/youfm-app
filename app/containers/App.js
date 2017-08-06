@@ -8,11 +8,11 @@ import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
 
 function mapStateToProps(state, props) {
-  let inSync = (props.params.play !== state.player.id) ? props.params.play : false;
+  let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
-  let playerHasBooted = (state.nowPlaying.playIndex === 'notSet') ? false: true;
+  let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
   let searchParam = decodeURI(props.params.list);
-  let isSearchSync =  (searchParam !== state.search.searchComplete &&  searchView === 'search' )? searchParam : false;
+  let isSearchInSync =  (searchParam !== state.search.searchComplete &&  searchView === 'search' )? searchParam : false;
   return {
     children:props.children,
     player:state.player,
@@ -22,9 +22,9 @@ function mapStateToProps(state, props) {
     showLogin: state.app.showLogin,
     user: state.user,
     searchView: searchView,
-    inSync,
-    playerHasBooted,
-    isSearchSync
+    isPlayerInSync,
+    isPlayerPlaying,
+    isSearchInSync
   };
 }
 

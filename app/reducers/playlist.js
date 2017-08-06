@@ -14,7 +14,7 @@ const playlist = (state = {}, action) => {
   	}
     case PLAYLIST.SET_PLAYLIST_DATA:{
       let newState = _.cloneDeep(state);
-      newState[action.name] = action.data;
+      newState[action.name] = action.tracks;
       return Object.assign({},newState);
     }
     default:
