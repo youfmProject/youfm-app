@@ -14,11 +14,16 @@ export function editCredentials(field, data){
 	}
 }
 
-function loginStatus(status){
+function loginStatus(error, status){
 	return {
 		type: USER.LOGIN_STATUS,
-		status
+		status,
+		error
 	}
+}
+
+function backToPage() {
+	history.back();
 }
 export function submitLogin(user, operation){
 	let method = operation === 'register' ? "post" : "put";
@@ -29,14 +34,15 @@ export function submitLogin(user, operation){
           data: user
 		}).then(res=>{
 			dispatch(batchActions([
-				loginStatus(true),
-				RoutingActions.locationChange('/home'),
+				loginStatus(false, true),
       			AppActions.toggleLogin()
     			])
     		);
+			history.back();
 		})
 		.catch(function(err){
-			dispatch(loginStatus(false));
+			dispatch(loginStatus(true, false));
+			history.back();
 		});
     }
 }

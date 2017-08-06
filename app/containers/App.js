@@ -20,6 +20,7 @@ function mapStateToProps(state, props) {
     searchKey: state.search.searchKey,
     tracks: state.search.tracks,
     showLogin: state.app.showLogin,
+    user: state.user,
     searchView: searchView,
     inSync,
     playerHasBooted,
