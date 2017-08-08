@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { batchActions } from 'redux-batched-actions';
-import { Form, Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
+import { Alert, Form, Button, FormControl, FormGroup, ControlLabel, HelpBlock} from 'react-bootstrap';
 
 export default class Register extends Component {
 
@@ -17,7 +17,7 @@ export default class Register extends Component {
     return (
         <div>
             <Form>
-                 { !user.status ? (<Alert bsStyle="error" style ={{padding: '0'}}>
+                 { user.loginError ? (<Alert bsStyle="error" style ={{padding: '0'}}>
                     <strong style ={{color: 'red'}}>Your credentials may be wrong, Please try again</strong>
                 </Alert>) : null }
                 <FormGroup controlId="formInlineEmail">

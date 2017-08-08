@@ -17,7 +17,7 @@ export default class Login extends Component {
     return (
         <div>
             <Form>
-                { !user.status ? (<Alert bsStyle="error" style ={{padding: '0'}}>
+                { user.loginError ? (<Alert bsStyle="error" style ={{padding: '0'}}>
                     <strong style ={{color: 'red'}}>Your credentials may be wrong, Please try again</strong>
                 </Alert>) : null }
                 <FormGroup controlId="formInlineEmail" >

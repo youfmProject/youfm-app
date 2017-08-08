@@ -6,7 +6,7 @@ export default class SideBar extends Component {
   render() {
   	// ADD SIDEBAR CLASS
     const query = this.props.params.play;
-		const {children, store, locationChange, dispatch, toggleLogin} = this.props
+		const {children, store, locationChange, dispatch, toggleLogin, user} = this.props
     return (
 			<div className={classNames('rail', 'rail--left')} style={{overflow: 'auto'}}>
 				<div className={classNames("navigation__mobile")}>
@@ -15,7 +15,7 @@ export default class SideBar extends Component {
 					</div>
 				</div>
     	<div className={classNames('navigation--main')}>
-					<a href="/home">
+					<a href={"/home/"+query}>
 						<img className={classNames("navigation__logo")}/>
 					</a>
     		<ul className={classNames('navigation')}>
@@ -29,27 +29,28 @@ export default class SideBar extends Component {
     		</ul>
 			</div>
 
-			<div className={classNames("navigation--actions")}>
+		{!user.status ? 
+		<div className={classNames("navigation--actions")}>
   				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
 					onClick={()=> {dispatch(batchActions([
 								toggleLogin(),
-								locationChange('/Login')
+								locationChange('/Login/'+query)
 								])
 							);
-						}} >Login</button>
+						}} >Login</button> 
 			<div className={classNames("register")}>
 				<div className={classNames("register__title")}>Don't have an account?
 					<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
   				<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
 					onClick={()=> {dispatch(batchActions([
 								toggleLogin(),
-								locationChange('/Register')
+								locationChange('/Register/'+query)
 								])
 							);
 						}} >Register</button>
 				</div>
 			</div>
-			</div>
+		</div> : null }
 		</div>
     );
   }
