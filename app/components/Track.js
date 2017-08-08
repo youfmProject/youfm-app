@@ -26,9 +26,9 @@ export default class Track extends Component {
                     dispatch(instantPlay(track))}}>
                 </i>
             </span>
-            <span className={classNames('song__favorite')}> Fav </span>
-            <span className={classNames('song__num')}>#</span>
-            <span className={classNames('song__art')}>art</span>
+            <span className={classNames('song__favorite')}><i className={classNames('icon-heart-empty-icon')}></i></span>
+            <span className={classNames('song__num')}></span>
+            <span className={classNames('song__art')}><img src={track.image} alt="Album Art"/></span>
             <span className={classNames('song__name')}>{track.name}</span>
             <span className={classNames('song__artists')}>{track.artist}</span>
             {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>...</span>
