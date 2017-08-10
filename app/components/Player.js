@@ -15,6 +15,7 @@ export default class Player extends Component {
 
   	render() {
 	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, togglePlay} = this.props;
+	  	let playPauseClass = player.playing ? "action--play" : "action--pause";
 	    return (
 	    	<div>
 				{ player.id ? <div style={{bottom:'150px',position:'fixed', left:'0px', height:'50px'}}>
@@ -32,7 +33,7 @@ export default class Player extends Component {
 						<Slider style={{ width: '100%'}} 
 							onChange={(value)=>{ 
 								this.player.seekTo(parseFloat(value/10000));
-							}} 
+							}}
 							min={0}
 							max={10000}
 							value={this.state.played || 0} 
@@ -41,7 +42,7 @@ export default class Player extends Component {
 					<div className={classNames("actions")}>
 						<button className={classNames("action--shuffle")}onClick={()=>dispatch(toggleShuffle())}></button>
 						<button className={classNames("action--previous")} onClick={()=>dispatch(playPrevious())}></button>
-						<button className={classNames("action--play")} onClick={()=>dispatch(togglePlay())}></button>
+						<button className={classNames(playPauseClass)} onClick={()=>dispatch(togglePlay())}></button>
 						<button className={classNames("action--next")} onClick={()=>dispatch(playNext())}></button>
 						<button className={classNames("action--repeat")} onClick={()=>dispatch(toggleRepeat())}></button>
 					</div>

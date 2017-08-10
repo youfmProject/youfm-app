@@ -20,7 +20,7 @@ export default class Playlist extends Component {
     }
     var playlistClass = classNames('song-list', 'song');
     return (
-      <div className={playlistClass}>
+      <div className={playlistClass} style={{cursor: 'default', marginBottom:'67px'}}>
         <DragSortableList items={this.buildPlaylist(trackList, playlistName)} onSort={onSort} type="vertical"/>
       </div>
       );
