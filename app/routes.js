@@ -19,7 +19,7 @@ export default (
 		<Route path="/mostPopular(/:play)(/:list)" component={Playlist} />
 		<Route path="/favourite(/:play)(/:list)" component={Playlist} />
 		<Route path="/userList(/:play)(/:list)(/:playlist)" component={Playlist} />
-		<Route path="/Login" component={Login}/>
-		<Route path="/Register" component={Register}/>
+		<Route path="/Login(/:play)" component={Login}/>
+		<Route path="/Register(/:play)" component={Register}/>
 	</Route>
 );
