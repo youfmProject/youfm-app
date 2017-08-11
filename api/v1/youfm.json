@@ -128,7 +128,7 @@
                     "200":{
                         "description": "Login Confirmation",
                         "schema": {
-                            "$ref": "#/definitions/login"
+                            "$ref": "#/definitions/playlist"
                         }
                     },
                     "default": {
@@ -160,7 +160,48 @@
                     "200":{
                         "description": "Login Confirmation",
                         "schema": {
-                            "$ref": "#/definitions/login"
+                            "$ref": "#/definitions/playlist"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        },
+        "/playlist": {
+            "post":{
+                "x-swagger-router-controller": "playlist",
+                "operationId": "updatePlaylist",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for login to liveJam",
+                "parameters":[
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Playlist Name",
+                         "type": "string"
+                    },
+                    {
+                        "name": "playlists",
+                        "in": "body",
+                        "description": "plalist details",
+                        "schema":{
+                            "$ref": "#/definitions/playlist"   
+                        }
+
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/playlist"
                         }
                     },
                     "default": {
@@ -315,7 +356,38 @@
                 },
                 "password": {
                     "type": "string"
-                }   
+                },   
+                "userId": {
+                    "type":"string"
+                }
+            }
+        },
+        "playlist":{
+            "type": "object",
+            "properties":{
+                "usserId": {
+                    "type":"string"
+                },
+                "fav": {
+                    "type":"array",
+                   "items":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type":"string"
+                            },
+                            "albumName":{
+                                "type":"string"
+                            },
+                            "artist":{
+                                "type":"string"
+                            },
+                            "image":{
+                                "type":"string"
+                            }
+                        } 
+                    }
+                }  
             }
         },
         "Message":{

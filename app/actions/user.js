@@ -14,16 +14,18 @@ export function editCredentials(field, data){
 	}
 }
 
-function loginStatus(error, status){
+function loginStatus(res, error, status){
 	return {
 		type: USER.LOGIN_STATUS,
+		userId: res.userId,
+		favourites: res.favourites,
 		status,
 		error
 	}
 }
 
 export function submitLogin(user, operation){
-	let method = operation === 'register' ? "post" : "put";
+	let method = (operation === 'register') ? "post" : "put";
     return(dispatch, getState) => {    
         axios({
 		  method: method,
@@ -31,14 +33,18 @@ export function submitLogin(user, operation){
           data: user
 		}).then(res=>{
 			dispatch(batchActions([
-				loginStatus(false, true),
+				loginStatus(res.data, false, true),
       			AppActions.toggleLogin()
     			])
     		);
 			history.back();
 		})
 		.catch(function(err){
-			dispatch(loginStatus(true, false));
+			dispatch(batchActions([
+				loginStatus({}, true, false),
+      			AppActions.toggleLogin()
+    			])
+			);
 			history.back();
 		});
     }

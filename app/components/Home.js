@@ -6,7 +6,6 @@ export default class Home extends Component {
 		let fields= [];
 		// ADD ALBUM CLASS
 		const {getSpotifySearch, dispatch} = this.props;
-		
 		spotlight.map((album)=>{
 			fields.push(<div style={{height:'300px',width:'200px'}} onClick={()=>{dispatch(getSpotifySearch(album.artist + ' ' + album.name));}}>
 				<p style={{backgroundImage: 'url('+album.image+')', height:'180px', width:'180px', margin: '0 0 10px 0'}}/>
