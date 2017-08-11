@@ -20,7 +20,6 @@ class Albums {
 
     getAlbums(req, callback){
         var results = _.get(req, 'session.albums', false);
-        console.log("ALBUMS:::", results);
         if(results){
             return callback(null, results);
         }
