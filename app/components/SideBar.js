@@ -11,7 +11,11 @@ export default class SideBar extends Component {
 		<div className={classNames('rail', 'rail--left')} style={{overflow: 'auto'}}>
 			<div className={classNames("navigation__mobile")}>
 				<div id="nav-icon3">
-					<span></span><span></span><span></span><span></span>
+					<ul className={classNames('navigation')}>
+						<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
+						<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
+						<li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
+					</ul>
 				</div>
 			</div>
 			<div className={classNames('navigation--main')}>
@@ -26,7 +30,7 @@ export default class SideBar extends Component {
 				<ul  className={classNames('navigation')}>
 					<h4> My Music </h4>
 					<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-					<li><Link to={"/favourite/"+query} activeClassName="active">Favourites</Link></li>
+					{user.status ? <li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li> : null }
 				</ul>
 			</div>
 			{!user.status ? 

@@ -116,8 +116,9 @@ class Albums {
                 callB(null, imageList);
             },
             albums: function(callB){
-                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/5/explicit/json', json: true}, function (err, results) {
+                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/5/explicit.json', json: true}, function (err, results) {
                     if(!err && results){
+                        console.log("$$$$$", results);
                         var albums = _.get(results, 'body.feed.results', []);
                         var topAlbums = [];
                         _.forEach(albums, function(album){

@@ -3,6 +3,8 @@
 import _ from 'lodash';
 import request from 'request';
 import couchbase from 'couchbase';
+const uuid = require('uuid/v4');
+const async = require('async');
 var N1qlQuery = couchbase.N1qlQuery;
 var cluster = new couchbase.Cluster('localhost:8091');
 
@@ -16,32 +18,43 @@ class Login {
         var bucket = cluster.openBucket('default');
         var body = _.get(req, 'body', {});
         var query = N1qlQuery.fromString("SELECT * FROM default");
+
         async.waterfall([
-        function(cb){
-            bucket.query(query, function(err, res){
-                _.forEach(res, function(doc){
-                    var email = _.get(doc, 'default.email', '');
-                    var password = _.get(doc, 'default.password', '');
-                    if(body.email === email && body.password === password){
-                        return cb(null, {id: _.get(doc,'default.id', '')});
+            function(cb){
+                bucket.query(query, function(err, res){
+                    var success = false;
+                    if(!err){    
+                        for(var i = 0; i < res.length; i++){
+                            var doc = res[i];
+                            var email = _.get(doc, 'default.email', '');
+                            var password = _.get(doc, 'default.password', '');
+                            if(body.email === email && body.password === password){
+                                success = _.get(doc,'default.id', false);
+                                break;
+                            }
+                        }
+                        if(success){
+                            return cb(null, success);
+                        }
+                        cb(true, null);
                     }
-                });
-                cb(true, null);
-            });    
-        },
-        function(id, cb) {
-            bucket.get(id, function(err, res){
-                if(!err){
-                    cb(null,{favourites: _.get(res, 'value.fav', [])});        
+                    else{
+                        cb(true, null);
+                    }
+                });    
+            },
+            function(id, cb) {
+                if(id){
+                    bucket.get(id, function(err, res){
+                        return cb(err, {userId: id, favourites: _.get(res, 'value.favourites', [])});                                
+                    });
                 }
-                cb(true, null);
-            })
-        }
+            }
         ], function(err, result){
             if(err){
-                return callback(true, []);
+                return callback(true, {});
             }
-            callback(null, []);
+            callback(null, result);
         });
     }
     
@@ -49,13 +62,13 @@ class Login {
         var cluster = new couchbase.Cluster('localhost:8091');
         var bucket = cluster.openBucket('default');
         var body = _.get(req, 'body', {});
-        var id = body.email+ '::' + Math.random();
+        var id = uuid();
         bucket.upsert(id, {id: id, email: body.email, password: body.password},function(err, result) { 
             if (err)  {
                 console.log("errr:", err);
                 return callback(true, null);    
             }
-            callback(null, {id: id});
+            callback(null, {userId: id, favourites: []});
         });
     }
 }                 

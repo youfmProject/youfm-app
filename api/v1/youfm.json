@@ -160,7 +160,7 @@
                     "200":{
                         "description": "Login Confirmation",
                         "schema": {
-                            "$ref": "#/definitions/login"
+                            "$ref": "#/definitions/playlist"
                         }
                     },
                     "default": {
@@ -356,27 +356,38 @@
                 },
                 "password": {
                     "type": "string"
-                }   
+                },   
+                "userId": {
+                    "type":"string"
+                }
             }
         },
         "playlist":{
-            "type": "array",
-            "items":{
-                "type":"object",
-                "properties":{
-                    "name":{
-                        "type":"string"
-                    },
-                    "albumName":{
-                        "type":"string"
-                    },
-                    "artist":{
-                        "type":"string"
-                    },
-                    "image":{
-                        "type":"string"
+            "type": "object",
+            "properties":{
+                "usserId": {
+                    "type":"string"
+                },
+                "fav": {
+                    "type":"array",
+                   "items":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type":"string"
+                            },
+                            "albumName":{
+                                "type":"string"
+                            },
+                            "artist":{
+                                "type":"string"
+                            },
+                            "image":{
+                                "type":"string"
+                            }
+                        } 
                     }
-                } 
+                }  
             }
         },
         "Message":{

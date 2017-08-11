@@ -11,44 +11,31 @@ class Playlist {
 
     updatePlaylist(req, callback){
         var cluster = new couchbase.Cluster('localhost:8091');
-        var bucket = cluster.openBucket('default');
-        var tracks = _.get(req, 'body', []);
-        var name = _.get(req, 'query.name', '');
-        var id = _.get(req, 'query.id', '');
+        var bucket = cluster.openBucket('default'),
+            body = _.get(req, 'body', {}),
+            name = _.get(req, 'query.name', ''),
+            tracks = body[name],
+            id = body.userId;
         //check if name exists and append else upsert.
-        async.waterfall([
-            function(cb){
-                bucket.lookupIn(id).exists(name).execute(function(err, res){
-                    if(err){
-                        return cb(null, false);
-                    }
-                    cb(null, true);
-                });
-            },
-            function( append, cb){
-                if(append){
-                    bucket.mutateIn(id).arrayAppend(name, tracks).execute(function(err, res){
-                        if(err){
-                            return cb(true, null);
-                        }
-                        cb(bull, []);
-                    });
-                }
-                else {
-                    bucket.mutateIn(id).upsert(name, tracks).execute(function(err, res){
-                        if(err){
-                            console.log(err);
-                        }
-                        console.log(res);
-                        cb(null, res);
-                    });
-                }
-            }
-        ], function(error, results){
-            if(error){
+        bucket.get(id, function(err, res){
+            if(err){
+                console.log("err in append", err);
                 return callback(true, null);
             }
-            callback(null, []);
+            var fav = _.get(res, 'value.favourites', []);
+            fav = _.union(fav, tracks);
+            var payload = {
+                email: _.get(res, 'value.email', ''),
+                password: _.get(res, 'value.password', ''),
+                id: _.get(res, 'value.id', ''),
+                favourites: fav
+            };
+            bucket.upsert(id, payload, function(error, response){
+                if(!error){
+                    return callback(null, {});    
+                }
+                callback(true, null);
+            });
         });
     }
 }                 
