@@ -38,6 +38,27 @@ let setPlaylist=(name,tracks)=>{
 	}
 }
 
+let toggleFavouriteAction=(track,opt)=>{
+	return {
+		type:PLAYLIST.TOGGLE_FAVOURITE,
+		track,
+		opt
+	}
+}
+
+export function toggleFavourite(track,opt){
+	return(dispatch,getState)=>{
+		// axios({
+		//   method:'post',
+		//   url:'/api/v1/favourite'
+		// }).then(res=>{
+			dispatch(toggleFavouriteAction(track,opt));
+		//});
+	}
+}
+
+
+
 export function resetPlaylistOrder(name,data){
 	let tracks = [];
 	data.map((item)=>{
