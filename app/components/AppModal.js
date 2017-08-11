@@ -17,8 +17,7 @@ export default class AppModal extends Component {
                 container={this}
                 aria-labelledby="contained-modal-title"
                 backdrop={false}
-                onHide={onCancel.bind(this)}
-            >
+                onHide={onCancel.bind(this)}>
                 <Modal.Header closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161'}}>
                     <Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>LOGIN OR REGISTER</Modal.Title>
                 </Modal.Header>
