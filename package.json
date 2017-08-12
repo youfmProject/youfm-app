@@ -55,6 +55,7 @@
     "react": "^15.0.1",
     "react-addons-test-utils": "^15.0.1",
     "react-bootstrap": "^0.31.1",
+    "react-burger-menu": "^2.1.4",
     "react-dom": "^15.0.1",
     "react-drag-sortable": "^1.0.4",
     "react-nouislider": "^2.0.0",
