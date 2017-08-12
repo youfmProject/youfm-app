@@ -21,7 +21,7 @@ function loginStatus(res, error, status){
 		favourites: res.favourites,
 		status,
 		error
-	}
+	};
 }
 
 export function submitLogin(user, operation){
@@ -48,4 +48,19 @@ export function submitLogin(user, operation){
 			history.back();
 		});
     }
+}
+
+export function submitPassword( user, type ){
+	return (dispatch, getState) => {
+		axios({
+		  method: 'put',
+		  url:'/api/v1/password?type='+type,
+          data: user
+		}).then(res => {
+			dispatch(batchActions([
+				RoutingActions.locationChange('/Login'),
+				AppActions.toggleLogin()
+			]));
+		});
+	}
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import loginModel from '../models/login';
+import loginModel from '../models/Login';
 
 const callback = (method, response) => {
     return (err, res) => {

@@ -4,8 +4,9 @@ import { Alert, Form, Button, FormControl, FormGroup, ControlLabel, HelpBlock} f
 
 export default class Register extends Component {
 
-  render() {
-      const {editCredentials, submitLogin, dispatch, user} = this.props;
+
+    render() {
+      const {editCredentials, submitLogin, dispatch, user, locationChange} = this.props;
     
       let onChange = function(field, e){
         dispatch(editCredentials(field, e.target.value));

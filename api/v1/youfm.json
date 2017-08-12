@@ -190,7 +190,7 @@
                     {
                         "name": "playlists",
                         "in": "body",
-                        "description": "plalist details",
+                        "description": "playlist details",
                         "schema":{
                             "$ref": "#/definitions/playlist"   
                         }
@@ -212,6 +212,48 @@
                     }  
                 }
             }
+        },
+        "/password":{
+            "put":{
+                "x-swagger-router-controller": "password",
+                "operationId": "resetPassword",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for resetting password in LiveJam",
+                "parameters":[
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Login Details",
+                        "type":"string"
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "user details",
+                        "schema":{
+                            "$ref": "#/definitions/login"   
+                        }
+
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+
         }
     },
     "definitions":{
