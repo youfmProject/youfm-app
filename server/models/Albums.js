@@ -71,7 +71,7 @@ class Albums {
                 });
             },
             popular: function(callB) {
-                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/25/explicit/json', json: true}, function (err, results) {
+                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/25/explicit.json', json: true}, function (err, results) {
                     if(!err && results){
                         var tracks = _.get(results, 'body.feed.results', []);
                         var popularSongs = [];
