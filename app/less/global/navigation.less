@@ -31,12 +31,16 @@
 			border-left: 3px solid @youFM-blue;
 
 			-moz-transition-duration: .125s; /* Firefox 4 */
-      -webkit-transition-duration: .125s; /* Safari and Chrome */
-      -o-transition-duration: .125s; /* Opera */
-         transition-duration: .125s;
+			-webkit-transition-duration: .125s; /* Safari and Chrome */
+			-o-transition-duration: .125s; /* Opera */
+         	transition-duration: .125s;
 		}
+		.navigation__active {
+			border-left: 10px solid @youFM-blue;
+		}
+		
 	}
-
+	
 	a {
 
 		font-size: 15px;
@@ -48,12 +52,13 @@
 			text-decoration: none;
 		}
 
-		&.navigation--active {
+		&.active {
 			color: #fff;
 			font-weight: 500;
 		}
 
 	}
+	
 
 }
 
