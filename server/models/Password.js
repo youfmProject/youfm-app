@@ -3,7 +3,6 @@
 import _ from 'lodash';
 import couchbase from 'couchbase';
 const async = require('async');
-var N1qlQuery = couchbase.N1qlQuery;
 var cluster = new couchbase.Cluster('localhost:8091');
 // {
 //     "requestID": "84a0f6ac-4319-4cfb-90e6-84c9266775a0",
@@ -74,13 +73,9 @@ class Password {
         var cluster = new couchbase.Cluster('localhost:8091'),
             bucket = cluster.openBucket('default'),
             body = _.get(req, 'body', {}),
-            query = N1qlQuery.fromString("SELECT * FROM default where email="+body.email);
-
-        bucket.query(query, function(err, res){
-            let email = _.get(res[0], 'default.email', '');
+            email = _.get(res[0], 'default.email', '');
             //send email using some crap
             callback(null, {});
-        });
     }
 
 
