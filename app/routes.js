@@ -5,6 +5,7 @@ import Home from './containers/Home';
 import Playlist from './containers/Playlist';
 import Login from './containers/Login';
 import Register from './containers/Register';
+import Password from './containers/Password';
 import Search from './containers/Search';
 import * as HomeActions from './actions/home';
 
@@ -21,5 +22,6 @@ export default (
 		<Route path="/userList(/:play)(/:list)(/:playlist)" component={Playlist} />
 		<Route path="/Login(/:play)" component={Login}/>
 		<Route path="/Register(/:play)" component={Register}/>
+		<Route path="/resetPassword(/:id)" component={Password}/>
 	</Route>
 );
