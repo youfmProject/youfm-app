@@ -4,6 +4,7 @@ import _ from 'lodash';
 import couchbase from 'couchbase';
 const uuid = require('uuid/v4');
 const async = require('async');
+var passwordHash = require('password-hash');
 var N1qlQuery = couchbase.N1qlQuery;
 var cluster = new couchbase.Cluster('localhost:8091');
 
@@ -24,7 +25,7 @@ class Login {
                         
                         var email = _.get(res[0], 'default.email', '');
                         var password = _.get(res[0], 'default.password', '');
-                        if(body.email === email && body.password === password){
+                        if(body.email === email && passwordHash.verify(body.password, password)){
                             return cb(null, _.get(res[0],'default.id', false));
                         }
                         cb(true, null);
@@ -54,7 +55,8 @@ class Login {
         var bucket = cluster.openBucket('default');
         var body = _.get(req, 'body', {});
         var id = uuid();
-        bucket.upsert(id, {id: id, email: body.email, password: body.password},function(err, result) { 
+        var hashedPassword = passwordHash.generate(body.password);
+        bucket.upsert(id, {id: id, email: body.email, password: hashedPassword},function(err, result) { 
             if (err)  {
                 console.log("errr:", err);
                 return callback(true, null);    
