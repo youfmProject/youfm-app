@@ -3,7 +3,7 @@ import SideBar from './SideBar';
 import Player from './Player';
 import Search from './Search';
 import AppModal from './AppModal'
-import classNames from 'classNames';
+import classNames from 'classnames';
 export default class App extends Component {
 
   componentDidUpdate(){

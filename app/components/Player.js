@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import '../less/rc-slider.less';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import { batchActions } from 'redux-batched-actions';
 import { slide as Menu } from 'react-burger-menu'
 export default class SideBar extends Component {
