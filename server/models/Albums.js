@@ -56,7 +56,7 @@ class Albums {
                         _.forEach(releases, function(release){
                             var newRelease = {
                                 artist: _.get(release, 'artists[0].name'),
-                                id: release.id,
+                                songId: release.id,
                                 image: _.get(release, 'images[0].url', ''),
                                 albumType: release.album_type,
                                 name: release.name
