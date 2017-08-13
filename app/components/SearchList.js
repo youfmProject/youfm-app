@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Track from './Track';
 import DragSortableList from 'react-drag-sortable'
-import classNames from 'classNames';
+import classNames from 'classnames';
 export default class SearchList extends Component {
 
 componentDidMount() {
