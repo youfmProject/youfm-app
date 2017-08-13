@@ -77,7 +77,7 @@ class Albums {
                         var popularSongs = [];
                         _.forEach(tracks, function(track){
                             var popularSong = {
-                                id: track.id,
+                                songId: track.id,
                                 name: track.name,
                                 artist: track.artistName,
                                 image: track.artworkUrl100
