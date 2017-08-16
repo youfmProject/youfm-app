@@ -35,7 +35,7 @@ export default class Track extends Component {
 
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
         return (
-        <div key={track.id} className={classNames('song')} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
+        <div key={track.id} className={classNames('song')} style={{backgroundColor:'#1a1a21', width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
             <span className={classNames('song__play')}>
                 <i className="icon-play-icon" onClick={()=> {
                     dispatch(instantPlay(track))}}>

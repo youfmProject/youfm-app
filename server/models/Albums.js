@@ -58,7 +58,7 @@ class Albums {
                         _.forEach(releases, function(release){
                             var newRelease = {
                                 artist: _.get(release, 'artists[0].name'),
-                                id: release.id,
+                                songId: release.id,
                                 image: _.get(release, 'images[0].url', ''),
                                 albumName: release.album_type,
                                 name: release.name
@@ -73,9 +73,26 @@ class Albums {
                 });
             },
             popular: function(callB) {
+<<<<<<< HEAD
                 scrape('Music', 80, function (err, tracks) {
                     if(err){
                         return callB(true, null);
+=======
+                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/25/explicit.json', json: true}, function (err, results) {
+                    if(!err && results){
+                        var tracks = _.get(results, 'body.feed.results', []);
+                        var popularSongs = [];
+                        _.forEach(tracks, function(track){
+                            var popularSong = {
+                                songId: track.id,
+                                name: track.name,
+                                artist: track.artistName,
+                                image: track.artworkUrl100
+                            };
+                            popularSongs.push(popularSong);
+                        });
+                        return callB(null, popularSongs);
+>>>>>>> upstream/develop
                     }
                     var popularSongs = [];
                     _.forEach(tracks, function(track){

@@ -44,15 +44,17 @@ module.exports = {
       loader: "style!css!less?cleancss=true&yuicompress=true"
     }, {
       test: /\.(png|jpg|svg)$/,
-      loader: 'file-loader'
-    },
-    {
-  test: /\.woff(2)?(\?[a-z0-9]+)?$/,
-  loader: "url-loader?limit=10000&mimetype=application/font-woff"
-}, {
-  test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
-  loader: "file-loader"
-}]
+      loader: 'file-loader',
+      options: {
+        publicPath: 'app/logos'
+      } 
+    },{
+    test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+    loader: "url-loader?limit=10000&mimetype=application/font-woff"
+  }, {
+    test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+    loader: "file-loader"
+  }]
   },
   devServer: {
     historyApiFallback: true,

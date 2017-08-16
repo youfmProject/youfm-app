@@ -3,6 +3,7 @@ import { Route, Router, IndexRoute } from 'react-router';
 import App from './containers/App';
 import Home from './containers/Home';
 import Playlist from './containers/Playlist';
+import NowPlaying from './containers/NowPlaying';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Password from './containers/Password';
@@ -15,7 +16,7 @@ export default (
   		<Route path="/home(/:play)" component={Home}/>
 		<Route path="/search(/:list)(/:play)" component={Search} />
 		<Route path="/heavyRotation(/:play)(/:list)" component={Playlist} />
-		<Route path="/nowPlaying(/:play)(/:list)" component={Playlist} />
+		<Route path="/nowPlaying(/:play)(/:list)" component={NowPlaying} />
 		<Route path="/newReleases(/:play)(/:list)" component={Playlist} />
 		<Route path="/mostPopular(/:play)(/:list)" component={Playlist} />
 		<Route path="/favourites(/:play)(/:list)" component={Playlist} />
