@@ -48,6 +48,7 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
+    "muse-pull": "^1.0.0",
     "nodemon": "^1.9.2",
     "password-hash": "^1.2.2",
     "postcss": "^5.0.19",
@@ -63,6 +64,7 @@
     "react-player": "^0.19.1",
     "react-redux": "^4.4.5",
     "react-router": "^2.2.4",
+    "react-router-active-component": "^4.0.0",
     "react-router-redux": "^4.0.2",
     "redux": "^3.4.0",
     "redux-batched-actions": "^0.2.0",
@@ -84,5 +86,8 @@
     "webpack-dev-middleware": "^1.6.1",
     "webpack-hot-middleware": "^2.10.0",
     "youtube-search": "^1.0.10"
+  },
+  "devDependencies": {
+    "svg-inline-loader": "^0.8.0"
   }
 }

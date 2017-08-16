@@ -117,13 +117,33 @@ export function getSpotifySearch(searchKey){
 		}).then(res=>{
 			dispatch(batchActions([
 				RoutingActions.locationChange(`/search/${searchKey}/${state.player.id}`),
-      			spotifySearchComplete(searchKey,res.data, false),
+      			spotifySearchComplete(searchKey, res.data, false),
       			setPlaylist('search',res.data)
     			])
     		);
 		})
 		.catch(err => {
 			dispatch(spotifySearchComplete(searchKey, [], true));
+		});
+	}
+}
+
+export function searchArtist(artist){
+	return(dispatch,getState)=>{
+		let state = getState();
+		axios({
+		  method:'get',
+		  url:'/api/v1/spotify?artist='+artist
+		}).then(res=>{
+			dispatch(batchActions([
+				RoutingActions.locationChange(`/search/${artist}/${state.player.id}`),
+      			spotifySearchComplete(artist, res.data, false),
+      			setPlaylist('search', res.data)
+    			])
+    		);
+		})
+		.catch(err => {
+			dispatch(spotifySearchComplete(artist, [], true));
 		});
 	}
 }

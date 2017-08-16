@@ -7,6 +7,8 @@ import billboardClient from 'billboard-hot-100';
 import request from 'request';
 import path from 'path';
 
+var scrape = require('muse-pull');
+
 var spotify = new spotifyClient({
     clientId : '9e8b29bd18634b57bad77f5769cf576f',
     clientSecret : 'bf6760e931944fc69c603799b258a0db',
@@ -58,7 +60,7 @@ class Albums {
                                 artist: _.get(release, 'artists[0].name'),
                                 id: release.id,
                                 image: _.get(release, 'images[0].url', ''),
-                                albumType: release.album_type,
+                                albumName: release.album_type,
                                 name: release.name
                             };
                             newReleaseList.push(newRelease);
@@ -71,24 +73,22 @@ class Albums {
                 });
             },
             popular: function(callB) {
-                request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-songs/25/explicit.json', json: true}, function (err, results) {
-                    if(!err && results){
-                        var tracks = _.get(results, 'body.feed.results', []);
-                        var popularSongs = [];
-                        _.forEach(tracks, function(track){
-                            var popularSong = {
-                                id: track.id,
-                                name: track.name,
-                                artist: track.artistName,
-                                image: track.artworkUrl100
-                            };
-                            popularSongs.push(popularSong);
-                        });
-                        return callB(null, popularSongs);
+                scrape('Music', 80, function (err, tracks) {
+                    if(err){
+                        return callB(true, null);
                     }
-                    callB(null, null);
+                    var popularSongs = [];
+                    _.forEach(tracks, function(track){
+                        var popularSong = {
+                            id: track.id,
+                            name: track.track,
+                            artist: track.artist,
+                            image: "http://img.youtube.com/vi/"+ track.url.split('=')[1] + "/0.jpg"
+                        };
+                        popularSongs.push(popularSong);
+                    });
+                    return callB(null, popularSongs);
                 });
-             
             },
             billboard: function(callB){
                 billboardClient.init().then(function(billboard){
@@ -118,7 +118,6 @@ class Albums {
             albums: function(callB){
                 request({uri: 'https://rss.itunes.apple.com/api/v1/us/apple-music/top-albums/5/explicit.json', json: true}, function (err, results) {
                     if(!err && results){
-                        console.log("$$$$$", results);
                         var albums = _.get(results, 'body.feed.results', []);
                         var topAlbums = [];
                         _.forEach(albums, function(album){
