@@ -51,7 +51,7 @@ class Albums {
     getSpotifyAlbums(spotify, cb){
         async.parallel({
             newReleases: function(callB) {
-                spotify.getNewReleases({ limit : 10, offset: 0, country: 'US' }, function( error, response){
+                spotify.getNewReleases({ limit : 50, offset: 0, country: 'US' }, function( error, response){
                     if(response){
                         var releases = _.get(response , 'body.albums.items', []);
                         var newReleaseList = [];
