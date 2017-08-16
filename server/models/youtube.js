@@ -17,7 +17,6 @@ class youtube {
 			key: constants.youtubeAPIKey
 		},
 		keyword = _.get(req, 'query.search','');
-		keyword = keyword + ' lyrics';
 		youtubeSearch(keyword, options, function(err, results) {
 			if(err) return callback(null, []);
 			var songs =[];
