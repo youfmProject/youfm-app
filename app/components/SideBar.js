@@ -26,7 +26,7 @@ export default class SideBar extends Component {
     const query = this.props.params.play ? this.props.params.play : '';
 		const {children, store, locationChange, dispatch, toggleLogin, user} = this.props
     return (
-		<div className={classNames('rail', 'rail--left')}>
+		<div className={classNames('rail', 'rail--left')} style ={{position: 'fixed'}}>
 			<div className={classNames("navigation__mobile")}>
 				<div id="nav-icon3" onClick={onClick.bind(this)}>
 					<span/><span/><span/><span/>
