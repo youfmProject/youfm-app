@@ -5,9 +5,15 @@ import classNames from 'classnames';
 export default class SearchList extends Component {
 
 componentDidMount() {
-  const {tracks,getSpotifySearch, dispatch, params, error} = this.props;
+  const {tracks,getSpotifySearch, searchArtist, dispatch, params, error} = this.props;
+  let list = params.list.split('-')[0];
   if(!tracks.length && !error){
-    return dispatch(getSpotifySearch(params.list));
+    if(list === 'track'){
+      return dispatch(getSpotifySearch(params.list));      
+    }
+    else {
+      return dispatch(searchArtist(params.list));
+    }
   }
 }
     

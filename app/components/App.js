@@ -13,7 +13,6 @@ export default class App extends Component {
   componentDidMount(){
     const {dispatch,isSearchInSync, getSpotifySearch} = this.props;
     this.checkForPlayerID();
-    isSearchInSync ? dispatch(getSpotifySearch(isSearchInSync)) : null;
   }
 
   checkForPlayerID(){
