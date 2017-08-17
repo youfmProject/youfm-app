@@ -38,7 +38,7 @@ export default class Search extends Component {
     );
     return (
       <div>
-        {searchView === 'home' ? homeSearch : ContextSearch}  
+        {(searchView === 'home' || !searchView) ? homeSearch : ContextSearch}  
       </div>
     );
   }
