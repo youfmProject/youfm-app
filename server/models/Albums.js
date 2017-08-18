@@ -73,14 +73,21 @@ class Albums {
                 });
             },
             popular: function(callB) {
-                scrape('Music', 80, function (err, tracks) {
+                /* supported SubReddit 
+                Music
+                Metal
+                listentothis
+                */
+                scrape('electronicmusic', 80, function (err, tracks) {
+                    console.log('######## tracks #########');
+                    console.log(tracks);
                     if(err){
                         return callB(true, null);
                     }
                     var popularSongs = [];
                     _.forEach(tracks, function(track){
                         var popularSong = {
-                            id: track.id,
+                            songId: track.id,
                             name: track.track,
                             artist: track.artist,
                             image: "http://img.youtube.com/vi/"+ track.url.split('=')[1] + "/0.jpg"
