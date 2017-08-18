@@ -11,8 +11,6 @@ function mapStateToProps(state, props) {
   let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
-  let searchParam = decodeURI(props.params.list);
-  let isSearchInSync =  (searchParam !== state.search.searchComplete &&  searchView === 'search' )? searchParam : false;
   return {
     children:props.children,
     player:state.player,
@@ -23,8 +21,7 @@ function mapStateToProps(state, props) {
     user: state.user,
     searchView: searchView,
     isPlayerInSync,
-    isPlayerPlaying,
-    isSearchInSync
+    isPlayerPlaying
   };
 }
 

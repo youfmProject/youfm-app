@@ -110,20 +110,43 @@ export function getYoutubeSearch(){
 
 export function getSpotifySearch(searchKey){
 	return(dispatch,getState)=>{
+		console.log("Here");
 		let state = getState();
+		let key = searchKey.split('-')[1];
 		axios({
 		  method:'get',
-		  url:'/api/v1/spotify?search='+searchKey
+		  url:'/api/v1/spotify?search='+key
 		}).then(res=>{
 			dispatch(batchActions([
-				RoutingActions.locationChange(`/search/${searchKey}/${state.player.id}`),
-      			spotifySearchComplete(searchKey,res.data, false),
+				RoutingActions.locationChange(`/search/track-${key}/${state.player.id}`),
+      			spotifySearchComplete(searchKey, res.data, false),
       			setPlaylist('search',res.data)
     			])
     		);
 		})
 		.catch(err => {
 			dispatch(spotifySearchComplete(searchKey, [], true));
+		});
+	}
+}
+
+export function searchArtist(artist){
+	return(dispatch,getState)=>{
+		let key = artist.split('-')[1];
+		let state = getState();
+		axios({
+		  method:'get',
+		  url:'/api/v1/spotify?artist='+key
+		}).then(res=>{
+			dispatch(batchActions([
+				RoutingActions.locationChange(`/search/artist-${key}/${state.player.id}`),
+      			spotifySearchComplete(artist, res.data, false),
+      			setPlaylist('search', res.data)
+    			])
+    		);
+		})
+		.catch(err => {
+			dispatch(spotifySearchComplete(artist, [], true));
 		});
 	}
 }

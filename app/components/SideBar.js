@@ -70,8 +70,6 @@ export default class SideBar extends Component {
 			</Menu> : null}
 			</div>
 
-
-
 			<div className={classNames('navigation--main')}>
 				<a href={"/home/"+query}>
 					<img className={classNames("navigation__logo")}/>

@@ -27,7 +27,12 @@ export default class Track extends Component {
     }
 
     render() {
-        const {track, instantPlay, addToQueue, dispatch, location, playlistName, trackPlayNow, appendtoQueue, toggleFavourite} = this.props;
+        const {track, searchArtist, instantPlay, addToQueue, dispatch, location, playlistName, trackPlayNow, appendtoQueue, toggleFavourite} = this.props;
+        
+        let  onArtistClick = function(artist) {
+            return dispatch(searchArtist(artist));
+        }
+
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
         return (
         <div key={track.id} className={classNames('song')} style={{backgroundColor:'#1a1a21', width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
@@ -40,7 +45,7 @@ export default class Track extends Component {
             <span className={classNames('song__num')}></span>
             <span className={classNames('song__art')}><img src={track.image} alt="Album Art"/></span>
             <span className={classNames('song__name')}>{track.name}</span>
-            <span className={classNames('song__artists')}>{track.artist}</span>
+            <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist)}>{track.artist}</a>
             {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>...</span>
             }
             {
