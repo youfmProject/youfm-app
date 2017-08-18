@@ -4,9 +4,6 @@ import classNames from 'classnames';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import '../less/rc-slider.less';
 
-// This value is to track the play/pause events from the controls
-let origintrack = '';
-
 export default class Player extends Component {
 
 	constructor() {

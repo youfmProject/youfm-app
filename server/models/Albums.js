@@ -77,10 +77,10 @@ class Albums {
                 Music
                 Metal
                 listentothis
+                electronicmusic
+                hiphopheads
                 */
-                scrape('electronicmusic', 80, function (err, tracks) {
-                    console.log('######## tracks #########');
-                    console.log(tracks);
+                scrape('Music', 80, function (err, tracks) {
                     if(err){
                         return callB(true, null);
                     }
