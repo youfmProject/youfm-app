@@ -16,7 +16,7 @@ export default class App extends Component {
   }
 
   checkForPlayerID(){
-    const {dispatch,isPlayerInSync,playerPlay, isPlayerPlaying, bootPlayer} = this.props;
+    const {dispatch,isPlayerInSync,playerPlay, isPlayerPlaying, bootPlayer, togglePlay} = this.props;
     isPlayerInSync ? dispatch(playerPlay(isPlayerInSync)) : null;
     !isPlayerPlaying ? dispatch(bootPlayer(isPlayerInSync)): null;
   }

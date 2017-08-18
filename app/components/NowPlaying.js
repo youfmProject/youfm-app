@@ -14,9 +14,8 @@ export default class Playlist extends Component {
   }
 
   render() {
-    const { queue, dispatch, resetPlaylistOrder, playIndex } = this.props;
+    const { queue, dispatch, resetPlaylistOrder, playIndex, remainingQueue } = this.props;
     let playlistClass = classNames('song-list', 'song');
-    let remainingQueue = queue.slice(playIndex+1, queue.length-1);
     let onSort = function(sortedList) {
       let mergedList = queue.slice(0,playIndex).concat(sortedList);
       dispatch(resetPlaylistOrder('nowPlaying',mergedList));

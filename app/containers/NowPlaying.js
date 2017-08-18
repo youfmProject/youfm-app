@@ -7,9 +7,12 @@ import * as PlayerActions from '../actions/player';
 import * as NowPlayingActions from '../actions/nowPlaying';
 
 function mapStateToProps(state, props) {
+  let queue = state.nowPlaying.queue
+  let remainingQueue = state.nowPlaying.shuffle ? queue : queue.slice(state.nowPlaying.playIndex+1, queue.length-1);
 	return {
 		queue:state.nowPlaying.queue,
-		playIndex:state.nowPlaying.playIndex
+		playIndex:state.nowPlaying.playIndex,
+    remainingQueue
 	};
 }
 

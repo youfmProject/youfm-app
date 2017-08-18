@@ -110,7 +110,6 @@ export function getYoutubeSearch(){
 
 export function getSpotifySearch(searchKey){
 	return(dispatch,getState)=>{
-		console.log("Here");
 		let state = getState();
 		let key = searchKey.split('-')[1];
 		axios({
