@@ -29,8 +29,8 @@ export default class Track extends Component {
     render() {
         const {track, searchArtist, instantPlay, addToQueue, dispatch, location, playlistName, trackPlayNow, appendtoQueue, toggleFavourite} = this.props;
         
-        let  onArtistClick = function(artist) {
-            return dispatch(searchArtist(artist));
+        let  onArtistClick = function(artist, type) {
+            return dispatch(searchArtist(artist, type));
         }
 
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
@@ -44,8 +44,9 @@ export default class Track extends Component {
             <span className={classNames('song__favorite')} onClick={()=>{ this.toggleIcon(); dispatch(toggleFavourite(track,this.state.fav))}}><i className={classNames(favIcon)}></i></span>
             <span className={classNames('song__num')}></span>
             <span className={classNames('song__art')}><img src={track.image} alt="Album Art"/></span>
-            <span className={classNames('song__name')}>{track.name}</span>
-            <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist)}>{track.artist}</a>
+            <span className={classNames('song__name')}>{track.name.replace(/&apos;/g, "'")}</span>
+            <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a>
+            {track.albumName ? <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a>: null}
             {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>...</span>
             }
             {

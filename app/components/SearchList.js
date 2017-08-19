@@ -11,8 +11,11 @@ componentDidMount() {
     if(list[0] === 'track'){
       return dispatch(getSpotifySearch(list[1]));      
     }
+    else if(list[0] === 'artist') {
+      return dispatch(searchArtist(list[1], 'artist'));
+    }
     else {
-      return dispatch(searchArtist(list[1]));
+      return dispatch(searchArtist(list[1], 'album'));
     }
   }
 }

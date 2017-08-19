@@ -62,6 +62,12 @@
                         "in": "query",
                         "type": "string",
                         "description": "Artist Search Keyword for spotify search"
+                    },
+                    {
+                        "name": "album",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Album Search Keyword for spotify search"
                     }
                 ],
                 "responses":{

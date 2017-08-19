@@ -8,7 +8,7 @@ import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
 
 function mapStateToProps(state, props) {
-  console.log(props.params);
+  
   let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;

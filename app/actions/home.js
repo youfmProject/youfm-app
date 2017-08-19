@@ -132,27 +132,35 @@ export function getSpotifySearch(searchKey){
     		);
 		})
 		.catch(err => {
-			dispatch(spotifySearchComplete(searchKey, [], true));
+			dispatch(batchActions([
+				spotifySearchComplete(searchKey, [], true),
+				RoutingActions.locationChange(`/search/track-${searchKey}/${state.player.id}`)
+				])
+			);
 		});
 	}
 }
 
-export function searchArtist(artist){
+export function searchArtist(key, type){
 	return(dispatch,getState)=>{
 		let state = getState();
 		axios({
 		  method:'get',
-		  url:'/api/v1/spotify?artist='+artist
+		  url:'/api/v1/spotify?'+type+'='+key
 		}).then(res=>{
 			dispatch(batchActions([
-				RoutingActions.locationChange(`/search/artist-${artist}/${state.player.id}`),
-      			spotifySearchComplete('artist-'+artist, res.data, false),
+				RoutingActions.locationChange(`/search/${type}-${key}/${state.player.id}`),
+      			spotifySearchComplete(`${type}-${key}`, res.data, false),
       			setPlaylist('search', res.data)
     			])
     		);
 		})
 		.catch(err => {
-			dispatch(spotifySearchComplete(artist, [], true));
+			dispatch(batchActions([
+				spotifySearchComplete(`${type}-${key}`, [], true),
+				RoutingActions.locationChange(`/search/${type}-${key}/${state.player.id}`)
+				])
+			);
 		});
 	}
 }

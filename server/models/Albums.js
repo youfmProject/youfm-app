@@ -59,7 +59,7 @@ class Albums {
                                 artist: _.get(release, 'artists[0].name'),
                                 songId: release.id,
                                 image: _.get(release, 'images[0].url', ''),
-                                albumName: release.album_type,
+                                albumType: release.album_type,
                                 name: release.name
                             };
                             newReleaseList.push(newRelease);
