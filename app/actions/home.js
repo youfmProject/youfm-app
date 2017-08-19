@@ -6,13 +6,22 @@ import * as NowPlayingActions from './nowPlaying';
 import {browserHistory} from 'react-router';
 import * as RoutingActions from './routing';
 
-const { HOME, PLAYLIST, SEARCH, NOW_PLAYING} = Constants;
+const { HOME, PLAYLIST, SEARCH, NOW_PLAYING, REDDIT } = Constants;
 
-let spotifySearchComplete=(searchKey,tracks, error)=>{
+let spotifySearchComplete=(searchKey, tracks, error)=>{
 	return {
 		type:SEARCH.SPOTIFY_SEARCH_COMPLETE,
 		tracks,
 		searchKey, 
+		error
+	}
+}
+
+let redditSearchSuccess=(subReddit, tracks, error)=> {
+	return {
+		type:REDDIT.SEARCH_COMPLETE,
+		tracks,
+		subReddit,
 		error
 	}
 }
@@ -111,14 +120,13 @@ export function getYoutubeSearch(){
 export function getSpotifySearch(searchKey){
 	return(dispatch,getState)=>{
 		let state = getState();
-		let key = searchKey.split('-')[1];
 		axios({
 		  method:'get',
-		  url:'/api/v1/spotify?search='+key
+		  url:'/api/v1/spotify?search='+searchKey
 		}).then(res=>{
 			dispatch(batchActions([
-				RoutingActions.locationChange(`/search/track-${key}/${state.player.id}`),
-      			spotifySearchComplete(searchKey, res.data, false),
+				RoutingActions.locationChange(`/search/track-${searchKey}/${state.player.id}`),
+      			spotifySearchComplete('track-'+searchKey, res.data, false),
       			setPlaylist('search',res.data)
     			])
     		);
@@ -131,15 +139,14 @@ export function getSpotifySearch(searchKey){
 
 export function searchArtist(artist){
 	return(dispatch,getState)=>{
-		let key = artist.split('-')[1];
 		let state = getState();
 		axios({
 		  method:'get',
-		  url:'/api/v1/spotify?artist='+key
+		  url:'/api/v1/spotify?artist='+artist
 		}).then(res=>{
 			dispatch(batchActions([
-				RoutingActions.locationChange(`/search/artist-${key}/${state.player.id}`),
-      			spotifySearchComplete(artist, res.data, false),
+				RoutingActions.locationChange(`/search/artist-${artist}/${state.player.id}`),
+      			spotifySearchComplete('artist-'+artist, res.data, false),
       			setPlaylist('search', res.data)
     			])
     		);
@@ -155,4 +162,23 @@ export function searchKeyword(data){
 		type: SEARCH.EDIT_SEARCH_KEY,
 		searchKey: data
 	};
+}
+
+export function getRedditList(subReddit){
+	return(dispatch, getState)=> {
+		let state = getState();
+		axios({
+		  method:'get',
+		  url:'/api/v1/reddit?subReddit='+subReddit
+		}).then(res=> {
+			dispatch(batchActions([
+				RoutingActions.locationChange(`/r/${subReddit}/${state.player.id}`),
+      			redditSearchSuccess(subReddit, res.data, false),
+      			setPlaylist('r', res.data)
+    			])
+			)
+		}).catch(err => {
+			redditSearchSuccess(subReddit, [], true);
+		});
+	}
 }

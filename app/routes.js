@@ -8,6 +8,7 @@ import Login from './containers/Login';
 import Register from './containers/Register';
 import Password from './containers/Password';
 import Search from './containers/Search';
+import Reddit from './containers/Reddit';
 import * as HomeActions from './actions/home';
 
 export default (
@@ -24,5 +25,6 @@ export default (
 		<Route path="/Login(/:play)" component={Login}/>
 		<Route path="/Register(/:play)" component={Register}/>
 		<Route path="/resetPassword(/:id)" component={Password}/>
+		<Route path="/r(/:list)(/:play)" component={Reddit}/>
 	</Route>
 );

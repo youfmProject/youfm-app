@@ -260,6 +260,38 @@
                 }
             }
 
+        },
+        "/reddit": {
+            "get":{
+                "x-swagger-router-controller": "reddit",
+                "operationId": "getRedditTracks",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for getting subreddits",
+                "parameters":[
+                    {
+                        "name": "subReddit",
+                        "in": "query",
+                        "type": "string",
+                        "description": "subreddit for reddit tracks"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Search results for spotify",
+                        "schema": {
+                            "$ref": "#/definitions/spotify"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
         }
     },
     "definitions":{
@@ -294,13 +326,13 @@
                     "items":{
                         "type":"object",
                         "properties":{
-                            "id":{
+                            "songId":{
                                 "type":"string"   
                             },
-                            "images":{
+                            "image":{
                                 "type": "string"
                             },
-                            "tracks": {
+                            "artist": {
                                 "type":"string"
                             },
                             "name":{

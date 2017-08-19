@@ -8,14 +8,16 @@ import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
 
 function mapStateToProps(state, props) {
+  console.log(props.params);
   let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
+  let searchKey = state.search.searchKey.split('-');
   return {
     children:props.children,
     player:state.player,
     nowPlaying:state.nowPlaying,
-    searchKey: state.search.searchKey,
+    searchKey: searchKey.length > 1 ? searchKey[1] : searchKey[0],
     tracks: state.search.tracks,
     showLogin: state.app.showLogin,
     user: state.user,
