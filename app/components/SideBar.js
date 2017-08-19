@@ -65,7 +65,7 @@ export default class SideBar extends Component {
 				</div> : null }
 				</Menu> : null}
 				</div>
-
+				<div style ={{position: 'fixed'}}>
 				<div className={classNames('navigation--main')}>
 					<Link to={"/home/"+query}><img className={classNames("navigation__logo")}/></Link>
 					<ul className={classNames('navigation')}>
@@ -101,6 +101,7 @@ export default class SideBar extends Component {
 						</div>
 					</div>
 				</div> : null }
+			</div>
 			</div>
 		);
 	}
