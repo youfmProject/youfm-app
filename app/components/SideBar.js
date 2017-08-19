@@ -39,7 +39,7 @@ export default class SideBar extends Component {
 					<ul  className={classNames('navigation')}>
 						<h4> My Music </h4>
 						<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-						{user.status ? <li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li> : null }
+						<li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
 					</ul>
 				{!user.status ? 
 				<div className={classNames("navigation--actions")}>
@@ -76,7 +76,7 @@ export default class SideBar extends Component {
 					<ul  className={classNames('navigation')}>
 						<h4> My Music </h4>
 						<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-						{user.status ? <li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li> : null }
+						<li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
 					</ul>
 				</div>
 				{!user.status ? 
