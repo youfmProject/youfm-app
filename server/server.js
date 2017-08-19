@@ -19,7 +19,7 @@ app.use(session({secret: 'liveJam', store: new MemoryStore(), expires: new Date(
 app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, '../static')));
 
-if (isDeveloping) {
+//if (isDeveloping) {
     console.log('Server started in development mode.');
     const compiler = webpack(config);
     const devMiddleware = webpackDevMiddleware(compiler, {
@@ -57,13 +57,13 @@ if (isDeveloping) {
         }
     }
     app.use(getRouterMiddleware());
-} else {
-    console.log('Server started in production mode.');
-    app.use(express.static(path.join(__dirname, '../dist')));
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '../dist/index.html'));
-    });
-}
+// } else {
+//     console.log('Server started in production mode.');
+//     app.use(express.static(path.join(__dirname, '../dist')));
+//     app.get('/', (req, res) => {
+//         res.sendFile(path.join(__dirname, '../dist/index.html'));
+//     });
+// }
 
 var getAPIDoc = function(apiVersion) {
     apiVersion = apiVersion || 'v1';
