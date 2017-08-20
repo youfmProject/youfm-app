@@ -38,7 +38,7 @@ class Login {
             function(id, cb) {
                 if(id){
                     bucket.get(id, function(err, res){
-                        return cb(err, {userId: id, favourites: _.get(res, 'value.favourites', [])});                                
+                        return cb(err, _.assign({}, res.value, {userId: id}));                                
                     });
                 }
             }
