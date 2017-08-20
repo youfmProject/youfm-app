@@ -19,13 +19,20 @@ module.exports = {
         let Search = new spotifyModel();
         let searchKey = _.get(req, 'query.search', false);
         let artist = _.get(req, 'query.artist', false);
-
-        if(searchKey && !artist){
-            Search.searchSpotify(req, callback('GET', res));
+        let album = _.get(req, 'query.album', false);
+        let type, query = '';
+        if(searchKey){
+            query = searchKey;
+        }
+        else if(artist) {
+            type = 'artist';
+            query = artist;
         }
         else {
-            Search.searchArtists(req, callback('GET', res));
+            type = 'album';
+            query = album;
         }
+        Search.searchSpotify(req, type, query, callback('GET', res));
     },
     searchYoutube: (req, res, next) => {
         let Search = new youtubeModel();

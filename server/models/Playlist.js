@@ -22,15 +22,11 @@ class Playlist {
                 console.log("err in append", err);
                 return callback(true, null);
             }
-            var fav = _.get(res, 'value.favourites', []);
-            fav = _.union(fav, tracks);
-            var payload = {
-                email: _.get(res, 'value.email', ''),
-                password: _.get(res, 'value.password', ''),
-                id: _.get(res, 'value.id', ''),
-                favourites: fav
-            };
-            bucket.upsert(id, payload, function(error, response){
+            var data = _.get(res, 'value', {});
+            var playlist = _.cloneDeep(data[name]);
+            playlist = _.union(playlist, tracks);
+            data[name] = playlist;
+            bucket.upsert(id, data, function(error, response){
                 if(!error){
                     return callback(null, {});    
                 }

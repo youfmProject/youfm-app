@@ -8,6 +8,7 @@ import nowPlaying from './nowPlaying';
 import player from './player';
 import app from './app';
 import user from './user';
+import reddit from './reddit';
 
 const rootReducer = combineReducers({
 	home,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	user,
 	nowPlaying,
 	player,
+	reddit,
 	routing
 });
 

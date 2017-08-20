@@ -2,23 +2,12 @@ import React, { Component } from 'react';
 import Track from './Track';
 import DragSortableList from 'react-drag-sortable'
 import classNames from 'classnames';
-export default class SearchList extends Component {
+export default class RedditList extends Component {
 
 componentDidMount() {
-  const {tracks,getSpotifySearch, searchArtist, dispatch, params, error} = this.props;
-  let list = params.list.split('-');
-  if(!tracks.length && !error){
-    if(list[0] === 'track'){
-      return dispatch(getSpotifySearch(list[1]));      
-    }
-    else if(list[0] === 'artist') {
-      return dispatch(searchArtist(list[1], 'artist'));
-    }
-    else {
-      return dispatch(searchArtist(list[1], 'album'));
-    }
-  }
-}
+  const {dispatch, getRedditList, params} = this.props;
+    return dispatch(getRedditList(params.list));
+}   
     
   buildPlaylist(tracks = []){
     let fields=[];

@@ -140,15 +140,42 @@ export function playNext(){
 let getRoute=(state,videoData = false)=>{
 	let pN = state.routing.locationBeforeTransitions.pathname.split('/')[1],
 		sK = state.search.searchKey,
-		vQ=state.nowPlaying.videoQueue,
-		vI=state.nowPlaying.videoIndex,
+		vQ = state.nowPlaying.videoQueue,
+		vI = state.nowPlaying.videoIndex,
+		sR = state.reddit.subReddit,
 		route;
 
 	if(videoData){
-		route = (pN === 'search') ? `/${pN}/${sK}/${videoData[0].id}` : `/${pN}/${videoData[0].id}`;
+		switch(pN) {
+			case 'search': {
+				route = `/${pN}/${sK}/${videoData[0].id}`;
+				break;
+			}
+			case 'r': {
+				route = `/${pN}/${sR}/${videoData[0].id}`;
+				break;
+			}
+			default: {
+				route = `/${pN}/${videoData[0].id}`;
+				break;
+			}
+		}
 	}
 	else{
-		route = (pN === 'search') ? `/${pN}/${sK}/${state.nowPlaying.vQ[vI].id}` : `/${pN}/${vQ[vI].id}`;
+		switch(pN) {
+			case 'search': {
+				route = `/${pN}/${sK}/${state.nowPlaying.vQ[vI].id}`;
+				break;
+			}
+			case 'r': {
+				route = `/${pN}/${sR}/${state.nowPlaying.vQ[vI].id}`;
+				break;
+			}
+			default: {
+				route = `/${pN}/${vQ[vI].id}`;
+				break;
+			}
+		}
 	}
 	return route;
 }

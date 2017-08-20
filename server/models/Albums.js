@@ -7,8 +7,7 @@ import billboardClient from 'billboard-hot-100';
 import request from 'request';
 import path from 'path';
 
-var scrape = require('muse-pull');
-
+var reddit = require('../lib/redditHelper');
 var spotify = new spotifyClient({
     clientId : '9e8b29bd18634b57bad77f5769cf576f',
     clientSecret : 'bf6760e931944fc69c603799b258a0db',
@@ -60,7 +59,7 @@ class Albums {
                                 artist: _.get(release, 'artists[0].name'),
                                 songId: release.id,
                                 image: _.get(release, 'images[0].url', ''),
-                                albumName: release.album_type,
+                                albumType: release.album_type,
                                 name: release.name
                             };
                             newReleaseList.push(newRelease);
@@ -73,28 +72,17 @@ class Albums {
                 });
             },
             popular: function(callB) {
-                /* supported SubReddit 
-                Music
-                Metal
-                listentothis
-                electronicmusic
-                hiphopheads
-                */
-                scrape('Music', 80, function (err, tracks) {
-                    if(err){
-                        return callB(true, null);
+                 request({
+                    uri: 'https://www.reddit.com/r/Music.json',
+                    json: true
+                }, function(err, res){
+                    if(!err && res.statusCode === 200){
+                        var tracks = _.get(res, 'body.data.children', []);
+                        var popularSongs = reddit(tracks);
+                        return callB(null, popularSongs);
                     }
-                    var popularSongs = [];
-                    _.forEach(tracks, function(track){
-                        var popularSong = {
-                            songId: track.id,
-                            name: track.track,
-                            artist: track.artist,
-                            image: "http://img.youtube.com/vi/"+ track.url.split('=')[1] + "/0.jpg"
-                        };
-                        popularSongs.push(popularSong);
-                    });
-                    return callB(null, popularSongs);
+                    console.log("Error in subreddit");
+                    callB(null, []);
                 });
             },
             billboard: function(callB){
