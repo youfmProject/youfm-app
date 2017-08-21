@@ -1,0 +1,96 @@
+// Empty States
+
+.empty {
+	padding: 120px 0;
+	border-top: solid 1px #282832;
+	border-bottom: solid 1px #282832;
+}
+
+.empty__icon--playlist,
+.empty__icon--playing,
+.empty__icon--history,
+.empty__icon--favorites {
+	display: block;
+	margin: 0 0 40px 0;
+	font-size: 110px;
+	line-height: 110px;
+	font-family: 'icomoon';
+	font-style: normal;
+	font-weight: 300;
+	color: #707086;
+	text-align: center;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.empty__icon--playlist:before {
+	content: "\e908";
+}
+
+.empty__icon--playing:before {
+	content: "\e908";
+}
+
+.empty__icon--history:before {
+	content: "\e905";
+}
+
+.empty__icon--favorites:before {
+	content: "\e903";
+}
+
+.empty__title {
+	max-width: 380px;
+	margin: 0 auto;
+	font-size: 25px;
+	font-weight: 300;
+	line-height: 37px;
+	color: #707086;
+	text-align: center;
+}
+
+.empty__account {
+	max-width: 350px;
+	margin: 50px auto 0;
+	padding: 20px;
+	border-radius: 4px;
+	background: #16161d;
+	border: solid 1px @youFM-black--border;
+	display: flex;
+	flex-wrap: wrap;
+
+}
+
+.empty__account__title {
+	width: 100%;
+	font-size: 15px;
+	color: #fff;
+	margin: 0 0 15px 0;
+	text-align: center;
+}
+
+.empty__account__register,
+.empty__account__login {
+	width: 50%;
+	padding: 8px 40px;
+	font-size: 12px;
+	text-transform: uppercase;
+	border-radius: 100px;
+}
+
+.empty__account__register {
+	color: #fff;
+	font-weight: 300;
+	background: #0b0b0f;
+	border: solid 1px #282832;
+}
+
+.empty__account__login {
+	color: #10454e;
+	font-weight: 500;
+	background: #23d7f5;
+	border: solid 1px #23d7f5;
+}
+
+

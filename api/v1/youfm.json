@@ -1,0 +1,490 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "version":"v1",
+        "title": "YouFm data schema",
+        "description": "This API is the spec for managing data being fed into the youfm player"
+    },
+    "schemes":[
+        "https",
+        "http"
+    ],
+    "consumes":[
+        "application/json"
+    ],
+    "produces":[
+        "application/json"
+    ],
+    "basePath":"/api/v1",
+    "paths":{
+        "/albums":{
+            "get":{
+                "x-swagger-router-controller": "albums",
+                "operationId": "getAlbums",
+                "tags": [
+                    "/"
+                ],
+                "description": "This API returns the intial lists of albums needed to render the landing page",
+                "parameters":[],
+                "responses":{
+                    "200": {
+                        "description": "Get the album details",
+                        "schema":{
+                            "$ref": "#/definitions/albums"
+                        }
+                    },
+                    "default":{
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }
+                }
+            }
+        },
+        "/spotify":{
+            "get":{
+                "x-swagger-router-controller": "search",
+                "operationId": "searchSpotify",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for searching a keyword in spotify",
+                "parameters":[
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Search Keyword for spotify search"
+                    },
+                    {
+                        "name": "artist",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Artist Search Keyword for spotify search"
+                    },
+                    {
+                        "name": "album",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Album Search Keyword for spotify search"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Search results for spotify",
+                        "schema": {
+                            "$ref": "#/definitions/spotify"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        },
+        "/youtube": {
+            "get":{
+                "x-swagger-router-controller": "search",
+                "operationId": "searchYoutube",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for searching a keyword in youtube",
+                "parameters":[
+                    {
+                        "name": "song",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Search Keyword for youtube search"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Search results for youtube",
+                        "schema": {
+                            "$ref": "#/definitions/youtube"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        },
+        "/login": {
+            "post":{
+                "x-swagger-router-controller": "login",
+                "operationId": "register",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for login to liveJam",
+                "parameters":[
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Login Details",
+                        "schema":{
+                            "$ref": "#/definitions/login"   
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/playlist"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            },
+            "put":{
+                "x-swagger-router-controller": "login",
+                "operationId": "login",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for login to liveJam",
+                "parameters":[
+                    {
+                        "name": "login",
+                        "in": "body",
+                        "description": "Login Details",
+                        "schema":{
+                            "$ref": "#/definitions/login"   
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/playlist"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        },
+        "/playlist": {
+            "post":{
+                "x-swagger-router-controller": "playlist",
+                "operationId": "updatePlaylist",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for login to liveJam",
+                "parameters":[
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Playlist Name",
+                         "type": "string"
+                    },
+                    {
+                        "name": "playlists",
+                        "in": "body",
+                        "description": "playlist details",
+                        "schema":{
+                            "$ref": "#/definitions/playlist"   
+                        }
+
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/playlist"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        },
+        "/password":{
+            "put":{
+                "x-swagger-router-controller": "password",
+                "operationId": "resetPassword",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for resetting password in LiveJam",
+                "parameters":[
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "Login Details",
+                        "type":"string"
+                    },
+                    {
+                        "name": "user",
+                        "in": "body",
+                        "description": "user details",
+                        "schema":{
+                            "$ref": "#/definitions/login"   
+                        }
+
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Login Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+
+        },
+        "/reddit": {
+            "get":{
+                "x-swagger-router-controller": "reddit",
+                "operationId": "getRedditTracks",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for getting subreddits",
+                "parameters":[
+                    {
+                        "name": "subReddit",
+                        "in": "query",
+                        "type": "string",
+                        "description": "subreddit for reddit tracks"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Search results for spotify",
+                        "schema": {
+                            "$ref": "#/definitions/spotify"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
+        }
+    },
+    "definitions":{
+        "albums":{
+            "type":"object",
+            "properties":{
+                "newReleases":{
+                    "type": "array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "artist": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "albumType": {
+                                "type": "string"
+                            },
+                            "images": {
+                                "type": "string"
+                            },
+                            "id": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "popular":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "songId":{
+                                "type":"string"   
+                            },
+                            "image":{
+                                "type": "string"
+                            },
+                            "artist": {
+                                "type":"string"
+                            },
+                            "name":{
+                                "type": "string"   
+                            }
+                        }
+                    }
+                },
+                "billboard":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type":"string"   
+                            },
+                            "rank":{
+                                "type":"string"   
+                            },
+                            "artist":{
+                                "type":"string"   
+                            },
+                            "image":{
+                                "type":"string"   
+                            }
+                        } 
+                    }
+                },
+                "albums":{
+                    "type":"array",
+                    "items":{
+                        "type":"object",
+                        "properties":{
+                            "id":{
+                                "type":"string"   
+                            },
+                            "images":{
+                                "type": "string"
+                            },
+                            "tracks": {
+                                "type":"string"
+                            },
+                            "name":{
+                                "type": "string"   
+                            }
+                        }
+                    }
+                },
+                "images":{
+                    "type":"object",
+                    "properties":{
+                        "jumbo":{
+                            "type":"string"
+                        },
+                        "logo": {
+                            "type":"string"
+                        }   
+                    }
+                }
+            }
+        },
+        "youtube":{
+            "type":"array",
+            "items":{
+                "type": "object",
+                "properties":{
+                    "id":{
+                        "type":"string"   
+                    },
+                    "name":{
+                        "type":"string"
+                    }
+                } 
+            }
+        },
+        "spotify":{
+            "type":"array",
+            "items": {
+                "type":"object",
+                "properties": {
+                    "name":{
+                        "type":"string"
+                    },
+                    "albumName":{
+                        "type":"string"
+                    },
+                    "artist":{
+                        "type":"string"
+                    },
+                    "image":{
+                        "type":"string"
+                    }
+                }
+            }
+        },
+        "login": {
+            "type":"object",
+            "properties":{
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },   
+                "userId": {
+                    "type":"string"
+                }
+            }
+        },
+        "playlist":{
+            "type": "object",
+            "properties":{
+                "usserId": {
+                    "type":"string"
+                },
+                "fav": {
+                    "type":"array",
+                   "items":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type":"string"
+                            },
+                            "albumName":{
+                                "type":"string"
+                            },
+                            "artist":{
+                                "type":"string"
+                            },
+                            "image":{
+                                "type":"string"
+                            }
+                        } 
+                    }
+                }  
+            }
+        },
+        "Message":{
+            "required":[
+                "message"
+            ],
+            "properties":{
+                "message":{
+                    "type": "string"
+                }   
+            }
+        }
+    }
+}

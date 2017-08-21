@@ -1,0 +1,20 @@
+'use strict';
+
+import AlbumModel from '../models/Albums';
+
+const callback = (method, response) => {
+    return (err, res) => {
+        if(err){
+            return response.status(500).json(res);
+        }
+        return response.status(200).json(res);
+    };
+};
+
+
+module.exports = {
+    getAlbums: (req, res, next) => {
+        let Albums = new AlbumModel();
+        Albums.getAlbums(req, callback('GET', res));
+    }
+}

@@ -1,0 +1,145 @@
+// Controls
+
+.controls--main {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 66px;
+	background-color: #101015;
+}
+
+// Song Progress
+
+#song-progress {
+
+  width: 100%;
+  border: none;
+  height: 4px;
+
+	.noUi-handle {
+
+		display: none;
+
+		&:focus {
+			outline: 0;
+		}
+	}
+
+	.noUi-base {
+	    background: #23d7f5;
+	}
+
+	.noUi-origin {
+		background: #3b3b46;
+		border-radius: 0;
+	}
+
+}
+
+// Song Actions
+
+.actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.action--play,
+.action--previous,
+.action--next,
+.action--pause,
+.action--shuffle,
+.action--repeat  {
+
+	font-family: 'icomoon';
+	color: #fff;
+	background: transparent;
+    border: none;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &:hover {
+    	color: #777;
+    }
+
+    &:focus {
+    	outline: 0;
+    }
+
+}
+
+.action--previous,
+.action--next {
+	font-size: 12px;
+}
+
+.action--shuffle,
+.action--repeat  {
+	font-size: 12px;
+	font-weight: 900;
+}
+
+.action--play {
+
+	font-size: 38px;
+
+	&:before {
+		content: "\e90a";
+	}
+
+}
+
+.action--pause {
+
+	font-size: 38px;
+
+	&:before {
+		content: "\e909";
+	}
+
+}
+
+.action--previous {
+
+	margin: 0 30px 0 0;
+
+	&:before {
+		content: "\e90b";
+	}
+
+}
+
+.action--next {
+
+	margin: 0 0 0 30px;
+
+	&:before {
+		content: "\e907";
+	}
+
+}
+
+.action--shuffle {
+
+	margin: 0 40px 0 0;
+
+	&:before {
+		content: "\e90e";
+	}
+
+}
+
+.action--shuffle--active{
+	color:#23d7f5;
+}
+
+.action--repeat {
+
+	margin: 0 0 0 40px;
+
+	&:before {
+		content: "\e90c";
+	}
+
+}
