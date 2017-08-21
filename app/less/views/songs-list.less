@@ -1,0 +1,467 @@
+// Song List
+
+.song-list {
+
+  background: @youFM-black--light;
+  padding: 0;
+  font-size: @text-md;
+
+  .key {
+
+    & {
+      padding: 15px;
+      color: @youFM-grey--2;
+      text-transform: uppercase;
+      font-size: @text-sm;
+      border-top: 1px solid #282832;
+      display: flex;
+      flex-flow: row nowrap;
+    }
+
+    &__favorite {
+
+      width: 5%;
+
+      @media (min-width: @screen-md) {
+        margin-left: 5%;
+      }
+
+    }
+
+    &__num {
+      width: 5%;
+    }
+
+    &__name {
+      width: 40%;
+    }
+
+    &__artist {
+      width: 30%;
+    }
+
+    &__duration {
+      width: 10%;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    &__actions {
+      width: 5%;
+      text-align: center;
+    }
+
+  }
+
+  .song {
+
+    & {
+      border-top: 1px solid @youFM-black--border;
+      padding: @spacing-sm @spacing-lg;
+      color: @white;
+
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      -moz-transition-duration: .5s; /* Firefox 4 */
+      -webkit-transition-duration: .5s; /* Safari and Chrome */
+      -o-transition-duration: .5s; /* Opera */
+         transition-duration: .5s;
+    }
+
+    &:hover {
+      background: @youFM-black;
+
+      -moz-transition-duration: .5s; /* Firefox 4 */
+      -webkit-transition-duration: .5s; /* Safari and Chrome */
+      -o-transition-duration: .5s; /* Opera */
+         transition-duration: .5s;
+
+       .song__play {
+         visibility: visible;
+       }
+
+    }
+
+    &__play {
+      visibility: hidden;
+      width: 5%;
+
+      i {
+        opacity: .6;
+        font-size: 30px;
+
+        &:hover {
+          cursor: pointer;
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: @screen-md) {
+        display: none;
+      }
+    }
+
+    &__favorite {
+      width: 5%;
+    }
+
+    &__num {
+      width: 5%;
+    }
+
+    &__art {
+      width: 5%;
+    }
+
+    &__name {
+      width: 35%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      justify-content: space-between;
+      padding: 0 10px 0 0;
+    }
+
+    &__explicit {
+      font-size: @text-xs;
+      text-transform: uppercase;
+      border: 1px solid @youFM-grey--2;
+      color: @youFM-grey--2;
+      padding: 0 @spacing-xs;
+      margin-right: @spacing-xl;
+      display: inline-flex;
+    }
+
+    &__duration {
+      width: 10%;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    &__actions {
+      width: 5%;
+      text-align: center;
+      position: relative;
+
+      button {
+        background: none;
+        border: none;
+
+        &:active,
+        &:focus {
+          outline: none;
+        }
+      }
+
+      &__list {
+        background: @youFM-black;
+        border: 1px solid @youFM-black--border;
+        padding: 0;
+
+        li {
+
+          a {
+            font-size: @text-sm;
+            padding: @spacing-sm @spacing-md !important;
+            padding: 0;
+            color: inherit;
+
+            -moz-transition-duration: .5s; /* Firefox 4 */
+            -webkit-transition-duration: .5s; /* Safari and Chrome */
+            -o-transition-duration: .5s; /* Opera */
+               transition-duration: .5s;
+
+            &:hover {
+              background: @youFM-black--light;
+
+              -moz-transition-duration: .5s; /* Firefox 4 */
+              -webkit-transition-duration: .5s; /* Safari and Chrome */
+              -o-transition-duration: .5s; /* Opera */
+                 transition-duration: .5s;
+            }
+          }
+        }
+      }
+    }
+
+    &__art {
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+
+    &__artists {
+
+      & {
+        width: 30%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      &--mobile {
+        display: none;
+      }
+
+      .song__artist {
+        color: @white;
+
+        &:hover {
+          text-decoration: underline;
+        }
+
+        &:after {
+          content: ",";
+        }
+
+        &:last-child {
+          &:after {
+            content: "";
+          }
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+
+.songs--popular {
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	padding: 40px 0;
+	background: @youFM-black--light;
+
+	.songs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+	}
+
+	.songs__title {
+		flex: 0 0 100%;
+		opacity: 0.41;
+		font-size: 15px;
+		margin: 0 0 25px 0;
+		text-align: center;
+		color: @youFM-grey;
+		text-transform: uppercase;;
+	}
+
+	.song {
+
+		width: 150px;
+		margin: 0 20px 0 0;
+
+		&:last-child {
+			margin: 0;
+		}
+    &:active {
+      background: black;
+    }
+	}
+
+	.song__image {
+		width: 150px;
+		height: 150px;
+		margin: 0 0 10px 0;
+
+	}
+
+	.song__title {
+		font-size: 16px;
+		font-weight: 500;
+		letter-spacing: -0.2px;
+		text-align: center;
+		color: #ffffff;
+	}
+
+	.song__artist {
+		font-size: 13px;
+		text-align: center;
+		color: #979797;
+	}
+
+
+}
+
+.nowPlaying-Info{
+  font-family: HelveticaNeue;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: left;
+  color: #707086;
+  margin-left:10px;
+}
+
+// iPad Pro
+@media (max-width: @screen-lg) {
+
+  .song-list {
+
+    .key {
+
+      &__name {
+        width: 40%;
+      }
+
+      &__artists {
+        width: 30%;
+      }
+
+      &__duration,
+      &__actions {
+        width: 10%;
+      }
+
+    }
+
+    .song {
+
+      &__name {
+        width: 35%;
+      }
+
+      &__artists {
+        width: 35%;
+      }
+
+      &__duration,
+      &__actions {
+        width: 10%;
+      }
+
+    }
+
+  }
+
+}
+
+//iPad
+@media (max-width: @screen-md) {
+
+  .song-list {
+
+    .key {
+
+      &__num,
+      &__duration {
+        display: none;
+      }
+
+      &__name {
+        width: 45%;
+      }
+
+      &__artists {
+        width: 35%;
+      }
+
+    }
+
+    .song {
+
+      &__num,
+      &__duration {
+        display: none;
+      }
+
+      &__art {
+        width: 7%;
+      }
+
+      &__name {
+        width: 38%;
+      }
+
+      &__artists {
+        width: 40%;
+      }
+
+    }
+
+  }
+
+}
+
+//iPhone Landscape
+@media (max-width: @screen-md) {
+
+  .song-list {
+
+    .key {
+      display: none;
+    }
+
+    .song {
+
+      &__explicit {
+        display: none;
+      }
+
+      &__favorite {
+        min-width: 30px;
+      }
+
+      &__art {
+        min-width: 30px;
+        margin-right: @spacing-md;
+      }
+
+      &__name {
+        width: auto;
+        flex-flow: column wrap;
+      }
+
+      &__artists {
+        display: none;
+
+        &--mobile {
+          font-size: @text-sm;
+          font-weight: 300;
+          display: block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          .song__artist {
+            color: @white;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+            &:after {
+              content: ",";
+            }
+
+            &:last-child {
+              &:after {
+                content: "";
+              }
+            }
+
+          }
+        }
+
+      }
+
+      &__actions {
+        margin-left: auto;
+        text-align: right;
+      }
+
+    }
+
+  }
+
+}
