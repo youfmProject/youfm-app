@@ -17,11 +17,7 @@ function mapDispatchToProps(dispatch) {
   return {
   	...HomeActions,
   	...PlayerActions,
-<<<<<<< HEAD
 	...RoutingActions,
-=======
-		...RoutingActions,
->>>>>>> upstream/develop
     dispatch
   };
 }

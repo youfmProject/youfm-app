@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import classNames from 'classnames';
 import { batchActions } from 'redux-batched-actions';
-<<<<<<< HEAD
 import { slide as Menu } from 'react-burger-menu';
 import PlaylistModal from './PlaylistModal';
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
 
-=======
-import { slide as Menu } from 'react-burger-menu'
->>>>>>> upstream/develop
 export default class SideBar extends Component {
 
 	constructor() {
@@ -23,7 +19,6 @@ export default class SideBar extends Component {
         this.setState({hidden: true});
     }
 
-<<<<<<< HEAD
     buildUserPlaylist(userPlaylist){
     	let fields = [];
     	for(let item in userPlaylist){
@@ -32,15 +27,12 @@ export default class SideBar extends Component {
     	return fields;
     }
 
-=======
->>>>>>> upstream/develop
   	render() {
 		let onClick = function(){
 			this.setState({hidden: false});
 		}
 	  	// ADD SIDEBAR CLASS
 	    const query = this.props.params.play ? this.props.params.play : '';
-<<<<<<< HEAD
 		const {children, store, locationChange, dispatch, toggleLogin, user, userPlaylist, app, toggleModal} = this.props
 	    return (
 			<div className={classNames('rail', 'rail--left')}>
@@ -57,11 +49,6 @@ export default class SideBar extends Component {
                 	<PlaylistModal {...this.props}/>
                 </Modal.Body> 
             	</Modal>
-=======
-		const {children, store, locationChange, dispatch, toggleLogin, user} = this.props
-	    return (
-			<div className={classNames('rail', 'rail--left')}>
->>>>>>> upstream/develop
 				<div className={classNames("navigation__mobile")}>
 					<div id="nav-icon3" onClick={onClick.bind(this)}>
 						<span/><span/><span/><span/>
@@ -76,7 +63,6 @@ export default class SideBar extends Component {
 					<ul  className={classNames('navigation')}>
 						<h4> My Music </h4>
 						<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-<<<<<<< HEAD
 						{user.status ? <div><li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
 						<li><Link to={"/history/"+query} activeClassName="active">History</Link></li></div> : null}
 					</ul>
@@ -91,16 +77,6 @@ export default class SideBar extends Component {
 							batchActions([
 								toggleLogin(),
 								locationChange('/Login/'+query)
-=======
-						<li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
-					</ul>
-				{!user.status ? 
-				<div className={classNames("navigation--actions")}>
-					<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-						onClick={()=> {dispatch(batchActions([
-							toggleLogin(),
-							locationChange('/Login/'+query)
->>>>>>> upstream/develop
 							])
 						);
 					}} >Login</button> 
@@ -116,7 +92,6 @@ export default class SideBar extends Component {
 							}} >Register</button>
 						</div>
 					</div>
-<<<<<<< HEAD
 				</div>}
 				</Menu> : null}
 				</div>
@@ -162,48 +137,6 @@ export default class SideBar extends Component {
 						</div>
 					</div>}
 				</div>
-=======
-				</div> : null }
-				</Menu> : null}
-				</div>
-				<div style ={{position: 'fixed'}}>
-				<div className={classNames('navigation--main')}>
-					<Link to={"/home/"+query}><img className={classNames("navigation__logo")}/></Link>
-					<ul className={classNames('navigation')}>
-						<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
-						<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
-						<li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
-					</ul>
-					<ul  className={classNames('navigation')}>
-						<h4> My Music </h4>
-						<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-						<li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
-					</ul>
-				</div>
-				{!user.status ? 
-				<div className={classNames("navigation--actions")}>
-					<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-						onClick={()=> {dispatch(batchActions([
-							toggleLogin(),
-							locationChange('/Login/'+query)
-							])
-						);
-					}} >Login</button> 
-					<div className={classNames("register")}>
-						<div className={classNames("register__title")}>Don't have an account?
-							<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
-							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-								onClick={()=> {dispatch(batchActions([
-									toggleLogin(),
-									locationChange('/Register/'+query)
-									])
-								);
-							}} >Register</button>
-						</div>
-					</div>
-				</div> : null }
-			</div>
->>>>>>> upstream/develop
 			</div>
 		);
 	}

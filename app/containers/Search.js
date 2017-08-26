@@ -5,7 +5,6 @@ import SearchList from '../components/SearchList';
 import * as NowPlayingActions from '../actions/nowPlaying';
 import * as PlayerActions from '../actions/player';
 import * as HomeActions from '../actions/home';
-<<<<<<< HEAD
 import * as AppActions from '../actions/app';
 
 function mapStateToProps(state, props) {
@@ -16,23 +15,12 @@ function mapStateToProps(state, props) {
       searchKey: state.search.searchKey,
       error: state.search.error,
       activetrack
-=======
-
-function mapStateToProps(state, props) {
-  	return {
-      tracks: state.search.tracks,
-      searchKey: state.search.searchKey,
-      error: state.search.error
->>>>>>> upstream/develop
 	};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-<<<<<<< HEAD
     ...AppActions,
-=======
->>>>>>> upstream/develop
   	...PlayerActions,
     ...HomeActions,
     ...NowPlayingActions,

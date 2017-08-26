@@ -26,7 +26,6 @@ export default class Track extends Component {
         this.setState({showTray: this.state.showTray === 'show'? 'hide':'show'})
     }
 
-<<<<<<< HEAD
     buildTray(){
         const {track, user, dispatch, instantPlay, appendtoQueue, addToQueue, addToPlaylist, toggleFavourite, toggleModal} = this.props;
         let favTitle = this.state.fav ? 'Remove from Favourite':'Add to favourites';
@@ -45,26 +44,15 @@ export default class Track extends Component {
     render() {
         const {track, searchArtist, instantPlay, dispatch, location, playlistName, trackPlayNow, toggleFavourite, activetrack} = this.props;
         let playClass = (track.name === activetrack.name && track.artist === activetrack.artist)? 'song__active' : 'song__play';
-=======
-    render() {
-        const {track, searchArtist, instantPlay, addToQueue, dispatch, location, playlistName, trackPlayNow, appendtoQueue, toggleFavourite} = this.props;
-        
->>>>>>> upstream/develop
         let  onArtistClick = function(artist, type) {
             return dispatch(searchArtist(artist, type));
         }
 
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
-<<<<<<< HEAD
 
         return (
         <div key={track.id} className={classNames('song')} style={{backgroundColor:'#1a1a21', width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
             <span className={classNames(playClass)}>
-=======
-        return (
-        <div key={track.id} className={classNames('song')} style={{backgroundColor:'#1a1a21', width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
-            <span className={classNames('song__play')}>
->>>>>>> upstream/develop
                 <i className="icon-play-icon" onClick={()=> {
                     dispatch(instantPlay(track))}}>
                 </i>
@@ -81,15 +69,7 @@ export default class Track extends Component {
                 this.state.showTray === 'show'? (
                     <div>
                         <ul className={classNames('dropdown-menu','dropdown-menu-right','song__actions__list')} style={{display: 'block'}}>
-<<<<<<< HEAD
                             {this.buildTray()}
-=======
-                            <li onClick={()=>{dispatch(instantPlay(track))}}><a>Play now</a></li>
-                            <li onClick={()=>{dispatch(appendtoQueue(track))}}><a>Play next</a></li>
-                            <li onClick={()=>{dispatch(addToQueue(track))}}><a>Add to queue</a></li>
-                            {/*<li>Add to favourites</li>
-                            <li>Add to playlist</li>*/}
->>>>>>> upstream/develop
                         </ul>
                     </div>
                 ) : null
