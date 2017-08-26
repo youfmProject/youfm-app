@@ -17,8 +17,12 @@ module.exports={
 		PLAYER_RESET:'PLAYER_RESET'
 	},
 	'APP': {
+<<<<<<< HEAD
 		TOGGLE_LOGIN: 'TOGGLE_LOGIN',
 		TOGGLE_MODAL: 'TOGGLE_MODAL'
+=======
+		TOGGLE_LOGIN: 'TOGGLE_LOGIN'
+>>>>>>> upstream/develop
 	},
 	'USER': {
 		EDIT_CREDENTIALS: 'EDIT_CREDENTIALS',

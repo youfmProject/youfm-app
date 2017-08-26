@@ -7,6 +7,7 @@ import * as AppActions from '../actions/app';
 import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
 
+<<<<<<< HEAD
 function getUsersPlaylist(userPlaylist){
   let list =[];
   for(let item in userPlaylist){
@@ -15,15 +16,21 @@ function getUsersPlaylist(userPlaylist){
   return list;
 }
 
+=======
+>>>>>>> upstream/develop
 function mapStateToProps(state, props) {
   
   let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
   let searchKey = state.search.searchKey.split('-');
+<<<<<<< HEAD
   let usersPlaylist = getUsersPlaylist(state.playlist.userPlaylist);
   return {
     app:state.app,
+=======
+  return {
+>>>>>>> upstream/develop
     children:props.children,
     player:state.player,
     nowPlaying:state.nowPlaying,
@@ -32,10 +39,15 @@ function mapStateToProps(state, props) {
     showLogin: state.app.showLogin,
     user: state.user,
     searchView: searchView,
+<<<<<<< HEAD
     userPlaylist:state.playlist.userPlaylist,
     isPlayerInSync,
     isPlayerPlaying,
     usersPlaylist
+=======
+    isPlayerInSync,
+    isPlayerPlaying
+>>>>>>> upstream/develop
   };
 }
 

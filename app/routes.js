@@ -21,8 +21,12 @@ export default (
 		<Route path="/newReleases(/:play)(/:list)" component={Playlist} />
 		<Route path="/mostPopular(/:play)(/:list)" component={Playlist} />
 		<Route path="/favourites(/:play)(/:list)" component={Playlist} />
+<<<<<<< HEAD
 		<Route path="/history(/:play)(/:list)" component={Playlist} />
 		<Route path="/userList(/:playlist)(/:play)(/:list)" component={Playlist} />
+=======
+		<Route path="/userList(/:play)(/:list)(/:playlist)" component={Playlist} />
+>>>>>>> upstream/develop
 		<Route path="/Login(/:play)" component={Login}/>
 		<Route path="/Register(/:play)" component={Register}/>
 		<Route path="/resetPassword(/:id)" component={Password}/>

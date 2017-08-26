@@ -7,6 +7,7 @@ const initialState ={
   mostPopular:[],
   heavyRotation:[],
   newReleases:[],
+<<<<<<< HEAD
   favourite:[],
   history:[],
   userPlaylist:{
@@ -24,6 +25,9 @@ const initialState ={
       songId:"0tQ7Iu6EicQTPyhYRNWjaT",
     }]
   }
+=======
+  favourite:[]
+>>>>>>> upstream/develop
 }
 const playlist = (state = initialState, action) => {
   switch (action.type) {

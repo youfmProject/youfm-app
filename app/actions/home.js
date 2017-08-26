@@ -56,6 +56,7 @@ let toggleFavouriteAction=(track,opt)=>{
 }
 
 export function toggleFavourite(track,opt){
+<<<<<<< HEAD
 	 return(dispatch,getState)=>{
 	// 	let state = getState();
 	// 	let payload = {
@@ -70,6 +71,22 @@ export function toggleFavourite(track,opt){
 			dispatch(toggleFavouriteAction(track, opt));
 	// 	});
 	 }
+=======
+	return(dispatch,getState)=>{
+		let state = getState();
+		let payload = {
+			favourites: [track],
+			userId: '133f0dae-3608-4c13-b77d-65cbf3d10203'
+		};
+		axios({
+		  method:'post',
+		  url:'/api/v1/playlist?name=favourites',
+		  data: payload
+		}).then(res=>{
+			dispatch(toggleFavouriteAction(track, opt));
+		});
+	}
+>>>>>>> upstream/develop
 }
 
 
