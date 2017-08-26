@@ -5,6 +5,7 @@ import Playlist from '../components/Playlist';
 import * as HomeActions from '../actions/home';
 import * as PlayerActions from '../actions/player';
 import * as NowPlayingActions from '../actions/nowPlaying';
+import * as AppActions from '../actions/app';
 
 function getTracklist(state, props){
 	let playlistName = props.location.pathname.split('/')[1];
@@ -14,6 +15,10 @@ function getTracklist(state, props){
 		}
 		case 'favourites': {
 			return state.user.favourites;
+		}
+		case 'userList':{
+			let pN= props.params.playlist;
+			return state.playlist.userPlaylist[pN];
 		}
 		// case 'userList' = //get playlist name from route and then add to tracklist;
 		default :{
@@ -25,14 +30,18 @@ function getTracklist(state, props){
 function mapStateToProps(state, props) {
 	let trackList = getTracklist(state, props);
 	let playlistName = props.location.pathname.split('/')[1];
+	let activetrack = _.get(state.nowPlaying,'queue['+state.nowPlaying.playIndex+']',{name:'',artist:''});
 	return {
+		user:state.user,
+		playlistName : (playlistName !== 'nowPlaying' ) ? playlistName :false,
 		trackList,
-		playlistName : (playlistName !== 'nowPlaying' ) ? playlistName :false
+		activetrack
 	};
 }
 
 function mapDispatchToProps(dispatch) {
   return {
+  	...AppActions,
   	...HomeActions,
   	...PlayerActions,
   	...NowPlayingActions,

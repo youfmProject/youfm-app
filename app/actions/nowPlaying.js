@@ -199,6 +199,11 @@ export function instantPlay(track){
 		let playlistName = state.routing.locationBeforeTransitions.pathname.split('/')[1];
 		let index = _.findIndex(state.playlist[playlistName],{name:track.name,artist:track.artist});
 		callYoutube(track,(data)=>{
+			// will reset if existing track is playing
+			// TODO : Have to catch if different Id of video is being player	
+			if(state.player.id === data[0].id){
+				dispatch(PlayerActions.resetPlayer());
+			}
 			let route = getRoute(state,data);
 			let actionsArray = [];
 			actionsArray= [RoutingActions.locationChange(route),addToVideoQueue(data),setIndex(index)];
