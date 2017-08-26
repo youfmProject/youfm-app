@@ -14,7 +14,7 @@ export default class Playlist extends Component {
   }
 
   render() {
-    const { trackList, playlistName, dispatch, resetPlaylistOrder } = this.props;
+    const { trackList, playlistName, dispatch, resetPlaylistOrder, activetrack } = this.props;
     let onSort = function(sortedList) {
       dispatch(resetPlaylistOrder(playlistName,sortedList));
     }

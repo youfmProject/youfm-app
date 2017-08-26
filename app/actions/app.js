@@ -8,3 +8,11 @@ export function toggleLogin(){
 		type:APP.TOGGLE_LOGIN
 	}
 }
+
+export function toggleModal(modal,title){
+	return {
+		type:APP.TOGGLE_MODAL,
+		modal,
+		title
+	}
+}
