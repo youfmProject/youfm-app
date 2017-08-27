@@ -3,6 +3,7 @@ import Constants from '../lib/Constants';
 import { batchActions } from 'redux-batched-actions'
 import * as AppActions from '../actions/app';
 import * as RoutingActions from './routing';
+import * as HomeActions from './home';
 
 const { USER } = Constants;
 
@@ -18,7 +19,7 @@ function loginStatus(res, error, status){
 	return {
 		type: USER.LOGIN_STATUS,
 		userId: res.userId,
-		favourites: res.favourites,
+		playlists: res.playlists,
 		status,
 		error
 	};
@@ -34,18 +35,13 @@ export function submitLogin(user, operation){
 		}).then(res=>{
 			dispatch(batchActions([
 				loginStatus(res.data, false, true),
-      			AppActions.toggleLogin()
+				HomeActions.setPlaylist('userList', res.data.playlists),
+      			AppActions.toggleModal('','')
     			])
     		);
-			history.back();
 		})
 		.catch(function(err){
-			dispatch(batchActions([
-				loginStatus({}, true, false),
-      			AppActions.toggleLogin()
-    			])
-			);
-			history.back();
+			loginStatus({}, true, false)
 		});
     }
 }
@@ -58,8 +54,8 @@ export function submitPassword( user, type ){
           data: user
 		}).then(res => {
 			dispatch(batchActions([
-				RoutingActions.locationChange('/Login'),
-				AppActions.toggleLogin()
+				RoutingActions.locationChange('/home'),
+				AppActions.toggleModal('Login','Login')
 			]));
 		});
 	}

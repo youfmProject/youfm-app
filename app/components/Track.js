@@ -35,7 +35,7 @@ export default class Track extends Component {
         if(user.status){
             fields.push(
                 <li onClick={()=>{this.toggleIcon();dispatch(toggleFavourite(track,this.state.fav))}}><a>{favTitle}</a></li>,
-                <li onClick={()=>{dispatch(toggleModal('PlaylistModal','Add to playlist'))}}><a>Add to playlist</a></li>);
+                <li onClick={()=>{dispatch(toggleModal('Playlist','Add to playlist'))}}><a>Add to playlist</a></li>);
         }
         return fields;
     }

@@ -17,7 +17,6 @@ module.exports={
 		PLAYER_RESET:'PLAYER_RESET'
 	},
 	'APP': {
-		TOGGLE_LOGIN: 'TOGGLE_LOGIN',
 		TOGGLE_MODAL: 'TOGGLE_MODAL'
 	},
 	'USER': {
