@@ -7,13 +7,24 @@ import * as AppActions from '../actions/app';
 import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
 
+
+function getUsersPlaylist(userPlaylist){
+  let list =[];
+  for(let item in userPlaylist){
+    list.push({ value: item, label: item },)
+  }
+  return list;
+}
+
 function mapStateToProps(state, props) {
   
   let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
   let searchKey = state.search.searchKey.split('-');
+  let usersPlaylist = getUsersPlaylist(state.playlist.userPlaylist);
   return {
+    app:state.app,
     children:props.children,
     player:state.player,
     nowPlaying:state.nowPlaying,
@@ -22,8 +33,10 @@ function mapStateToProps(state, props) {
     showLogin: state.app.showLogin,
     user: state.user,
     searchView: searchView,
+    userPlaylist:state.playlist.userPlaylist,
     isPlayerInSync,
-    isPlayerPlaying
+    isPlayerPlaying,
+    usersPlaylist
   };
 }
 

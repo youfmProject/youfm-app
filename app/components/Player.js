@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import classNames from 'classnames';
+import {get} from 'lodash';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import '../less/rc-slider.less';
 
@@ -17,7 +18,7 @@ export default class Player extends Component {
 
   	render() {
 	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay} = this.props;
-	  	let playPauseClass = player.playing ? "action--play" : "action--pause";
+	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
 	    return (
 	    	<div>
 				{ player.id ? <div style={{bottom:'150px',position:'fixed', left:'0px', height:'50px'}}>
@@ -43,6 +44,10 @@ export default class Player extends Component {
 							max={10000}
 							value={this.state.played || 0} 
 						/>
+					</div>
+					<div style={{float:'left', width:'200px', color:'white', marginLeft:'5px', position:'fixed',whiteSpace:'nowrap'}}>
+					<p>{get(nowPlaying.queue[nowPlaying.playIndex],'name','')}</p>
+					<p>{get(nowPlaying.queue[nowPlaying.playIndex],'artist','')}</p>
 					</div>
 					<div className={classNames("actions")}>
 						<button className={classNames("action--shuffle",{"action--shuffle--active":nowPlaying.shuffle})} onClick={()=>dispatch(toggleShuffle())}></button>
