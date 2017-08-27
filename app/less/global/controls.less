@@ -7,7 +7,16 @@
 	height: 66px;
 	background-color: #101015;
 }
-
+.rc-slider-handle {
+	opacity:0;
+}
+.song-progress:hover .rc-slider-handle {
+	opacity:1;
+    -moz-transition-duration: .25s; /* Firefox 4 */
+    -webkit-transition-duration: .25s; /* Safari and Chrome */
+    -o-transition-duration: .25s; /* Opera */
+       transition-duration: .25s;
+}
 // Song Progress
 
 #song-progress {
@@ -50,11 +59,11 @@
 .action--pause,
 .action--shuffle,
 .action--repeat  {
-
 	font-family: 'icomoon';
 	color: #fff;
 	background: transparent;
     border: none;
+    line-height:1.2;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -142,4 +151,51 @@
 		content: "\e90c";
 	}
 
+}
+
+// Player styles
+
+.videoplayer iframe{
+	width:200px;
+	bottom:120px;
+	position:fixed;
+	left:0px;
+	height:200px;
+}
+
+.songinfo {
+	display:block;
+	color: white;
+	position:fixed;
+    width: 200px;
+    bottom: 65px;
+    height: 55px;
+    padding: 5px;
+	background: #0b0b0f;
+	& p {
+		width: 170px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin: 0 !important;
+		padding:2px;
+	}
+	& .artist-info {
+		font-size:12px;
+		color: #999;
+	}
+}
+
+@media (max-width: @screen-md) {
+	.videoplayer iframe{
+		top:82px;
+		position:fixed;
+		left:0px;
+		right:0px;
+		height:300px;
+		width:100%;
+	}
+	.songinfo {
+		display:none;
+	}
 }

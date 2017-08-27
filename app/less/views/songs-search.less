@@ -1,21 +1,27 @@
 // Songs Search
 
 .songs__search {
-	width: 100%;
 	padding: 20px;
-
+	position:fixed;
+	top:0px;
+	right:0px;
+	left:200px;
+	background: #1a1a21;
+	z-index:9999;
+	border-bottom:1px solid #282832;
 	@media (max-width: @screen-md) {
-		min-height: 95px;
+		min-height: 80px;
+		top:380px;
+		width:100%;
+		left:0;
 	}
 
 }
 
 .songs__search__field {
-
 	position: relative;
-
 	@media (max-width: @screen-md) {
-		width: 80%;
+		width: 100%;
 		float: right;
 	}
 
@@ -29,7 +35,6 @@
 }
 
 .songs__search__icon-2 {
-
 	position: absolute;
 	top: 16px;
 	right: 20px;
@@ -73,12 +78,7 @@
 	}
 
 	&::placeholder {
-
 		color: #515161;
-
-		@media (max-width: @screen-sm) {
-			font-size: @text-sm;
-		}
 
 	}
 

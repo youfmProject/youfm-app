@@ -46,7 +46,7 @@ export default class SideBar extends Component {
 	    const query = this.props.params.play ? this.props.params.play : '';
 		const {children, store, locationChange, dispatch, user, userPlaylist, app, toggleModal, modal, modalTitle} = this.props
 	    return (
-			<div className={classNames('rail', 'rail--left')}>
+			<div className={classNames('rail', 'rail--left' ,'sidebarmenu')}>
 				<Modal
                 show={app.show}
                 container={this}
@@ -65,7 +65,7 @@ export default class SideBar extends Component {
 						<span/><span/><span/><span/>
 					</div>
 					{!this.state.hidden ? <Menu noOverlay width={'180px'}>
-					<Link to={"/home/"+query}><img className={classNames("navigation__logo")}/></Link>
+					<Link to={"/home/"+query}><div className={classNames("navigation__logo")}></div></Link>
 					<ul className={classNames('navigation')}>
 						<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
 						<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
@@ -97,7 +97,7 @@ export default class SideBar extends Component {
 				</div>
 				<div>
 					<div className={classNames('navigation--main')}>
-						<Link to={"/home/"+query}><img className={classNames("navigation__logo")}/></Link>
+						<Link to={"/home/"+query}><div className={classNames("navigation__logo")}></div></Link>
 						<ul className={classNames('navigation')}>
 							<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
 							<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>

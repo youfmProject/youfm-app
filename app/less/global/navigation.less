@@ -6,10 +6,11 @@
 
 .navigation__logo {
 	display: block;
-	width: 50px;
+	width: 100px;
 	height: 50px;
 	margin: 20px auto 40px;
-	background: url("../../logos/youfm-icon.svg") center center no-repeat
+	background: url("../../logos/logo.png") center center no-repeat;
+	background-size:contain;
 }
 
 .navigation {
@@ -21,28 +22,10 @@
 	h4 {
 		padding: 0 20px;
 	}
-
-	li {
-		padding: 0 20px;
-		border-left: 3px solid @youFM-black;
-
-		&:hover {
-			font-weight: 700;
-			border-left: 3px solid @youFM-blue;
-
-			-moz-transition-duration: .125s; /* Firefox 4 */
-			-webkit-transition-duration: .125s; /* Safari and Chrome */
-			-o-transition-duration: .125s; /* Opera */
-         	transition-duration: .125s;
-		}
-		.navigation__active {
-			border-left: 10px solid @youFM-blue;
-		}
-		
-	}
 	
 	a {
-
+		padding: 5px 20px;
+		border-left: 3px solid @youFM-black;
 		font-size: 15px;
 		line-height: 34px;
 		text-transform: capitalize;
@@ -50,11 +33,32 @@
 
 		&:hover {
 			text-decoration: none;
+			color: #fff;
+			font-weight: 700;
+			border-left: 3px solid @youFM-blue;
+			-moz-transition-duration: .125s; /* Firefox 4 */
+			-webkit-transition-duration: .125s; /* Safari and Chrome */
+			-o-transition-duration: .125s; /* Opera */
+         	transition-duration: .125s;
 		}
-
+		&:active {
+			text-decoration: none;
+			color: #fff;
+			font-weight: 700;
+			border-left: 3px solid @youFM-blue;
+			-moz-transition-duration: .125s; /* Firefox 4 */
+			-webkit-transition-duration: .125s; /* Safari and Chrome */
+			-o-transition-duration: .125s; /* Opera */
+         	transition-duration: .125s;
+		}
+		&:focus {
+			text-decoration: none;
+			color: #fff;
+		}
 		&.active {
 			color: #fff;
 			font-weight: 500;
+			border-left: 3px solid @youFM-blue;
 		}
 
 	}

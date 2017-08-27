@@ -21,15 +21,13 @@ export default class Player extends Component {
 	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
 	    return (
 	    	<div>
-				{ player.id ? <div style={{bottom:'150px',position:'fixed', left:'0px', height:'50px'}}>
+				{ player.id ? <div className="videoplayer">
 					<ReactPlayer url={`https://www.youtube.com/watch?v=${player.id}`} 
 						ref={player => { this.player = player }}
 						playing={player.playing} 
 						youtubeConfig={{modestbranding:1}}
 						onPlay={()=>{dispatch(togglePlay('react-player'))}}
 						onPause={()=>{dispatch(togglePlay('react-player'))}}
-						height={136}
-						width={200}
 						onError={()=>dispatch(playNextVideo())}
 						onEnded={()=>dispatch(playNext())}
 						onProgress={(progress)=>{this.setState({played:progress.played * 10000})}}/>
@@ -45,9 +43,9 @@ export default class Player extends Component {
 							value={this.state.played || 0} 
 						/>
 					</div>
-					<div style={{float:'left', width:'200px', color:'white', marginLeft:'5px', position:'fixed',whiteSpace:'nowrap'}}>
-					<p>{get(nowPlaying.queue[nowPlaying.playIndex],'name','')}</p>
-					<p>{get(nowPlaying.queue[nowPlaying.playIndex],'artist','')}</p>
+					<div className="songinfo">
+						<p className="song-info">{get(nowPlaying.queue[nowPlaying.playIndex],'name','')}</p>
+						<p className="artist-info">{get(nowPlaying.queue[nowPlaying.playIndex],'artist','')}</p>
 					</div>
 					<div className={classNames("actions")}>
 						<button className={classNames("action--shuffle",{"action--shuffle--active":nowPlaying.shuffle})} onClick={()=>dispatch(toggleShuffle())}></button>

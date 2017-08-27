@@ -1,13 +1,16 @@
 // Layout
 
 .rails {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
 
-  position: relative;
-
-  .rail--left,
+  .rail--left {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 256px;
+    width: 200px;
+    min-width: 200px;
+    background: @youFM-black;
+  }
   .rail--right {
     width: 200px;
     min-width: 200px;
@@ -15,9 +18,20 @@
   }
 
   .rail--center {
-    flex-grow: 1;
+    position: absolute;
+    top: 82px;
+    left: 200px;
+    right: 0px;
+    bottom: 0px;
   }
-
+  .List {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 50px;
+    overflow: scroll;
+  }
 }
 
 .navigation__mobile {
@@ -32,23 +46,32 @@
 
 @media (max-width: @screen-md) {
   .rail--left {
-    margin-left: -200px;
-    float: left;
-
+    margin-left:-200px;
     -moz-transition-duration: .25s; /* Firefox 4 */
     -webkit-transition-duration: .25s; /* Safari and Chrome */
     -o-transition-duration: .25s; /* Opera */
        transition-duration: .25s;
   }
-
+  .rails .rail--center, .List {
+    left: 0px;
+    -moz-transition-duration: .25s; /* Firefox 4 */
+    -webkit-transition-duration: .25s; /* Safari and Chrome */
+    -o-transition-duration: .25s; /* Opera */
+       transition-duration: .25s;
+  }
+  .rails .rail--center{
+    top: 463px;
+  }
+  #nav-icon3 {
+    z-index:99999;
+  }
   .navigation__mobile {
     display: block;
-  	position: absolute;
+  	position: fixed;
     left: 0;
     top: 0;
     padding: 30px 15px;
     background: @youFM-black--light;
-
     -moz-transition-duration: .25s; /* Firefox 4 */
     -webkit-transition-duration: .25s; /* Safari and Chrome */
     -o-transition-duration: .25s; /* Opera */
@@ -57,15 +80,12 @@
 
   .rail--left--open {
     margin-left: 0;
-
     -moz-transition-duration: .25s; /* Firefox 4 */
     -webkit-transition-duration: .25s; /* Safari and Chrome */
     -o-transition-duration: .25s; /* Opera */
        transition-duration: .25s;
-
        .navigation__mobile {
          left: 215px;
-
          -moz-transition-duration: .25s; /* Firefox 4 */
          -webkit-transition-duration: .25s; /* Safari and Chrome */
          -o-transition-duration: .25s; /* Opera */
@@ -76,4 +96,21 @@
   .rail--center {
     min-width: 320px;
   }
+
+  .bm-menu-wrap {
+    position: fixed;
+    right: inherit;
+    z-index: 99999;
+    width: 180px;
+    height: 100%;
+    transform: translate3d(-100%, 0px, 0px);
+    transition: all 0.5s;
+    margin-left: 200px;
+    background: #222;
+  }
+}
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
