@@ -18,17 +18,6 @@ function getUsersPlaylist(userPlaylist){
   return list;
 }
 
-function getModal(name, props){
-  let component = false
-  switch(name){
-    case 'Playlist': component = PlaylistModal; break;
-    case 'Login': component = <Login/>; break;
-    case 'Register': component =Register; break;
-    default : break;
-  }
-  return component;
-}
-
 function mapStateToProps(state, props) {
   
   let isPlayerInSync = (props.params.play !== state.player.id) ? props.params.play : false;
