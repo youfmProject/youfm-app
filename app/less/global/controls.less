@@ -4,7 +4,7 @@
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	height: 66px;
+	height: 95px;
 	background-color: #101015;
 }
 .rc-slider-handle {
@@ -18,32 +18,10 @@
        transition-duration: .25s;
 }
 // Song Progress
-
-#song-progress {
-
-  width: 100%;
-  border: none;
-  height: 4px;
-
-	.noUi-handle {
-
-		display: none;
-
-		&:focus {
-			outline: 0;
-		}
-	}
-
-	.noUi-base {
-	    background: #23d7f5;
-	}
-
-	.noUi-origin {
-		background: #3b3b46;
-		border-radius: 0;
-	}
-
+.song-progress {
+  padding: 10px 70px !important;
 }
+
 
 // Song Actions
 
@@ -69,7 +47,7 @@
     -moz-osx-font-smoothing: grayscale;
 
     &:hover {
-    	color: #777;
+    	color: @youFM-blue;
     }
 
     &:focus {
@@ -157,7 +135,7 @@
 
 .videoplayer iframe{
 	width:200px;
-	bottom:120px;
+	bottom:150px;
 	position:fixed;
 	left:0px;
 	height:200px;
@@ -168,7 +146,7 @@
 	color: white;
 	position:fixed;
     width: 200px;
-    bottom: 65px;
+    bottom: 95px;
     height: 55px;
     padding: 5px;
 	background: #0b0b0f;
@@ -188,7 +166,7 @@
 
 @media (max-width: @screen-md) {
 	.videoplayer iframe{
-		top:82px;
+		top:63px;
 		position:fixed;
 		left:0px;
 		right:0px;

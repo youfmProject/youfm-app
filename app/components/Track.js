@@ -63,7 +63,7 @@ export default class Track extends Component {
             <span className={classNames('song__art')}><img src={track.image} alt="Album Art"/></span>
             <span className={classNames('song__name')}>{track.name.replace(/&apos;/g, "'")}</span>
             <span className={classNames('song__artists')}><a style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a></span>
-            {track.albumName ? <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a>: null}
+            {track.albumName ? <span className={classNames('song__artists')} ><a  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a></span>: null}
             {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>•••</span>
             }
             {

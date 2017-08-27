@@ -10,12 +10,12 @@
 	z-index:9999;
 	border-bottom:1px solid #282832;
 	@media (max-width: @screen-md) {
-		min-height: 80px;
-		top:380px;
-		width:100%;
-		left:0;
+		min-height: 60px;
+		top:0px;
+		left:60px;
+		right: 0px;
+		padding: 10px 15px;
 	}
-
 }
 
 .songs__search__field {
@@ -26,7 +26,11 @@
 	}
 
 }
-
+@media (max-width: @screen-md) {
+	.songs__search:hover {
+	    background: ##1a1a21;
+	}
+}
 .songs__search__icon-1 {
 	position: absolute;
 	top: 15px;
@@ -58,23 +62,24 @@
 }
 
 .songs__search__input {
-
 	width: 100%;
 	padding: 10px 30px 9px 45px;
 	font-size: 15px;
-	font-weight: 300;
-	color: #515161;
+	font-weight: 400;
+	color: #fff;
 	border-radius: 100px;
 	background: #24242e;
 	border: solid 1px #515161;
 	transition: background-color 0.3s;
 	 -webkit-transition: background-color 0.3s;
-
-
 	&:focus {
 		outline: 0;
-		color: #707086;
+		color: #333;
 		background: #fff;
+		&::placeholder {
+			color: #999;
+
+		}
 	}
 
 	&::placeholder {

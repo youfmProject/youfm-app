@@ -6,7 +6,7 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    bottom: 256px;
+    bottom: 350px;
     width: 200px;
     min-width: 200px;
     background: @youFM-black;
@@ -18,22 +18,25 @@
   }
 
   .rail--center {
+    background: @youFM-black--light;
     position: absolute;
-    top: 82px;
+    top: 0px;
     left: 200px;
     right: 0px;
     bottom: 0px;
   }
   .List {
     position: absolute;
-    top: 0px;
+    top: 82px;
     left: 0px;
     right: 0px;
-    bottom: 50px;
-    overflow: scroll;
+    bottom: 95px;
+    overflow-y:auto;
   }
 }
-
+.register {
+  margin-top:10px;
+}
 .navigation__mobile {
 	display: none;
 }
@@ -59,54 +62,26 @@
     -o-transition-duration: .25s; /* Opera */
        transition-duration: .25s;
   }
-  .rails .rail--center{
-    top: 463px;
-  }
-  #nav-icon3 {
-    z-index:99999;
+  .rails .rail--center .List{
+    top: 360px;
   }
   .navigation__mobile {
-    display: block;
-  	position: fixed;
+    padding: 20px 10px 12px 20px;
+    background: #1a1a21 !important;
+    z-index:9999 !important;
+    border-bottom:1px solid #282832 !important;
+    display: block !important;
+  	position: fixed !important;
     left: 0;
     top: 0;
-    padding: 30px 15px;
-    background: @youFM-black--light;
     -moz-transition-duration: .25s; /* Firefox 4 */
     -webkit-transition-duration: .25s; /* Safari and Chrome */
     -o-transition-duration: .25s; /* Opera */
        transition-duration: .25s;
-  }
-
-  .rail--left--open {
-    margin-left: 0;
-    -moz-transition-duration: .25s; /* Firefox 4 */
-    -webkit-transition-duration: .25s; /* Safari and Chrome */
-    -o-transition-duration: .25s; /* Opera */
-       transition-duration: .25s;
-       .navigation__mobile {
-         left: 215px;
-         -moz-transition-duration: .25s; /* Firefox 4 */
-         -webkit-transition-duration: .25s; /* Safari and Chrome */
-         -o-transition-duration: .25s; /* Opera */
-            transition-duration: .25s;
-       }
   }
 
   .rail--center {
     min-width: 320px;
-  }
-
-  .bm-menu-wrap {
-    position: fixed;
-    right: inherit;
-    z-index: 99999;
-    width: 180px;
-    height: 100%;
-    transform: translate3d(-100%, 0px, 0px);
-    transition: all 0.5s;
-    margin-left: 200px;
-    background: #222;
   }
 }
 html {
