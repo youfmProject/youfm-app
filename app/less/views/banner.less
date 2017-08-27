@@ -1,16 +1,13 @@
 // Main Banner
 
 .banner--main {
-
-	position: relative;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 60%;
+	position: fixed;
+	top:0;
+	left:200px;
+	right:0;
+	bottom:200px;
 	background: url("../../images/u2-home-bg.png") top center no-repeat;
 	background-size: cover;
-
   	&:before {
 			z-index: 200;
 			content: '';
@@ -19,11 +16,12 @@
 			right: 0;
 			bottom: 0;
 			left: 0;
-			background: linear-gradient(to bottom, transparent, @youFM-black--light 90%);
+			background: linear-gradient(to bottom, transparent, #1a1a21 60%);
 	}
 
 	@media (max-width: @screen-md) {
 		height: auto;
+		left: 0px;
 	}
 
 }
@@ -31,25 +29,27 @@
 .banner__content {
 	z-index: 300;
 	position: absolute;
-	top: 200px;
+	margin-top:450px;
 	width: 100%;
+	padding: 40px 80px;;
 }
 
 .banner__logo {
 	display: block;
 	max-width: 230px;
-	height: auto;
-	margin: 0 auto 50px;
-	background: url("../../logos/youfm-logo.svg") center center no-repeat;
+	width: 400px;
+	height: 120px;
+	background: url("../../logos/logo-w.png") center center no-repeat;
+	background-size: contain;
+	margin: auto;
+	margin-bottom: 20px;
 }
 
 .banner__search {
-
 	display: block;
-	height: 66px;
-	width: 75%;
+	height: 65px;
+	width: 100%;
 	padding: 0 25px 0 50px;
-	margin: 0 auto 60px;
 	border-radius: 100px;
 	background: #ffffff;
 	border: solid 1px #ddd;

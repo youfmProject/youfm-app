@@ -46,7 +46,7 @@ export default class SideBar extends Component {
 	    const query = this.props.params.play ? this.props.params.play : '';
 		const {children, store, locationChange, dispatch, user, userPlaylist, app, toggleModal, modal, modalTitle} = this.props
 	    return (
-			<div className={classNames('rail', 'rail--left')}>
+			<div className={classNames('rail', 'rail--left' ,'sidebarmenu')}>
 				<Modal
                 show={app.show}
                 container={this}
@@ -60,44 +60,9 @@ export default class SideBar extends Component {
                 {this.getModal(modal,this.props)}
                 </Modal.Body> 
             	</Modal>
-				<div className={classNames("navigation__mobile")}>
-					<div id="nav-icon3" onClick={onClick.bind(this)}>
-						<span/><span/><span/><span/>
-					</div>
-					{!this.state.hidden ? <Menu noOverlay width={'180px'}>
-					<Link to={"/home/"+query}><img className={classNames("navigation__logo")}/></Link>
-					<ul className={classNames('navigation')}>
-						<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
-						<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
-						<li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
-					</ul>
-					<ul  className={classNames('navigation')}>
-						<h4> My Music </h4>
-						<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-						{user.status ? <div><li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
-						<li><Link to={"/history/"+query} activeClassName="active">History</Link></li></div> : null}
-					</ul>
-				{user.status ? <div> 
-					<ul  className={classNames('navigation')}>
-						<h4> Playlists </h4>
-						{this.buildUserPlaylist(userPlaylist)}
-					</ul></div>: 
-				<div className={classNames("navigation--actions")}>
-					<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-						onClick={()=> {dispatch(toggleModal('Login','Login'));}} >Login</button> 
-					<div className={classNames("register")}>
-						<div className={classNames("register__title")}>Don't have an account?
-							<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
-							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-								onClick={()=> {dispatch(toggleModal('Register','register here'));}} >Register</button>
-						</div>
-					</div>
-				</div>}
-				</Menu> : null}
-				</div>
 				<div>
 					<div className={classNames('navigation--main')}>
-						<Link to={"/home/"+query}><img className={classNames("navigation__logo")}/></Link>
+						<Link to={"/home/"+query}><div className={classNames("navigation__logo")}></div></Link>
 						<ul className={classNames('navigation')}>
 							<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
 							<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
@@ -125,6 +90,11 @@ export default class SideBar extends Component {
 							</div>
 						</div>
 					</div>}
+				</div>
+				<div className="navigation__mobile">
+					<div id="nav-icon3" onClick={onClick.bind(this)}>
+						<span/><span/><span/><span/>
+					</div>
 				</div>
 			</div>
 		);

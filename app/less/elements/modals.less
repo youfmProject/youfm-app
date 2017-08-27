@@ -2,12 +2,12 @@
 
 .modal-content {
 	border-radius: 0;
-	border: 1px solid #515161;
+	border: solid 1px #515161;
+	max-width:520px;
 }
 
 .modal-body {
 	padding: 60px 60px 0;
-	background: #1a1a21;
 }
 
 .modal-footer {
@@ -18,7 +18,7 @@
 }
 
 .modal__title {
-	margin: 0 0 15px;
+	margin: 0;
 	font-size: 21px;
 	line-height: 37px;
 	color: #c4c4ce;
@@ -76,10 +76,31 @@
 
 }
 
+.modal-header, .modal-body {
+	border:0 !important;
+}
 .checkbox {
 	margin: 15px 0 5px;
 }
-
+.modal-backdrop.in {
+	opacity:0.75;
+}
+#contained-modal-title {
+	font-size: 21px;
+	font-weight: bold;
+	line-height: 1.5;
+	color: #c4c4ce;
+	padding:10px;
+}
+.close {
+	color: #fff;
+	opacity:1;
+	font-size:22px;
+	font-weight:100;
+}
+.close:hover {
+	color: @youFM-blue;
+}
 .checkbox input {
     position: relative !important;
     width: 20px;
@@ -98,7 +119,7 @@
     position: absolute;
     top: 30px;
     right: 30px;
-    color: #979797;
+    color: #fff;
 }
 
 @media (min-width: 768px) {
@@ -106,3 +127,11 @@
 	    margin: 100px auto;
 	}
 }
+
+//Form elements 
+
+.form-group input {
+	height: 52px;
+	background-color: #FFF;
+	border: solid 1px #515161;
+}	

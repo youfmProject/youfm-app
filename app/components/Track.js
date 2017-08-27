@@ -51,19 +51,20 @@ export default class Track extends Component {
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
 
         return (
-        <div key={track.id} className={classNames('song')} style={{backgroundColor:'#1a1a21', width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
+        <div key={track.id} className={classNames('song')} style={{width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
             <span className={classNames(playClass)}>
                 <i className="icon-play-icon" onClick={()=> {
                     dispatch(instantPlay(track))}}>
                 </i>
+                <i className="icon-play-icon-small"></i>
             </span>
             <span className={classNames('song__favorite')} onClick={()=>{ this.toggleIcon(); dispatch(toggleFavourite(track,this.state.fav))}}><i className={classNames(favIcon)}></i></span>
             <span className={classNames('song__num')}></span>
             <span className={classNames('song__art')}><img src={track.image} alt="Album Art"/></span>
             <span className={classNames('song__name')}>{track.name.replace(/&apos;/g, "'")}</span>
-            <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a>
-            {track.albumName ? <a className={classNames('song__artists')}  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a>: null}
-            {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>...</span>
+            <span className={classNames('song__artists')}><a style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a></span>
+            {track.albumName ? <span className={classNames('song__artists')} ><a  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a></span>: null}
+            {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>•••</span>
             }
             {
                 this.state.showTray === 'show'? (
