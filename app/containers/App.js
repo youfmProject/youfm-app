@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
-
+import {get} from 'lodash'
 import App from '../components/App';
+import React, { Component } from 'react';
+
 import * as HomeActions from '../actions/home';
 import * as PlayerActions from '../actions/player';
 import * as AppActions from '../actions/app';
 import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
+import * as UserActions from '../actions/user';
 
 function getUsersPlaylist(userPlaylist){
   let list =[];
@@ -24,6 +27,7 @@ function mapStateToProps(state, props) {
   let usersPlaylist = getUsersPlaylist(state.playlist.userPlaylist);
   return {
     app:state.app,
+    user:state.user,
     children:props.children,
     player:state.player,
     nowPlaying:state.nowPlaying,
@@ -33,9 +37,11 @@ function mapStateToProps(state, props) {
     user: state.user,
     searchView: searchView,
     userPlaylist:state.playlist.userPlaylist,
+    modal:get(state.app ,'modal', false),
+    modalTitle:get(state.app,'title', ''),
     isPlayerInSync,
     isPlayerPlaying,
-    usersPlaylist
+    usersPlaylist,
   };
 }
 
@@ -46,6 +52,7 @@ function mapDispatchToProps(dispatch) {
     ...PlayerActions,
     ...NowPlayingActions,
     ...RoutingActions,
+    ...UserActions,
     dispatch
   };
 }

@@ -34,7 +34,7 @@ export function submitLogin(user, operation){
 		}).then(res=>{
 			dispatch(batchActions([
 				loginStatus(res.data, false, true),
-      			AppActions.toggleLogin()
+      			AppActions.toggleModal('','')
     			])
     		);
 			history.back();
@@ -42,7 +42,7 @@ export function submitLogin(user, operation){
 		.catch(function(err){
 			dispatch(batchActions([
 				loginStatus({}, true, false),
-      			AppActions.toggleLogin()
+      			AppActions.toggleModal('','')
     			])
 			);
 			history.back();
@@ -59,7 +59,7 @@ export function submitPassword( user, type ){
 		}).then(res => {
 			dispatch(batchActions([
 				RoutingActions.locationChange('/Login'),
-				AppActions.toggleLogin()
+				AppActions.toggleModal('','')
 			]));
 		});
 	}

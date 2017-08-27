@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import { batchActions } from 'redux-batched-actions';
 import { slide as Menu } from 'react-burger-menu';
 import PlaylistModal from './PlaylistModal';
+import Login from './Login';
+import Register from './Register';
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
 
 export default class SideBar extends Component {
@@ -27,13 +29,22 @@ export default class SideBar extends Component {
     	return fields;
     }
 
+    getModal(name, props){
+	  switch(name){
+	    case 'Playlist': {return <PlaylistModal {...props} /> };
+	    case 'Login': {return <Login {...props} /> }; 
+	    case 'Register': {return <Register {...props} /> };
+	    default : break;
+	  }
+	}
+
   	render() {
 		let onClick = function(){
 			this.setState({hidden: false});
 		}
 	  	// ADD SIDEBAR CLASS
 	    const query = this.props.params.play ? this.props.params.play : '';
-		const {children, store, locationChange, dispatch, toggleLogin, user, userPlaylist, app, toggleModal} = this.props
+		const {children, store, locationChange, dispatch, user, userPlaylist, app, toggleModal, modal, modalTitle} = this.props
 	    return (
 			<div className={classNames('rail', 'rail--left')}>
 				<Modal
@@ -43,10 +54,10 @@ export default class SideBar extends Component {
                 backdrop={true}
                 onHide={()=>{dispatch(toggleModal('',''))}}>
                 <Modal.Header closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161'}}>
-                    <Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>Add to playlist</Modal.Title>
+                    <Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>{modalTitle}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
-                	<PlaylistModal {...this.props}/>
+                {this.getModal(modal,this.props)}
                 </Modal.Body> 
             	</Modal>
 				<div className={classNames("navigation__mobile")}>
@@ -73,23 +84,12 @@ export default class SideBar extends Component {
 					</ul></div>: 
 				<div className={classNames("navigation--actions")}>
 					<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-						onClick={()=> {dispatch(
-							batchActions([
-								toggleLogin(),
-								locationChange('/Login/'+query)
-							])
-						);
-					}} >Login</button> 
+						onClick={()=> {dispatch(toggleModal('Login','Login'));}} >Login</button> 
 					<div className={classNames("register")}>
 						<div className={classNames("register__title")}>Don't have an account?
 							<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
 							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-								onClick={()=> {dispatch(batchActions([
-									toggleLogin(),
-									locationChange('/Register/'+query)
-									])
-								);
-							}} >Register</button>
+								onClick={()=> {dispatch(toggleModal('Register','register here'));}} >Register</button>
 						</div>
 					</div>
 				</div>}
@@ -116,23 +116,12 @@ export default class SideBar extends Component {
 							{this.buildUserPlaylist(userPlaylist)}
 						</ul></div>: <div className={classNames("navigation--actions")}>
 						<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-						onClick={()=> {dispatch(
-							batchActions([
-							toggleLogin(),
-							locationChange('/Login/'+query)
-							])
-							);
-						}} >Login</button> 
+						onClick={()=> {dispatch(toggleModal('Login','Login'));}} >Login</button> 
 						<div className={classNames("register")}>
 							<div className={classNames("register__title")}>Don't have an account?
 								<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
 								<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-									onClick={()=> {dispatch(batchActions([
-										toggleLogin(),
-										locationChange('/Register/'+query)
-										])
-									);
-								}} >Register</button>
+									onClick={()=> {dispatch(toggleModal('Register','Register'));}} >Register</button>
 							</div>
 						</div>
 					</div>}

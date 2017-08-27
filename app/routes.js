@@ -4,8 +4,6 @@ import App from './containers/App';
 import Home from './containers/Home';
 import Playlist from './containers/Playlist';
 import NowPlaying from './containers/NowPlaying';
-import Login from './containers/Login';
-import Register from './containers/Register';
 import Password from './containers/Password';
 import Search from './containers/Search';
 import Reddit from './containers/Reddit';
@@ -23,8 +21,6 @@ export default (
 		<Route path="/favourites(/:play)(/:list)" component={Playlist} />
 		<Route path="/history(/:play)(/:list)" component={Playlist} />
 		<Route path="/userList(/:playlist)(/:play)(/:list)" component={Playlist} />
-		<Route path="/Login(/:play)" component={Login}/>
-		<Route path="/Register(/:play)" component={Register}/>
 		<Route path="/resetPassword(/:id)" component={Password}/>
 		<Route path="/r(/:list)(/:play)" component={Reddit}/>
 	</Route>
