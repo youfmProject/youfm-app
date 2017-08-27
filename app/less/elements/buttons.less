@@ -4,9 +4,11 @@
 
 	width: 100%;
 	text-align: center;
+		outline:none !important;
 
 	&:focus {
 		outline: 0;
+		outline:none !important;
 	}
 
 }
@@ -19,8 +21,14 @@
 	background: @youFM-black;
 	border-radius: 4px;
 	border: solid 1px @youFM-black--border;
+	outline:none !important;
+	margin-top:10px;
+	margin-bottom:0px !important;
 }
-
+.button--primary:hover {
+	border: 1px solid #555;
+	color: #fff;
+}
 .button--secondary:extend(.button)  {
 	padding: 15px 0;
 	margin: 30px 0 0;
@@ -30,4 +38,33 @@
 	background: #23d7f5;
 	border-radius: 100px;
 	border: none;
+}
+
+// Modal Buttons
+
+.btn-primary {
+	padding: 12px 20px;
+	font-size: 18px;
+	font-weight: 500;
+	color: @youFM-darkblue;
+	border-radius: 100px;
+	background-color: @youFM-blue;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+	background-color: #11B9D5 !important;
+	padding: 12px 20px;
+	font-size: 18px;
+	font-weight: 500;
+	color: @youFM-darkblue !important;
+	border-radius: 100px;
+	outline:none !important;
+}
+.modal-body a {
+    color: @youFM-blue !important;
+    text-decoration: none;
+	display:block;
+	text-align:center;
+	padding: 20px;
+	width:100%;
 }
