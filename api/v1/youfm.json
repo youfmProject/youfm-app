@@ -194,12 +194,6 @@
                 "description": "This is the API for login to liveJam",
                 "parameters":[
                     {
-                        "name": "name",
-                        "in": "query",
-                        "description": "Playlist Name",
-                         "type": "string"
-                    },
-                    {
                         "name": "playlists",
                         "in": "body",
                         "description": "playlist details",
@@ -454,24 +448,29 @@
                 "usserId": {
                     "type":"string"
                 },
-                "fav": {
-                    "type":"array",
-                   "items":{
-                        "type":"object",
-                        "properties":{
-                            "name":{
-                                "type":"string"
-                            },
-                            "albumName":{
-                                "type":"string"
-                            },
-                            "artist":{
-                                "type":"string"
-                            },
-                            "image":{
-                                "type":"string"
+                "playlists": {
+                    "type":"object",
+                    "properties": {
+                        "fav": {
+                            "type":"array",
+                            "items":{
+                                "type":"object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "albumName":{
+                                        "type":"string"
+                                    },
+                                    "artist":{
+                                        "type":"string"
+                                    },
+                                    "image":{
+                                        "type":"string"
+                                    }
+                                } 
                             }
-                        } 
+                        }
                     }
                 }  
             }

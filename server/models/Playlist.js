@@ -13,8 +13,7 @@ class Playlist {
         var cluster = new couchbase.Cluster('localhost:8091');
         var bucket = cluster.openBucket('default'),
             body = _.get(req, 'body', {}),
-            name = _.get(req, 'query.name', ''),
-            tracks = body[name],
+            playlists = _.get(body, 'playlists', {}),
             id = body.userId;
         //check if name exists and append else upsert.
         bucket.get(id, function(err, res){
@@ -23,9 +22,13 @@ class Playlist {
                 return callback(true, null);
             }
             var data = _.get(res, 'value', {});
-            var playlist = _.cloneDeep(data[name]);
-            playlist = _.union(playlist, tracks);
-            data[name] = playlist;
+            var userPlaylists = _.get(data, 'playlists', {});
+            _.forOwn(playlists, function(playlist, name){
+                var list = userPlaylists[name] ? _.cloneDeep(userPlaylists[name]) : [];
+                list = _.union(list, playlist);  
+                userPlaylists[name] = list;  
+            });
+            data.playlists = userPlaylists;
             bucket.upsert(id, data, function(error, response){
                 if(!error){
                     return callback(null, {});    

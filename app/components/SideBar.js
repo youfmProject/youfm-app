@@ -24,7 +24,9 @@ export default class SideBar extends Component {
     buildUserPlaylist(userPlaylist){
     	let fields = [];
     	for(let item in userPlaylist){
-    		fields.push(<li><Link to={"/userList/"+item} activeClassName="active">{item}</Link></li>)
+			if(item !== 'favourites' && item !== 'history'){
+    			fields.push(<li><Link to={"/userList/"+item} activeClassName="active">{item}</Link></li>)
+			}
     	}
     	return fields;
     }
@@ -48,17 +50,17 @@ export default class SideBar extends Component {
 	    return (
 			<div className={classNames('rail', 'rail--left' ,'sidebarmenu')}>
 				<Modal
-                show={app.show}
-                container={this}
-                aria-labelledby="contained-modal-title"
-                backdrop={true}
-                onHide={()=>{dispatch(toggleModal('',''))}}>
-                <Modal.Header closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161'}}>
-                    <Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>{modalTitle}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
-                {this.getModal(modal,this.props)}
-                </Modal.Body> 
+					show={app.show}
+					container={this}
+					aria-labelledby="contained-modal-title"
+					backdrop={true}
+					onHide={()=>{dispatch(toggleModal('',''))}}>
+					<Modal.Header closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161'}}>
+						<Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>{modalTitle}</Modal.Title>
+					</Modal.Header>
+					<Modal.Body closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
+					{this.getModal(modal,this.props)}
+					</Modal.Body> 
             	</Modal>
 				<div>
 					<div className={classNames('navigation--main')}>
@@ -71,11 +73,10 @@ export default class SideBar extends Component {
 						<ul  className={classNames('navigation')}>
 							<h4> My Music </h4>
 							<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-							{user.status ? <div><li><Link to={"/favourites/"+query} activeClassName="active">Favourites</Link></li>
-							<li><Link to={"/history/"+query} activeClassName="active">History</Link></li></div> : null}
+							{user.status ? <div><li><Link to={"/userList/favourites/"+query} activeClassName="active">Favourites</Link></li>
+							<li><Link to={"/userList/history/"+query} activeClassName="active">History</Link></li></div> : null}
 						</ul>
-					</div>
-					{user.status ? <div> 
+						{user.status ? <div> 
 						<ul  className={classNames('navigation')}>
 							<h4> Playlists </h4>
 							{this.buildUserPlaylist(userPlaylist)}
@@ -90,6 +91,7 @@ export default class SideBar extends Component {
 							</div>
 						</div>
 					</div>}
+					</div>
 				</div>
 				<div className="navigation__mobile">
 					<div id="nav-icon3" onClick={onClick.bind(this)}>

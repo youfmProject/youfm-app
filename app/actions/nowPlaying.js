@@ -139,12 +139,12 @@ export function playNext(){
 
 let getRoute=(state,videoData = false)=>{
 	let pN = state.routing.locationBeforeTransitions.pathname.split('/')[1],
+		lN = state.routing.locationBeforeTransitions.pathname.split('/')[2],
 		sK = state.search.searchKey,
 		vQ = state.nowPlaying.videoQueue,
 		vI = state.nowPlaying.videoIndex,
 		sR = state.reddit.subReddit,
 		route;
-
 	if(videoData){
 		switch(pN) {
 			case 'search': {
@@ -153,6 +153,10 @@ let getRoute=(state,videoData = false)=>{
 			}
 			case 'r': {
 				route = `/${pN}/${sR}/${videoData[0].id}`;
+				break;
+			}
+			case 'userList': {
+				route = `/${pN}/${lN}/${videoData[0].id}`;
 				break;
 			}
 			default: {
@@ -197,7 +201,8 @@ export function instantPlay(track){
 	return(dispatch,getState)=>{
 		const state = getState();
 		let playlistName = state.routing.locationBeforeTransitions.pathname.split('/')[1];
-		let index = _.findIndex(state.playlist[playlistName],{name:track.name,artist:track.artist});
+		let listName = state.routing.locationBeforeTransitions.pathname.split('/')[2];
+		let index = playlistName === 'userList' ? _.findIndex(state.playlist[playlistName][listName],{name:track.name,artist:track.artist}) :_.findIndex(state.playlist[playlistName],{name:track.name,artist:track.artist});
 		callYoutube(track,(data)=>{
 			// will reset if existing track is playing
 			// TODO : Have to catch if different Id of video is being player	

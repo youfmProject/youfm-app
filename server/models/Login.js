@@ -10,19 +10,15 @@ var cluster = new couchbase.Cluster('localhost:8091');
 
 class Login {
 
-
     loginUser(req, callback){
         var cluster = new couchbase.Cluster('localhost:8091');
         var bucket = cluster.openBucket('default');
         var body = _.get(req, 'body', {});
-        var query = N1qlQuery.fromString("SELECT * FROM default where email="+body.email);
-
+        var query = N1qlQuery.fromString('select * from default where email="' + body.email + '"');
         async.waterfall([
             function(cb){
                 bucket.query(query, function(err, res){
-                    var success = false;
-                    if(!err){    
-                        
+                    if(!err){
                         var email = _.get(res[0], 'default.email', '');
                         var password = _.get(res[0], 'default.password', '');
                         if(body.email === email && passwordHash.verify(body.password, password)){
@@ -38,7 +34,7 @@ class Login {
             function(id, cb) {
                 if(id){
                     bucket.get(id, function(err, res){
-                        return cb(err, _.assign({}, res.value, {userId: id}));                                
+                        return cb(null, {userId: id, playlists: _.get(res, 'value.playlists', {})});
                     });
                 }
             }
@@ -61,7 +57,7 @@ class Login {
                 console.log("errr:", err);
                 return callback(true, null);    
             }
-            callback(null, {userId: id, favourites: []});
+            callback(null, {userId: id, playlists: {}});
         });
     }
 }                 

@@ -10,7 +10,6 @@ import * as RoutingActions from '../actions/routing';
 
 function mapStateToProps(state, props) {
     return {
-        showLogin: state.app.showLogin,
         user: state.user,
         userId: props.params.id
     }

@@ -10,6 +10,7 @@ import * as NowPlayingActions from '../actions/nowPlaying';
 import * as RoutingActions from '../actions/routing';
 import * as UserActions from '../actions/user';
 
+
 function getUsersPlaylist(userPlaylist){
   let list =[];
   for(let item in userPlaylist){
@@ -33,10 +34,8 @@ function mapStateToProps(state, props) {
     nowPlaying:state.nowPlaying,
     searchKey: searchKey.length > 1 ? searchKey[1] : searchKey[0],
     tracks: state.search.tracks,
-    showLogin: state.app.showLogin,
-    user: state.user,
     searchView: searchView,
-    userPlaylist:state.playlist.userPlaylist,
+    userPlaylist:state.playlist.userList,
     modal:get(state.app ,'modal', false),
     modalTitle:get(state.app,'title', ''),
     isPlayerInSync,

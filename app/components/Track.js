@@ -25,7 +25,6 @@ export default class Track extends Component {
     toggletray() {
         this.setState({showTray: this.state.showTray === 'show'? 'hide':'show'})
     }
-
     buildTray(){
         const {track, user, dispatch, instantPlay, appendtoQueue, addToQueue, addToPlaylist, toggleFavourite, toggleModal} = this.props;
         let favTitle = this.state.fav ? 'Remove from Favourite':'Add to favourites';
