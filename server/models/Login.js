@@ -7,6 +7,17 @@ const async = require('async');
 var passwordHash = require('password-hash');
 var N1qlQuery = couchbase.N1qlQuery;
 var cluster = new couchbase.Cluster('localhost:8091');
+const nodemailer = require('nodemailer');
+
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    auth: {
+        user: 'youfmorg@gmail.com',
+        pass: 'access123'
+    }
+});
 
 class Login {
 
@@ -52,12 +63,39 @@ class Login {
         var body = _.get(req, 'body', {});
         var id = uuid();
         var hashedPassword = passwordHash.generate(body.password);
-        bucket.upsert(id, {id: id, email: body.email, password: hashedPassword},function(err, result) { 
-            if (err)  {
-                console.log("errr:", err);
-                return callback(true, null);    
+        async.parallel({
+            'bucket': function(cb){
+                bucket.upsert(id, {id: id, email: body.email, password: hashedPassword},function(err, result) { 
+                    if (err)  {
+                        console.log("errr:", err);
+                        return cb(true, null);
+                    }
+                    cb(null, {userId: id, playlists: {}});
+                });
+            },
+            'email': function(cb){
+                let mailOptions = {
+                    from: 'youfmorg@gmail.com', // sender address
+                    to: body.email, // list of receivers
+                    subject: 'Welcome to LiveJam ✔', // Subject line
+                    text: 'Hello, Welcome to LiveJam!', // plain text body
+                    html: '<b>Hello world ?</b>' // html body
+                };
+
+                // send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        console.log(error);
+                    }
+                    console.log('Message %s sent: %s', info.messageId, info.response);
+                    cb(null, {});
+                });
             }
-            callback(null, {userId: id, playlists: {}});
+        }, function(err, res){
+            if(err) {
+                return callback(true, null);
+            }
+            callback(null, res.bucket); 
         });
     }
 }                 

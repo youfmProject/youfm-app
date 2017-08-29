@@ -21,7 +21,7 @@ export default class Player extends Component {
 	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
 	    return (
 	    	<div>
-				{ player.id ? <div className="videoplayer">
+				{ player.id ? <div className={classNames("videoplayer")}>
 					<ReactPlayer url={`https://www.youtube.com/watch?v=${player.id}`} 
 						ref={player => { this.player = player }}
 						playing={player.playing} 
