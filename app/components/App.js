@@ -23,7 +23,7 @@ export default class App extends Component {
   render() {
     const {children, store} = this.props;
     return (
-      <div className = {classNames('rails')}>
+      <div className={"rails " + (this.props.isPlayerPlaying ? 'video' : 'novideo')}>
         <div className={classNames('rail', 'rail--center')}>
           <Search {...this.props}/>
           <Player {...this.props} />   
