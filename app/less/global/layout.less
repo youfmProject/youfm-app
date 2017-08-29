@@ -10,6 +10,8 @@
     width: 200px;
     min-width: 200px;
     background: @youFM-black;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   .rail--right {
     width: 200px;
@@ -25,7 +27,7 @@
     right: 0px;
     bottom: 0px;
   }
-  .List {
+  .maincontent {
     position: absolute;
     top: 82px;
     left: 0px;
@@ -55,14 +57,14 @@
     -o-transition-duration: .25s; /* Opera */
        transition-duration: .25s;
   }
-  .rails .rail--center, .List {
+  .rails .rail--center, .maincontent {
     left: 0px;
     -moz-transition-duration: .25s; /* Firefox 4 */
     -webkit-transition-duration: .25s; /* Safari and Chrome */
     -o-transition-duration: .25s; /* Opera */
        transition-duration: .25s;
   }
-  .rails .rail--center .List{
+  .rails .rail--center .maincontent{
     top: 360px;
   }
   .navigation__mobile {

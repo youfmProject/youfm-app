@@ -24,13 +24,13 @@ export default class Playlist extends Component {
       return(
         <div>
           <div>
-            <p className={classNames('nowPlaying-Info')}>Now Playing</p>
-            <div className={playlistClass} style={{cursor: 'default',marginBottom:'10px'}}>
+            <p className={classNames('nowPlaying-Info nowplayingheader')}>Now Playing</p>
+            <div className={playlistClass}>
               <Track track={queue[playIndex]} playlistName='nowPlaying' {...this.props}/>
             </div>
           </div>
           <div>
-            <p className={classNames('nowPlaying-Info')}>Up Next</p>
+            <p className={classNames('nowPlaying-Info upnextheader')}>Up Next</p>
             <div className={playlistClass} style={{cursor: 'default'}}>
               <DragSortableList items={this.buildPlaylist(remainingQueue, 'nowPlaying')} onSort={onSort} type="vertical"/>
             </div>
