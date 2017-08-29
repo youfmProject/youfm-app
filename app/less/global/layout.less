@@ -6,9 +6,9 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    bottom: 350px;
-    width: 200px;
-    min-width: 200px;
+    bottom: 290.5px;
+    width: 250px;
+    min-width: 250px;
     background: @youFM-black;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -23,7 +23,7 @@
     background: @youFM-black--light;
     position: absolute;
     top: 0px;
-    left: 200px;
+    left: 250px;
     right: 0px;
     bottom: 0px;
   }
@@ -42,7 +42,19 @@
 .navigation__mobile {
 	display: none;
 }
-
+.logo {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 250px;
+}
+.sidebarlinks {
+    position: fixed;
+    top: 80px;
+    bottom: 290.5px;
+    width: 250px;
+    overflow-x: hidden;
+}
 @media (max-width: @screen-lg) {
   .rail--right {
     display: none;
@@ -51,7 +63,7 @@
 
 @media (max-width: @screen-md) {
   .rail--left {
-    margin-left:-200px;
+    margin-left:-250px;
     -moz-transition-duration: .25s; /* Firefox 4 */
     -webkit-transition-duration: .25s; /* Safari and Chrome */
     -o-transition-duration: .25s; /* Opera */
