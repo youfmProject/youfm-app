@@ -13,6 +13,10 @@
     overflow-y: scroll;
     overflow-x: hidden;
   }
+
+  .novideo .rail--left {
+    bottom: 95px;
+  }
   .rail--right {
     width: 200px;
     min-width: 200px;
@@ -55,6 +59,9 @@
     width: 250px;
     overflow-x: hidden;
 }
+  .novideo .sidebarlinks {
+    bottom: 95px;
+  }
 @media (max-width: @screen-lg) {
   .rail--right {
     display: none;
@@ -77,7 +84,11 @@
        transition-duration: .25s;
   }
   .rails .rail--center .maincontent{
-    top: 360px;
+    top: 313px;
+  }
+
+  .novideo .maincontent {
+    top: 63px !important;
   }
   .navigation__mobile {
     padding: 20px 10px 12px 20px;
