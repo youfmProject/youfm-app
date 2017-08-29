@@ -20,8 +20,8 @@ export default class Player extends Component {
 	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay} = this.props;
 	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
 	    return (
-	    	<div>
-				{ player.id ? <div className={classNames("videoplayer")}>
+	    		<div>
+				{ player.id ? <div className="videoplayer">
 					<ReactPlayer url={`https://www.youtube.com/watch?v=${player.id}`} 
 						ref={player => { this.player = player }}
 						playing={player.playing} 
@@ -31,6 +31,9 @@ export default class Player extends Component {
 						onError={()=>dispatch(playNextVideo())}
 						onEnded={()=>dispatch(playNext())}
 						onProgress={(progress)=>{this.setState({played:progress.played * 10000})}}/>
+						<div className="videooverlay">
+							<button className={classNames(playPauseClass)} onClick={()=>dispatch(togglePlay('player'))}></button>
+						</div>
 				</div> : null}
 				<div className={classNames("controls--main")} style={{left:'0'}}>
 					<div className={classNames("song-progress")}>

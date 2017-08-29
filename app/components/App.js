@@ -19,7 +19,7 @@ export default class App extends Component {
     isPlayerInSync ? dispatch(playerPlay(isPlayerInSync)) : null;
     !isPlayerPlaying ? dispatch(bootPlayer(isPlayerInSync)): null;
   }
-
+  
   render() {
     const {children, store} = this.props;
     return (

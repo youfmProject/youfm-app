@@ -133,12 +133,17 @@
 
 // Player styles
 
-.videoplayer iframe{
-	width:200px;
-	bottom:115px;
+.videoplayer iframe, .videoplayer, .videooverlay{
+	width:250px;
+	bottom:150px;
 	position:fixed;
 	left:0px;
-	height:200px;
+	height:141px;
+}
+
+.videooverlay:hover {
+	background: rgba(0,0,0,0.75);
+
 }
 
 
@@ -146,7 +151,7 @@
 	display:block;
 	color: white;
 	position:fixed;
-    width: 200px;
+    width: 250px;
     bottom: 95px;
     height: 55px;
     padding: 5px;
@@ -171,7 +176,7 @@
 		position:fixed;
 		left:0px;
 		right:0px;
-		height:300px;
+		height:250px;
 		width:100%;
 	}
 	.songinfo {

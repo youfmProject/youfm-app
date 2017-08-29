@@ -64,33 +64,35 @@ export default class SideBar extends Component {
             	</Modal>
 				<div>
 					<div className={classNames('navigation--main')}>
-						<Link to={"/home/"+query}><div className={classNames("navigation__logo")}></div></Link>
-						<ul className={classNames('navigation')}>
-							<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
-							<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
-							<li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
-						</ul>
-						<ul  className={classNames('navigation')}>
-							<h4> My Music </h4>
-							<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-							{user.status ? <div><li><Link to={"/userList/favourites/"+query} activeClassName="active">Favourites</Link></li>
-							<li><Link to={"/userList/history/"+query} activeClassName="active">History</Link></li></div> : null}
-						</ul>
-						{user.status ? <div> 
-						<ul  className={classNames('navigation')}>
-							<h4> Playlists </h4>
-							{this.buildUserPlaylist(userPlaylist)}
-						</ul></div>: <div className={classNames("navigation--actions")}>
-						<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-						onClick={()=> {dispatch(toggleModal('Login','Login'));}} >Login</button> 
-						<div className={classNames("register")}>
-							<div className={classNames("register__title")}>Don't have an account?
-								<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
-								<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
-									onClick={()=> {dispatch(toggleModal('Register','Register'));}} >Register</button>
+						<div className="Logo"><Link to={"/home/"+query}><div className={classNames("navigation__logo")}></div></Link></div>
+						<div className="sidebarlinks">
+							<ul className={classNames('navigation')}>
+								<li><Link to={"/heavyRotation/"+query} activeClassName="active">Heavy Rotation</Link></li>
+								<li><Link to={"/mostPopular/"+query} activeClassName="active">Most Popular</Link></li>
+								<li><Link to={"/newReleases/"+query} activeClassName="active">New & Fresh</Link></li>
+							</ul>
+							<ul  className={classNames('navigation')}>
+								<h4> My Music </h4>
+								<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
+								{user.status ? <div><li><Link to={"/userList/favourites/"+query} activeClassName="active">Favourites</Link></li>
+								<li><Link to={"/userList/history/"+query} activeClassName="active">History</Link></li></div> : null}
+							</ul>
+							{user.status ? <div> 
+							<ul  className={classNames('navigation')}>
+								<h4> Playlists </h4>
+								{this.buildUserPlaylist(userPlaylist)}
+							</ul></div>: <div className={classNames("navigation--actions")}>
+							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
+							onClick={()=> {dispatch(toggleModal('Login','Login'));}} >Login</button> 
+							<div className={classNames("register")}>
+								<div className={classNames("register__title")}>Don't have an account?
+									<div className={classNames("register__title")}>Create one now to create playlists and save favorite tracks.</div>
+									<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
+										onClick={()=> {dispatch(toggleModal('Register','Register'));}} >Register</button>
+								</div>
 							</div>
-						</div>
-					</div>}
+						
+					</div>}</div>
 					</div>
 				</div>
 				<div className="navigation__mobile">
