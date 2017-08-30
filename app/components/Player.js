@@ -31,7 +31,9 @@ export default class Player extends Component {
 						onError={()=>dispatch(playNextVideo())}
 						onEnded={()=>dispatch(playNext())}
 						onProgress={(progress)=>{this.setState({played:progress.played * 10000})}}/>
-						<div className="videooverlay"></div>
+						<div className="videooverlay">
+							<button className={classNames(playPauseClass)} onClick={()=>dispatch(togglePlay('player'))}></button>
+						</div>
 				</div> : null}
 				<div className={classNames("controls--main")} style={{left:'0'}}>
 					<div className={classNames("song-progress")}>
