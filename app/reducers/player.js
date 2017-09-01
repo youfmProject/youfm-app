@@ -9,21 +9,15 @@ const InitialState ={
     played: 0,
     loaded: 0,
     duration: 0,
-    playbackRate: 1.0,
-    handleTracker:''
+    playbackRate: 1.0
 }
 const player = (state = InitialState, action) => {
   switch (action.type) {
   	case PLAYER.TOGGLE_PLAY:{
-      if(state.handleTracker === 'player' && action.origin ==='react-player'){
-        return Object.assign({},state,{handleTracker:action.origin});
-      }
-      else{
-        return Object.assign({},state,{playing:!state.playing, handleTracker:action.origin});
-      }
+      return Object.assign({},state,{playing:!state.playing});
   	}
     case PLAYER.START_PLAY:{
-      return Object.assign({},state,{id:action.id,handleTracker:'player'});
+      return Object.assign({},state,{id:action.id});
     }
     case PLAYER.PLAYER_RESET:{
       return Object.assign({},state,{id:''});
