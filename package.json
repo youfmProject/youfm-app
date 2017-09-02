@@ -29,7 +29,6 @@
     "body-parser": "^1.15.1",
     "browserify-zlib": "^0.2.0",
     "classnames": "^2.2.5",
-    "couchbase": "^2.3.5",
     "cross-env": "^1.0.7",
     "css-loader": "^0.23.1",
     "eslint": "^2.9.0",
