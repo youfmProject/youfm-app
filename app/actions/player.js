@@ -4,10 +4,9 @@ import { batchActions } from 'redux-batched-actions'
 
 const { PLAYER } = Constants;
 
-export function togglePlay(origin){
+export function togglePlay(){
 	return {
-		type:PLAYER.TOGGLE_PLAY,
-		origin
+		type:PLAYER.TOGGLE_PLAY
 	}
 }
 

@@ -38,9 +38,10 @@ function mapStateToProps(state, props) {
     userPlaylist:state.playlist.userList,
     modal:get(state.app ,'modal', false),
     modalTitle:get(state.app,'title', ''),
+    repeatType:state.nowPlaying.repeatType,
     isPlayerInSync,
     isPlayerPlaying,
-    usersPlaylist,
+    usersPlaylist
   };
 }
 
