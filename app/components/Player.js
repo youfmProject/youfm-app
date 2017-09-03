@@ -24,7 +24,7 @@ export default class Player extends Component {
     }
 
   	render() {
-	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay, repeatType} = this.props;
+	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay, playerScreen, repeatType} = this.props;
 	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
 	    return (
 	    		<div>
@@ -43,6 +43,9 @@ export default class Player extends Component {
 	    				}}/>
 						<div className="videooverlay">
 							<button className={classNames(playPauseClass)} onClick={()=>dispatch(togglePlay())}></button>
+							<button onClick={()=>dispatch(playerScreen('large'))}>Lg</button>
+							<button onClick={()=>dispatch(playerScreen('full'))}>FL</button>
+							<button onClick={()=>{this.player.seekTo(0);}}>RT</button>
 						</div>
 				</div> : null}
 				<div className={classNames("controls--main")} style={{left:'0'}}>

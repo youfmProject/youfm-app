@@ -42,7 +42,8 @@ export default class SideBar extends Component {
 
   	render() {
 		let onClick = function(){
-			this.setState({hidden: false});
+			console.log("Here");
+			this.setState({hidden: !this.state.hidden});
 		}
 	  	// ADD SIDEBAR CLASS
 	    const query = this.props.params.play ? this.props.params.play : '';
@@ -63,6 +64,12 @@ export default class SideBar extends Component {
 					</Modal.Body> 
             	</Modal>
 				<div>
+					<div className="navigation__mobile">
+						{this.state.hidden ? <div id="nav-icon3" style = {{marginRight: '5px'}} onClick={onClick.bind(this)}>
+							<span/><span/><span/><span/>
+						</div>:<span className = "close" onClick={onClick.bind(this)}/>
+						}
+					</div>
 					<div className={classNames('navigation--main')}>
 						<div className="Logo"><Link to={"/home/"+query}><div className={classNames("navigation__logo")}></div></Link></div>
 						<div className="sidebarlinks">
@@ -92,12 +99,8 @@ export default class SideBar extends Component {
 								</div>
 							</div>
 						
-					</div>}</div>
+						</div>}
 					</div>
-				</div>
-				<div className="navigation__mobile">
-					<div id="nav-icon3" onClick={onClick.bind(this)}>
-						<span/><span/><span/><span/>
 					</div>
 				</div>
 			</div>
