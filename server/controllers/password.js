@@ -15,14 +15,14 @@ const callback = (method, response) => {
 
 module.exports = {
     resetPassword: (req, res, next) => {
-        // let password = new passwordModel();
-        // let type = _.get(req, 'query.type', '');
+        let password = new passwordModel();
+        let type = _.get(req, 'query.type', '');
         
-        // if(type === 'email'){
-        //     password.sendEmail(req, callback('PUT', res));
-        // }
-        // else {
-        //     password.resetPassword(req, callback('PUT', res));
-        // }
+        if(type === 'email'){
+            password.sendEmail(req, callback('PUT', res));
+        }
+        else {
+            password.resetPassword(req, callback('PUT', res));
+        }
     }
 }

@@ -137,8 +137,8 @@ export function playNext(){
 	}
 }
 
-let getRoute=(state,videoData = false)=>{
-	let pN = state.routing.locationBeforeTransitions.pathname.split('/')[1],
+let getRoute=(state,videoData = false, playlistName = false)=>{
+	let pN = playlistName ? playlistName : state.routing.locationBeforeTransitions.pathname.split('/')[1],
 		lN = state.routing.locationBeforeTransitions.pathname.split('/')[2],
 		sK = state.search.searchKey,
 		vQ = state.nowPlaying.videoQueue,
@@ -197,11 +197,14 @@ let callYoutubeAndPlay=(state,dispatch,index)=>{
 	});
 }
 /* TODO, combine instantPlay to call callYoutubeAndPlay */
-export function instantPlay(track){
+export function instantPlay(track, name = 'heavyRotation'){
 	return(dispatch,getState)=>{
 		const state = getState();
 		let playlistName = state.routing.locationBeforeTransitions.pathname.split('/')[1];
 		let listName = state.routing.locationBeforeTransitions.pathname.split('/')[2];
+		if(playlistName === 'home'){
+			playlistName = name;
+		}
 		let index = playlistName === 'userList' ? _.findIndex(state.playlist[playlistName][listName],{name:track.name,artist:track.artist}) :_.findIndex(state.playlist[playlistName],{name:track.name,artist:track.artist});
 		callYoutube(track,(data)=>{
 			// will reset if existing track is playing
@@ -209,7 +212,8 @@ export function instantPlay(track){
 			if(state.player.id === data[0].id){
 				dispatch(PlayerActions.resetPlayer());
 			}
-			let route = getRoute(state,data);
+			let route = getRoute(state, data, playlistName);
+			console.log("Route::", route);
 			let actionsArray = [];
 			actionsArray= [RoutingActions.locationChange(route),addToVideoQueue(data),setIndex(index)];
 			(playlistName !== 'nowPlaying') ? actionsArray.push(resetQueue(state.playlist[playlistName])) : null

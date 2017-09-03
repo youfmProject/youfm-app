@@ -103,7 +103,6 @@ export const getHomeData = () => (dispatch, getState) =>{
 		url:'/api/v1/albums'
 	}).then(res=>{
 		dispatch(batchActions([
-			setHomeData(res.data),
 			setInitialPlaylist(res.data)
 		]));
 	});

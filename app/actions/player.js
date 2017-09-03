@@ -23,6 +23,13 @@ export function resetPlayer(){
 	}
 }
 
+export function playerScreen(screen){
+	return {
+		type: PLAYER.SCREEN_SIZE,
+		screen
+	}
+}
+
 // export function setPlayerPlayId(){
 // 	return(dispatch,getState)=>{
 // 		const state = getState();

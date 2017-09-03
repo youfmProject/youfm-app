@@ -14,7 +14,7 @@ const callback = (method, response) => {
 
 module.exports = {
     updatePlaylist: (req, res, next) => {
-        // let playlist = new playlistModel();
-        // playlist.updatePlaylist(req, callback('POST', res));
+        let playlist = new playlistModel();
+        playlist.updatePlaylist(req, callback('POST', res));
     }
 }

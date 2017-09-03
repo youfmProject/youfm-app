@@ -9,7 +9,8 @@ const InitialState ={
     played: 0,
     loaded: 0,
     duration: 0,
-    playbackRate: 1.0
+    playbackRate: 1.0,
+    screen: null
 }
 const player = (state = InitialState, action) => {
   switch (action.type) {
@@ -21,6 +22,9 @@ const player = (state = InitialState, action) => {
     }
     case PLAYER.PLAYER_RESET:{
       return Object.assign({},state,{id:''});
+    }
+    case PLAYER.SCREEN_SIZE: {
+      return Object.assign( {}, state, {screen: action.screen});
     }
     default:
       return state
