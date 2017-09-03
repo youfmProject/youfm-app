@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { batchActions } from 'redux-batched-actions';
 
 export default class Home extends Component {
 
@@ -23,22 +22,13 @@ export default class Home extends Component {
 		<div className={classNames('songs--popular')} style={{padding:'30em 0'}}>
 			<div className={classNames('songs')}>
 				<div className = "ps"> 
-					<button onClick={()=>{dispatch(instantPlay(heavyRotation[0], 'heavyRotation'));
-						}}>HR</button>
+					<button onClick={()=>{dispatch(instantPlay(heavyRotation[0], 'heavyRotation'));}}>HR</button>
 				</div>	
 				<div className = "ps" >
-					<button onClick={()=>{dispatch(batchActions([
-						instantPlay(mostPopular[0], 'mostPopular'),
-						locationChange(`/mostPopular/${playerID}`)])
-					);
-						}}>MP</button>
+					<button onClick={()=>{dispatch(instantPlay(heavyRotation[0], 'mostPopular'));}}>HR</button>
 				</div>
 				<div className = "ps">
-					<button onClick={()=>{dispatch(batchActions([
-						instantPlay(newReleases[0], 'newReleases'),
-						locationChange(`/newReleases/${playerID}`)])
-					);
-						}}>NR</button>
+					<button onClick={()=>{dispatch(instantPlay(heavyRotation[0], 'newReleases'));}}>HR</button>
 				</div>
 			</div>
 		</div>
