@@ -86,21 +86,20 @@ class Albums {
                 });
             },
             billboard: function(callB){
-                billboardClient.init().then(function(billboard){
-                    var songs = billboard.getAllSongs();
-                    var billBoardSongs = [];
-                        _.forEach(songs, function(song){
-                            var billBoardSong = {
-                                name: song.name,
-                                artist: song.artist,
-                                image: song.image,
-                                rank: song.rank
-                            };
-                            billBoardSongs.push(billBoardSong);
-                        });
-                    callB(null, billBoardSongs);
-                }).catch(function(err){
-                    callB(err, null);
+                spotify.getPlaylist('billboard.com', '6UeSakyzhiEt4NB3UAd6NQ').then(function(data){
+                    var songs = [],
+                        tracks = _.get(data, 'body.tracks.items',[]);
+                    _.forEach(tracks, function(track){
+                        songs.push({
+                            name: _.get(track, 'track.name', ''),
+                            artist: _.get(track, 'track.album.artists[0].name', ''),
+                            image: _.get(track, 'track.album.images[0].url', '')
+                        })
+                    });
+                    callB(null, songs);
+                },function(err){
+                    console.log("err::", err);
+                    callB(null, []);
                 });
             },
             images: function(callB) {
