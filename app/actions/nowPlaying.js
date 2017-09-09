@@ -61,6 +61,19 @@ export function resetQueue(tracks){
 	}
 }
 
+export function addToHistory(track, addToLocalStore = true){
+	if(addToLocalStore){
+		let localHistory = JSON.parse(localStorage.getItem('liveJam')).history;
+		localHistory.push(track);
+		HomeActions.setLocalStore({history:localHistory})
+	}
+	// CALL TO SERVICE
+	return{
+		type:PLAYLIST.ADD_TO_HISTORY,
+		track
+	}
+}
+
 export function callYoutube(track,callback){
 	if(track){
 		let searchTerm = track.id ? track.id : (track.name) ? track.name+' '+track.artist : track;
@@ -107,6 +120,7 @@ export function playNextVideo(){
 export function playPrevious(){
 	return(dispatch,getState)=>{
 		const state = getState();
+		dispatch(PlayerActions.resetPlayer());
 		let index =((state.nowPlaying.playIndex - 1) < 0) ? 0 : state.nowPlaying.playIndex - 1;
 		callYoutubeAndPlay(state,dispatch,index);
 	}
@@ -116,17 +130,18 @@ export function playNext(){
 	return(dispatch,getState)=>{
 		const state = getState();
 		let index;
+		dispatch(PlayerActions.resetPlayer());
 		if(state.nowPlaying.shuffle){
 			index = Math.floor(Math.random(state.nowPlaying.queue.length) * 10);
  		}
 		else{
 			let repeatType = state.nowPlaying.repeatType;
 			if(repeatType === 'repeat'){
-				dispatch(PlayerActions.resetPlayer());
+				//dispatch(PlayerActions.resetPlayer());
 				index = state.nowPlaying.playIndex;
 			}
 			else if(((state.nowPlaying.playIndex + 1) === state.nowPlaying.queue.length) && repeatType === 'all'){
-				dispatch(PlayerActions.resetPlayer());
+				//dispatch(PlayerActions.resetPlayer());
 				index = 0;
 			}
 			else{
@@ -192,7 +207,8 @@ let callYoutubeAndPlay=(state,dispatch,index)=>{
 			batchActions([
 			RoutingActions.locationChange(route),
 			addToVideoQueue(data),
-			setIndex(index)
+			setIndex(index),
+			addToHistory(track)
 		]));
 	});
 }
@@ -205,6 +221,7 @@ export function instantPlay(track, name = 'heavyRotation'){
 		if(playlistName === 'home'){
 			playlistName = name;
 		}
+		dispatch(PlayerActions.resetPlayer());
 		let index = playlistName === 'userList' ? _.findIndex(state.playlist[playlistName][listName],{name:track.name,artist:track.artist}) :_.findIndex(state.playlist[playlistName],{name:track.name,artist:track.artist});
 		callYoutube(track,(data)=>{
 			// will reset if existing track is playing
@@ -213,9 +230,8 @@ export function instantPlay(track, name = 'heavyRotation'){
 				dispatch(PlayerActions.resetPlayer());
 			}
 			let route = getRoute(state, data, playlistName);
-			console.log("Route::", route);
 			let actionsArray = [];
-			actionsArray= [RoutingActions.locationChange(route),addToVideoQueue(data),setIndex(index)];
+			actionsArray= [RoutingActions.locationChange(route),addToVideoQueue(data),setIndex(index),addToHistory(track)];
 			(playlistName !== 'nowPlaying') ? actionsArray.push(resetQueue(state.playlist[playlistName])) : null
 			dispatch(
 				batchActions(actionsArray));

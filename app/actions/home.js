@@ -47,6 +47,17 @@ export function setPlaylist(name,tracks){
 	}
 };
 
+export function setLocalStore(lsObject){
+	let ls = localStorage.getItem('liveJam');
+	if(ls){
+		ls= JSON.parse(ls);
+		localStorage.setItem('liveJam',JSON.stringify(_.assign(ls,lsObject)));
+	}
+	else{
+      localStorage.setItem('liveJam',JSON.stringify(lsObject));
+	}
+}
+
 let toggleFavouriteAction=(track,opt)=>{
 	return {
 		type:PLAYLIST.TOGGLE_FAVOURITE,
@@ -189,6 +200,19 @@ export function getRedditList(subReddit){
 			)
 		}).catch(err => {
 			redditSearchSuccess(subReddit, [], true);
+		});
+	}
+}
+// Have to test this, just stubbing the function for now
+export function postPlaylist(userID, name, tracks){
+	return(dispatch, getState)=> {
+		let state = getState();
+		axios({
+		  method:'post',
+		  url:'/api/v1/reddit?subReddit='+subReddit,
+		  body:JSON.stringify({usserId:userID,playlistName:[name],tracks:tracks})
+		}).then(res=> {
+		}).catch(err => {
 		});
 	}
 }

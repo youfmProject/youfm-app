@@ -5,7 +5,7 @@ const { PLAYER } = Constants;
 const InitialState ={
     id: '',
     playing: true,
-    volume: 0.8,
+    volume: 0.5,
     played: 0,
     loaded: 0,
     duration: 0,
@@ -25,6 +25,9 @@ const player = (state = InitialState, action) => {
     }
     case PLAYER.SCREEN_SIZE: {
       return Object.assign( {}, state, {screen: action.screen});
+    }
+    case PLAYER.SET_VOLUME:{
+      return Object.assign( {}, state, {volume: action.volume});
     }
     default:
       return state

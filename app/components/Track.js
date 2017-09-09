@@ -3,6 +3,7 @@ import { batchActions } from 'redux-batched-actions';
 import { browserHistory } from 'react-router'
 import classNames from 'classnames';
 import {DropdownButton,MenuItem} from 'react-bootstrap';
+import defaultImage from '../logos/default-album.png';
 
 export default class Track extends Component {
     constructor() {
@@ -46,9 +47,8 @@ export default class Track extends Component {
         let  onArtistClick = function(artist, type) {
             return dispatch(searchArtist(artist, type));
         }
-
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
-
+        let albumImage = (track.image && track.image !== 'http://img.youtube.com/vi/undefined/0.jpg') ? track.image : defaultImage
         return (
         <div key={track.id} className={classNames('song')} style={{width:'100%'}} onDoubleClick={()=>{dispatch(instantPlay(track))}}>
             <span className={classNames(playClass)}>
@@ -59,7 +59,7 @@ export default class Track extends Component {
             </span>
             <span className={classNames('song__favorite')} onClick={()=>{ this.toggleIcon(); dispatch(toggleFavourite(track,this.state.fav))}}><i className={classNames(favIcon)}></i></span>
             <span className={classNames('song__num')}></span>
-            <span className={classNames('song__art')}><img src={track.image} alt="Album Art"/></span>
+            <span className={classNames('song__art')}><img src={albumImage} alt="Album Art"/></span>
             <span className={classNames('song__name')}>{track.name.replace(/&apos;/g, "'")}</span>
             <span className={classNames('song__artists')}><a style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a></span>
             {track.albumName ? <span className={classNames('song__artists')} ><a  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a></span>: null}

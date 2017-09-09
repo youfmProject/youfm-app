@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player';
 import classNames from 'classnames';
 import {get} from 'lodash';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
+import { batchActions } from 'redux-batched-actions';
 import '../less/rc-slider.less';
 
 export default class Player extends Component {
@@ -13,18 +14,19 @@ export default class Player extends Component {
             played: 0,
             shuffle:false,
             repeat:'none',
-            start:'0.00',
-            end:'0.00',
+            start:'0:00',
+            end:'0:00',
             volume:0
         }
     }
 
     formatTime(seconds){
-		return(seconds-(seconds%=60))/60+(9<seconds?':':':0')+seconds
+		let x = (seconds-(seconds%=60))/60+(9<seconds?':':':0')+seconds;
+		return x;
     }
 
   	render() {
-	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay, playerScreen, repeatType} = this.props;
+	  	const {player, dispatch, setVolume, playPrevious, playNext, playNextVideo, toggleShuffle, setLocalStore, toggleRepeat, nowPlaying, togglePlay, playerScreen, repeatType, volume} = this.props;
 	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
 	    return (
 	    		<div>
@@ -33,10 +35,10 @@ export default class Player extends Component {
 						ref={player => { this.player = player }}
 						playing={player.playing} 
 						youtubeConfig={{modestbranding:1}}
-						onDuration={(Duration)=>{this.setState({end:this.formatTime(Duration)});}}
+						onDuration={(Duration)=>{let et= this.formatTime(Math.ceil(Duration)).toString(); this.setState({end:et});}}
 						onError={()=>dispatch(playNextVideo())}
 						onEnded={()=>dispatch(playNext())}
-						volume={this.state.volume}
+						volume={volume}
 						onProgress={(progress)=>{
 							let start = this.formatTime(Math.floor(progress.playedSeconds));
 	    					this.setState({played:progress.played * 10000,start:start});
@@ -57,9 +59,14 @@ export default class Player extends Component {
 					</div>
 					<div className="controls--volume">
 						<Slider style={{ width: '100px', position:'absolute', marginTop:'50px', marginLeft:'15%'}} 
-							onChange={(value)=>{ this.setState({volume:parseFloat(value/100)})}}
+							onChange={(value)=>{
+								let normalizedVolume = parseFloat(value/100);
+								setLocalStore({volume:normalizedVolume});
+								dispatch(setVolume(normalizedVolume));
+							}}
 							min={0}
 							max={100}
+							value = { volume * 100}
 						/>
 					</div>
 					<div className={classNames("song-progress")}>

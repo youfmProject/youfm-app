@@ -30,6 +30,13 @@ export function playerScreen(screen){
 	}
 }
 
+export function setVolume(volume){
+	return {
+		type: PLAYER.SET_VOLUME,
+		volume
+	}
+}
+
 // export function setPlayerPlayId(){
 // 	return(dispatch,getState)=>{
 // 		const state = getState();

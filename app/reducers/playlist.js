@@ -9,6 +9,8 @@ const initialState ={
   mostPopular:[],
   heavyRotation:[],
   newReleases:[],
+  history:[],
+  favourite:[],
   userList: {}
 }
 const playlist = (state = initialState, action) => {
@@ -20,6 +22,11 @@ const playlist = (state = initialState, action) => {
         newReleases:action.data.newReleases
       });
   	}
+    case PLAYLIST.ADD_TO_HISTORY :{
+      let history = Array.from(state.history);
+      _.isArray(action.track) ? history = history.concat(action.track) : history.push(action.track);
+      return Object.assign({},state,{history})
+    }
     case PLAYLIST.TOGGLE_FAVOURITE:{
       let searchTrack = {'name': action.track.name,'artist':action.track.artist};
       let newState = _.cloneDeep(state);
