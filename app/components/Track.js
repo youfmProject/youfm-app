@@ -9,7 +9,6 @@ export default class Track extends Component {
     constructor() {
         super();
         this.state = {
-            showTray: 'hide',
             fav:false
         }
     }
@@ -23,27 +22,30 @@ export default class Track extends Component {
         this.setState({fav:!this.state.fav});
     }
 
-    toggletray() {
-        this.setState({showTray: this.state.showTray === 'show'? 'hide':'show'})
+    toggletray(track) {
+        const {dispatch, showTray, index, selectTrack} = this.props;
+        dispatch(batchActions([showTray(index),selectTrack(track)]));
     }
+
     buildTray(){
-        const {track, user, dispatch, instantPlay, appendtoQueue, addToQueue, addToPlaylist, toggleFavourite, toggleModal} = this.props;
+        const {track, user, dispatch, instantPlay, appendtoQueue, addToQueue, addToPlaylist, toggleFavourite, toggleModal, showTray, index} = this.props;
         let favTitle = this.state.fav ? 'Remove from Favourite':'Add to favourites';
         let fields = [];
-        fields.push(<li onClick={()=>{dispatch(instantPlay(track))}}><a>Play now</a></li>,
-            <li onClick={()=>{dispatch(appendtoQueue(track))}}><a>Play next</a></li>,
-            <li onClick={()=>{dispatch(addToQueue(track))}}><a>Add to queue</a></li>);
+        fields.push(<li onClick={()=>{dispatch(batchActions([showTray(index),instantPlay(track)]))}}><a>Play now</a></li>,
+            <li onClick={()=>{dispatch(batchActions([showTray(index),appendtoQueue(track)]))}}><a>Play next</a></li>,
+            <li onClick={()=>{dispatch(batchActions([showTray(index),addToQueue(track)]))}}><a>Add to queue</a></li>);
         if(user.status){
             fields.push(
-                <li onClick={()=>{this.toggleIcon();dispatch(toggleFavourite(track,this.state.fav))}}><a>{favTitle}</a></li>,
-                <li onClick={()=>{dispatch(toggleModal('Playlist','Add to playlist'))}}><a>Add to playlist</a></li>);
+                <li onClick={()=>{this.toggleIcon();dispatch(batchActions([showTray(index),toggleFavourite(track,this.state.fav)]))}}><a>{favTitle}</a></li>,
+                <li onClick={()=>{dispatch(batchActions([showTray(index),toggleModal('Playlist','Add to playlist')]))}}><a>Add to playlist</a></li>);
         }
         return fields;
     }
 
     render() {
-        const {track, searchArtist, instantPlay, dispatch, location, playlistName, trackPlayNow, toggleFavourite, activetrack} = this.props;
+        const {track, searchArtist, instantPlay, dispatch, location, playlistName, trackPlayNow, toggleFavourite, activetrack, trayIndex, index} = this.props;
         let playClass = (track.name === activetrack.name && track.artist === activetrack.artist)? 'song__active' : 'song__play';
+        let showOptionTray = (trayIndex === index) ? 'show' : 'hide';
         let  onArtistClick = function(artist, type) {
             return dispatch(searchArtist(artist, type));
         }
@@ -63,10 +65,10 @@ export default class Track extends Component {
             <span className={classNames('song__name')}>{track.name.replace(/&apos;/g, "'")}</span>
             <span className={classNames('song__artists')}><a style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a></span>
             {track.albumName ? <span className={classNames('song__artists')} ><a  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a></span>: null}
-            {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>•••</span>
+            {<span className={classNames('song__actions','open')} onClick={()=>{this.toggletray(track)}}>•••</span>
             }
             {
-                this.state.showTray === 'show'? (
+                showOptionTray === 'show'? (
                     <div>
                         <ul className={classNames('dropdown-menu','dropdown-menu-right','song__actions__list')} style={{display: 'block'}}>
                             {this.buildTray()}

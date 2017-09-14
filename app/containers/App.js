@@ -25,7 +25,8 @@ function mapStateToProps(state, props) {
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
   let searchKey = state.search.searchKey.split('-');
-  let usersList = getUsersPlaylist(state.playlist.userList);
+  let usersListOptions = getUsersPlaylist(state.playlist.userList);
+  let userList = state.playlist.userList;
   return {
     app:state.app,
     user:state.user,
@@ -40,9 +41,11 @@ function mapStateToProps(state, props) {
     modalTitle:get(state.app,'title', ''),
     repeatType:state.nowPlaying.repeatType,
     volume:state.player.volume,
+    selectedTrack:state.playlist.selectedTrack,
     isPlayerInSync,
     isPlayerPlaying,
-    usersList
+    usersListOptions,
+    userList,
   };
 }
 

@@ -34,7 +34,7 @@ export default class Playlist extends Component {
   buildPlaylist(tracks = [], playlistName){
     let fields=[];
     tracks.map((track, key)=>{
-      fields.push({content: (<Track key={key} track={track} playlistName={playlistName} {...this.props}/>)});
+      fields.push({content: (<Track key={key} index={key} track={track} playlistName={playlistName} {...this.props}/>)});
     })
     return fields
   }

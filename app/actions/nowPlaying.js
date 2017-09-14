@@ -60,6 +60,27 @@ export function resetQueue(tracks){
 		tracks
 	}
 }
+/* MODIFY THIS FUNCTION FOR MULTI-SELECT*/
+// export function selectTrack(track){
+// 	return {
+// 		type:PLAYLIST.SELECT_TRACK,
+// 		track
+// 	}
+// }
+
+export function selectTrack(track){
+	return {
+		type:PLAYLIST.SELECT_TRACK,
+		track
+	}
+}
+
+export function showTray(trayIndex){
+	return {
+		type:PLAYLIST.SELECT_TRAY_INDEX,
+		trayIndex
+	}
+}
 
 export function addToHistory(track, addToLocalStore = true){
 	if(addToLocalStore){
@@ -67,7 +88,6 @@ export function addToHistory(track, addToLocalStore = true){
 		localHistory.push(track);
 		HomeActions.setLocalStore({history:localHistory})
 	}
-	// CALL TO SERVICE
 	return{
 		type:PLAYLIST.ADD_TO_HISTORY,
 		track
@@ -210,8 +230,14 @@ let callYoutubeAndPlay=(state,dispatch,index)=>{
 			setIndex(index),
 			addToHistory(track)
 		]));
+		// send track to remote history
+		let userID = JSON.parse(localStorage.getItem('liveJam')).userStatus.userId;
+		if(userID){
+			return dispatch(HomeActions.postPlaylist(userID,['history'],track));
+		}
 	});
 }
+
 /* TODO, combine instantPlay to call callYoutubeAndPlay */
 export function instantPlay(track, name = 'heavyRotation'){
 	return(dispatch,getState)=>{
@@ -233,8 +259,11 @@ export function instantPlay(track, name = 'heavyRotation'){
 			let actionsArray = [];
 			actionsArray= [RoutingActions.locationChange(route),addToVideoQueue(data),setIndex(index),addToHistory(track)];
 			(playlistName !== 'nowPlaying') ? actionsArray.push(resetQueue(state.playlist[playlistName])) : null
-			dispatch(
-				batchActions(actionsArray));
+			dispatch(batchActions(actionsArray));
+			let userID = JSON.parse(localStorage.getItem('liveJam')).userStatus.userId;
+			if(userID){
+				return dispatch(HomeActions.postPlaylist(userID,['history'],track));
+			}
 		});
 	}
 }

@@ -20,7 +20,7 @@ export default class App extends Component {
       dispatch(batchActions([setVolume(ls.volume),addToHistory(ls.history,false)]));
     }
     else{
-      setLocalStore({history:[],volume:0.5,userStatus:{}})
+      setLocalStore({history:[],volume:0.5,userStatus:{userId:'liveJamUser'}})
       dispatch(setVolume(0.5));
     }
   }
