@@ -43,11 +43,20 @@ export default class Track extends Component {
     }
 
     render() {
-        const {track, searchArtist, instantPlay, dispatch, location, playlistName, trackPlayNow, toggleFavourite, activetrack, trayIndex, index} = this.props;
-        let playClass = (track.name === activetrack.name && track.artist === activetrack.artist)? 'song__active' : 'song__play';
+        const {track, searchArtist, instantPlay, dispatch, location, playlistName, trackPlayNow, toggleFavourite, activetrack, toggleModal, trayIndex, index, user} = this.props;
+        let playClass = (track.name === activetrack.name && track.artist === activetrack.artist && track.albumName === activetrack.albumName)? 'song__active' : 'song__play';
         let showOptionTray = (trayIndex === index) ? 'show' : 'hide';
-        let  onArtistClick = function(artist, type) {
-            return dispatch(searchArtist(artist, type));
+        let  onArtistClick = function(artist, id, type) {
+            return dispatch(searchArtist(artist, id, type));
+        }
+        let onFavClick = function(){
+            if(user.status){
+                this.toggleIcon(); 
+                dispatch(toggleFavourite(track,this.state.fav));
+            }
+            else {
+                dispatch(toggleModal('FavLogin', ''));
+            }
         }
         let favIcon = this.state.fav ? 'icon-heart-filled-icon':'icon-heart-empty-icon';
         let albumImage = (track.image && track.image !== 'http://img.youtube.com/vi/undefined/0.jpg') ? track.image : defaultImage
@@ -59,13 +68,13 @@ export default class Track extends Component {
                 </i>
                 <i className="icon-play-icon-small"></i>
             </span>
-            <span className={classNames('song__favorite')} onClick={()=>{ this.toggleIcon(); dispatch(toggleFavourite(track,this.state.fav))}}><i className={classNames(favIcon)}></i></span>
+            <span className={classNames('song__favorite')} onClick={onFavClick.bind(this)}><i className={classNames(favIcon)}></i></span>
             <span className={classNames('song__num')}></span>
             <span className={classNames('song__art')}><img src={albumImage} alt="Album Art"/></span>
             <span className={classNames('song__name')}>{track.name.replace(/&apos;/g, "'")}</span>
-            <span className={classNames('song__artists')}><a style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, 'artist')}>{track.artist}</a></span>
-            {track.albumName ? <span className={classNames('song__artists')} ><a  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, 'album')}>{track.albumName}</a></span>: null}
-            {<span className={classNames('song__actions','open')} onClick={()=>{this.toggletray(track)}}>•••</span>
+            <span className={classNames('song__artists')}><a style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.artist, track.artistId, 'artist')}>{track.artist}</a></span>
+            {track.albumName ? <span className={classNames('song__artists')} ><a  style ={{color: '#FFFFFF'}} onClick={onArtistClick.bind(this, track.albumName, track.albumId, 'album')}>{track.albumName}</a></span>: null}
+            {<span className={classNames('song__actions','open')} onClick={()=>this.toggletray()}>•••</span>
             }
             {
                 showOptionTray === 'show'? (

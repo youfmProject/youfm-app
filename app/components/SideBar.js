@@ -6,6 +6,9 @@ import { slide as Menu } from 'react-burger-menu';
 import PlaylistModal from './PlaylistModal';
 import Login from './Login';
 import Register from './Register';
+import FavLogin from './FavLogin';
+import AboutUs from './AboutUs';
+
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
 
 export default class SideBar extends Component {
@@ -24,7 +27,9 @@ export default class SideBar extends Component {
     buildUserPlaylist(userList){
     	let fields = [];
     	for(let item in userList){
-    		fields.push(<li><Link to={"/userList/"+item} activeClassName="active">{item}</Link></li>)
+			if(item !== 'favourites'){
+    			fields.push(<li><Link to={"/userList/"+item} activeClassName="active">{item}</Link></li>)
+			}
     	}
     	return fields;
     }
@@ -33,7 +38,9 @@ export default class SideBar extends Component {
 	  switch(name){
 	    case 'Playlist': {return <PlaylistModal {...props} /> };
 	    case 'Login': {return <Login {...props} /> }; 
-	    case 'Register': {return <Register {...props} /> };
+		case 'Register': {return <Register {...props} /> };
+		case 'FavLogin': {return <FavLogin {...props} /> }
+		case 'AboutUs': {return <AboutUs {...props} /> }
 	    default : break;
 	  }
 	}
@@ -44,7 +51,7 @@ export default class SideBar extends Component {
 		}
 	  	// ADD SIDEBAR CLASS
 	    const query = this.props.params.play ? this.props.params.play : '';
-		const {children, store, locationChange, dispatch, user, userList, app, toggleModal, modal, modalTitle} = this.props
+		const {children, store, locationChange, dispatch, user, userList, app, toggleModal, modal, modalTitle, setLocalStore} = this.props
 	    return (
 			<div className={classNames('rail', 'rail--left' ,'sidebarmenu')}>
 				<Modal
@@ -56,7 +63,7 @@ export default class SideBar extends Component {
 					<Modal.Header closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161'}}>
 						<Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>{modalTitle}</Modal.Title>
 					</Modal.Header>
-					<Modal.Body closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
+					<Modal.Body style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
 					{this.getModal(modal,this.props)}
 					</Modal.Body> 
             	</Modal>
@@ -97,6 +104,10 @@ export default class SideBar extends Component {
 							</div>
 						
 						</div>}
+						{!user.status ? 
+							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
+								onClick={()=> {dispatch(setLocalStore({userStatus:{userId: user.userId, status: false}}))}} >Logout</button> 
+						: null}
 					</div>
 					</div>
 				</div>

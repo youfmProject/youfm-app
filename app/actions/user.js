@@ -35,6 +35,7 @@ export function submitLogin(user, operation){
 		}).then(res=>{
 			dispatch(batchActions([
 				loginStatus(res.data, false, true),
+				HomeActions.setLocalStore({userStatus:{userId: res.data.userId, status: true}}),
 				HomeActions.setPlaylist('userList', res.data.playlists),
       			AppActions.toggleModal('','')
     			])

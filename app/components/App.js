@@ -12,7 +12,7 @@ export default class App extends Component {
   } 
 
   componentWillMount(){
-    const {dispatch, setVolume, addToHistory, setLocalStore} = this.props;
+    const {dispatch, setVolume, addToHistory, setLocalStore, user} = this.props;
     let ls = localStorage.getItem('liveJam');
     if(ls){
       ls= JSON.parse(ls);
@@ -20,7 +20,7 @@ export default class App extends Component {
       dispatch(batchActions([setVolume(ls.volume),addToHistory(ls.history,false)]));
     }
     else{
-      setLocalStore({history:[],volume:0.5,userStatus:{userId:'liveJamUser'}})
+      setLocalStore({history:[],volume:0.5,userStatus:{userId: user.userId, status: user.status}})
       dispatch(setVolume(0.5));
     }
   }

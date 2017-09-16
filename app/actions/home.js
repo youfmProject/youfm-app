@@ -5,6 +5,7 @@ import * as PlayerActions from './player';
 import * as NowPlayingActions from './nowPlaying';
 import {browserHistory} from 'react-router';
 import * as RoutingActions from './routing';
+import * as AppActions from './app';
 
 const { HOME, PLAYLIST, SEARCH, NOW_PLAYING, REDDIT } = Constants;
 
@@ -162,15 +163,16 @@ export function getSpotifySearch(searchKey){
 	}
 }
 
-export function searchArtist(key, type){
+export function searchArtist(key, id, type){
 	return(dispatch,getState)=>{
+		let query = id ? id : key;
 		let state = getState();
 		axios({
 		  method:'get',
-		  url:'/api/v1/spotify?'+type+'='+key
+		  url:'/api/v1/spotify?'+type+'='+query+'&id='+id
 		}).then(res=>{
 			dispatch(batchActions([
-				RoutingActions.locationChange(`/search/${type}-${key}/${state.player.id}`),
+				RoutingActions.locationChange(`/search/${type}-${id}/${state.player.id}`),
       			spotifySearchComplete(`${type}-${key}`, res.data, false),
       			setPlaylist('search', res.data)
     			])
@@ -211,6 +213,32 @@ export function getRedditList(subReddit){
 		});
 	}
 }
+
+export function editFeedback(field, data){
+	return {
+		type: HOME.SET_FEEDBACK,
+		field,
+		data
+	}
+}
+
+export function submitFeedback(){
+	return(dispatch, getState) => {
+		let state = getState();
+		let data = {
+			email: state.home.email,
+			feedback: state.home.feedback
+		}
+		axios({
+			method: 'post',
+		  	url:'/api/v1/feedback',
+          	data: data
+		}).then(res => {
+			dispatch(AppActions.toggleModal('',''));
+		});
+	}
+}
+
 // DUMMY ACTION TO CALL AFTER POST PLAYLIST
 export function postPlaylistComplete(){
 	return {
@@ -237,6 +265,7 @@ export function postPlaylist(userID, name, tracks){
 			dispatch(postPlaylistComplete());
 		}).catch(err => {
 			dispatch(postPlaylistComplete());
+
 		});
 	}
 }

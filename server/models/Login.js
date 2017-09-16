@@ -6,7 +6,6 @@ const uuid = require('uuid/v4');
 const async = require('async');
 var passwordHash = require('password-hash');
 var N1qlQuery = couchbase.N1qlQuery;
-var cluster = new couchbase.Cluster('localhost:8091');
 const nodemailer = require('nodemailer');
 
 // create reusable transporter object using the default SMTP transport

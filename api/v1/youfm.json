@@ -292,6 +292,40 @@
                     }  
                 }
             }
+        },
+        "/feedback": {
+            "post":{
+                "x-swagger-router-controller": "feedback",
+                "operationId": "sendFeedback",
+                "tags":[
+                    "/"
+                ],
+                "description": "This is the API for sending feedback",
+                "parameters":[
+                    {
+                        "name": "feedback",
+                        "in": "body",
+                        "description": "Feedback Details",
+                        "schema":{
+                            "$ref": "#/definitions/feedback"   
+                        }
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description": "Feedback Confirmation",
+                        "schema": {
+                            "$ref": "#/definitions/feedback"
+                        }
+                    },
+                    "default": {
+                        "description": "Error Scenario",
+                        "schema":{
+                            "$ref": "#/definitions/Message"   
+                        }
+                    }  
+                }
+            }
         }
     },
     "definitions":{
@@ -473,6 +507,17 @@
                         }
                     }
                 }  
+            }
+        },
+        "feedback": {
+            "type":"object",
+            "properties":{
+                "email": {
+                    "type": "string"
+                },
+                "feedback": {
+                    "type":"string"
+                }
             }
         },
         "Message":{

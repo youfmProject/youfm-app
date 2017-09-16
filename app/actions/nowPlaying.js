@@ -231,8 +231,8 @@ let callYoutubeAndPlay=(state,dispatch,index)=>{
 			addToHistory(track)
 		]));
 		// send track to remote history
-		let userID = JSON.parse(localStorage.getItem('liveJam')).userStatus.userId;
-		if(userID){
+		let userStatus = JSON.parse(localStorage.getItem('liveJam')).userStatus;
+		if(userStatus.status){
 			return dispatch(HomeActions.postPlaylist(userID,['history'],track));
 		}
 	});
@@ -260,8 +260,8 @@ export function instantPlay(track, name = 'heavyRotation'){
 			actionsArray= [RoutingActions.locationChange(route),addToVideoQueue(data),setIndex(index),addToHistory(track)];
 			(playlistName !== 'nowPlaying') ? actionsArray.push(resetQueue(state.playlist[playlistName])) : null
 			dispatch(batchActions(actionsArray));
-			let userID = JSON.parse(localStorage.getItem('liveJam')).userStatus.userId;
-			if(userID){
+			let userStatus = JSON.parse(localStorage.getItem('liveJam')).userStatus;
+			if(userStatus.status){
 				return dispatch(HomeActions.postPlaylist(userID,['history'],track));
 			}
 		});

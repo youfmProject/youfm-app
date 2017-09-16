@@ -51,7 +51,7 @@ function mapStateToProps(state, props) {
 	let activetrack = _.get(state.nowPlaying,'queue['+state.nowPlaying.playIndex+']',{name:'',artist:''});
 	let errors = getErrors(state, props);
 	return {
-		user:state.user,
+		user: state.user,
 		playlistName : (playlistName !== 'nowPlaying' ) ? playlistName :false,
 		trayIndex:state.playlist.trayIndex,
 		errors, 
