@@ -21,12 +21,10 @@ export default class SideBar extends Component {
         this.setState({hidden: true});
     }
 
-    buildUserPlaylist(userPlaylist){
+    buildUserPlaylist(userList){
     	let fields = [];
-    	for(let item in userPlaylist){
-			if(item !== 'favourites' && item !== 'history'){
-    			fields.push(<li><Link to={"/userList/"+item} activeClassName="active">{item}</Link></li>)
-			}
+    	for(let item in userList){
+    		fields.push(<li><Link to={"/userList/"+item} activeClassName="active">{item}</Link></li>)
     	}
     	return fields;
     }
@@ -42,12 +40,11 @@ export default class SideBar extends Component {
 
   	render() {
 		let onClick = function(){
-			console.log("Here");
 			this.setState({hidden: !this.state.hidden});
 		}
 	  	// ADD SIDEBAR CLASS
 	    const query = this.props.params.play ? this.props.params.play : '';
-		const {children, store, locationChange, dispatch, user, userPlaylist, app, toggleModal, modal, modalTitle} = this.props
+		const {children, store, locationChange, dispatch, user, userList, app, toggleModal, modal, modalTitle} = this.props
 	    return (
 			<div className={classNames('rail', 'rail--left' ,'sidebarmenu')}>
 				<Modal
@@ -81,13 +78,13 @@ export default class SideBar extends Component {
 							<ul  className={classNames('navigation')}>
 								<h4> My Music </h4>
 								<li><Link to={"/nowPlaying/"+query} activeClassName="active">Now Playing</Link></li>
-								{user.status ? <div><li><Link to={"/userList/favourites/"+query} activeClassName="active">Favourites</Link></li>
-								<li><Link to={"/userList/history/"+query} activeClassName="active">History</Link></li></div> : null}
+								<li><Link to={"/history/"+query} activeClassName="active">History</Link></li>
+								{user.status ? <li><Link to={"/userList/favourites/"+query} activeClassName="active">Favourites</Link></li> : null}
 							</ul>
 							{user.status ? <div> 
 							<ul  className={classNames('navigation')}>
 								<h4> Playlists </h4>
-								{this.buildUserPlaylist(userPlaylist)}
+								{this.buildUserPlaylist(userList)}
 							</ul></div>: <div className={classNames("navigation--actions")}>
 							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
 							onClick={()=> {dispatch(toggleModal('Login','Login'));}} >Login</button> 

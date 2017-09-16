@@ -6,7 +6,7 @@ import Track from './Track';
 export default class Playlist extends Component {
     
   componentDidMount() {
-    const {trackList, dispatch, getSpotifySearch, searchArtist, playlistName, getRedditList, params, errors} = this.props;
+    const {dispatch, getSpotifySearch, searchArtist, playlistName, getRedditList, params, errors} = this.props;
     switch(playlistName){
       case 'r': {
         return dispatch(getRedditList(params.list));  
@@ -34,7 +34,7 @@ export default class Playlist extends Component {
   buildPlaylist(tracks = [], playlistName){
     let fields=[];
     tracks.map((track, key)=>{
-      fields.push({content: (<Track key={key} track={track} playlistName={playlistName} {...this.props}/>)});
+      fields.push({content: (<Track key={key} index={key} track={track} playlistName={playlistName} {...this.props}/>)});
     })
     return fields
   }

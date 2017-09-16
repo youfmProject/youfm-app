@@ -2,7 +2,7 @@ import Constants from '../lib/Constants';
 
 const { USER } = Constants;
 
-const user = (state = {userId: '', email:'', password: '', playlists: {}, status: false, loginError: false}, action) => {
+const user = (state = {userId: 'liveJamUser', email:'', password: '', playlists: {}, status: true, loginError: false}, action) => {
 
   switch (action.type) {
       case USER.EDIT_CREDENTIALS: {

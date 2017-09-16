@@ -42,10 +42,29 @@ let setInitialPlaylist=(data)=>{
 export function setPlaylist(name,tracks){
 	return {
 		type:PLAYLIST.SET_PLAYLIST_DATA,
-		tracks,
-		name
+		name,
+		tracks
 	}
 };
+
+export function setUserPlaylist(name,tracks){
+	return {
+		type:PLAYLIST.SET_USER_PLAYLIST_DATA,
+		name,
+		tracks
+	}
+};
+
+export function setLocalStore(lsObject){
+	let ls = localStorage.getItem('liveJam');
+	if(ls){
+		ls= JSON.parse(ls);
+		localStorage.setItem('liveJam',JSON.stringify(_.assign(ls,lsObject)));
+	}
+	else{
+      localStorage.setItem('liveJam',JSON.stringify(lsObject));
+	}
+}
 
 let toggleFavouriteAction=(track,opt)=>{
 	return {
@@ -189,6 +208,35 @@ export function getRedditList(subReddit){
 			)
 		}).catch(err => {
 			redditSearchSuccess(subReddit, [], true);
+		});
+	}
+}
+// DUMMY ACTION TO CALL AFTER POST PLAYLIST
+export function postPlaylistComplete(){
+	return {
+		type: PLAYLIST.POST_PLAYLIST_COMPLETE
+	};
+}
+
+export function postPlaylist(userID, name, tracks){
+	console.log('########### POST PLAYLIST ############');
+	console.log(userID, name, tracks)
+	return(dispatch, getState)=> {
+		let payload = {
+			userId:userID,
+			playlists: {}
+		}
+		name.map((item)=>{
+			_.assign(payload.playlists,{[name]:[tracks]});
+		});
+		axios({
+		  method:'post',
+		  url:'/api/v1/playlist',
+		  body:JSON.stringify(payload)
+		}).then(res=> {
+			dispatch(postPlaylistComplete());
+		}).catch(err => {
+			dispatch(postPlaylistComplete());
 		});
 	}
 }

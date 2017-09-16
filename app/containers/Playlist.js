@@ -53,6 +53,7 @@ function mapStateToProps(state, props) {
 	return {
 		user:state.user,
 		playlistName : (playlistName !== 'nowPlaying' ) ? playlistName :false,
+		trayIndex:state.playlist.trayIndex,
 		errors, 
 		trackList,
 		activetrack
