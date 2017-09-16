@@ -51,7 +51,7 @@ export default class SideBar extends Component {
 		}
 	  	// ADD SIDEBAR CLASS
 	    const query = this.props.params.play ? this.props.params.play : '';
-		const {children, store, locationChange, dispatch, user, userList, app, toggleModal, modal, modalTitle} = this.props
+		const {children, store, locationChange, dispatch, user, userList, app, toggleModal, modal, modalTitle, setLocalStore} = this.props
 	    return (
 			<div className={classNames('rail', 'rail--left' ,'sidebarmenu')}>
 				<Modal
@@ -104,6 +104,10 @@ export default class SideBar extends Component {
 							</div>
 						
 						</div>}
+						{!user.status ? 
+							<button className={classNames("button--primary")} style={{marginBottom: "15px"}} 
+								onClick={()=> {dispatch(setLocalStore({userStatus:{userId: user.userId, status: false}}))}} >Logout</button> 
+						: null}
 					</div>
 					</div>
 				</div>
