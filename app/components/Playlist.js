@@ -18,10 +18,10 @@ export default class Playlist extends Component {
             return dispatch(getSpotifySearch(list[1]));      
           }
           else if(list[0] === 'artist') {
-            return dispatch(searchArtist(list[1], 'artist'));
+            return dispatch(searchArtist('',list[1], 'artist'));
           }
           else {
-            return dispatch(searchArtist(list[1], 'album'));
+            return dispatch(searchArtist('',list[1], 'album'));
           }
         }
       }
@@ -30,6 +30,7 @@ export default class Playlist extends Component {
       }
     }
   }
+
 
   buildPlaylist(tracks = [], playlistName){
     let fields=[];

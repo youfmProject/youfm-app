@@ -10,3 +10,11 @@ export function toggleModal(modal,title){
 		title
 	}
 }
+
+export function changeModal(modal, title){
+	return {
+		type:APP.CHANGE_MODAL,
+		modal,
+		title
+	}
+}

@@ -6,6 +6,9 @@ import { slide as Menu } from 'react-burger-menu';
 import PlaylistModal from './PlaylistModal';
 import Login from './Login';
 import Register from './Register';
+import FavLogin from './FavLogin';
+import AboutUs from './AboutUs';
+
 import { Modal, ModalBody, ModalFooter, ModalHeader, ModalTitle } from 'react-bootstrap';
 
 export default class SideBar extends Component {
@@ -35,14 +38,15 @@ export default class SideBar extends Component {
 	  switch(name){
 	    case 'Playlist': {return <PlaylistModal {...props} /> };
 	    case 'Login': {return <Login {...props} /> }; 
-	    case 'Register': {return <Register {...props} /> };
+		case 'Register': {return <Register {...props} /> };
+		case 'FavLogin': {return <FavLogin {...props} /> }
+		case 'AboutUs': {return <AboutUs {...props} /> }
 	    default : break;
 	  }
 	}
 
   	render() {
 		let onClick = function(){
-			console.log("Here");
 			this.setState({hidden: !this.state.hidden});
 		}
 	  	// ADD SIDEBAR CLASS
@@ -59,7 +63,7 @@ export default class SideBar extends Component {
 					<Modal.Header closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161'}}>
 						<Modal.Title id="contained-modal-title" style ={{color: '#c4c4ce'}}>{modalTitle}</Modal.Title>
 					</Modal.Header>
-					<Modal.Body closeButton style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
+					<Modal.Body style ={{backgroundColor:'#1a1a21', border: 'solid 1px #515161', padding: '20px'}}>
 					{this.getModal(modal,this.props)}
 					</Modal.Body> 
             	</Modal>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player';
 import classNames from 'classnames';
 import {get} from 'lodash';
+import { Link } from 'react-router';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import '../less/rc-slider.less';
 
@@ -24,8 +25,9 @@ export default class Player extends Component {
     }
 
   	render() {
-	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay, playerScreen, repeatType} = this.props;
+	  	const {player, dispatch, playPrevious, playNext, playNextVideo, toggleShuffle, toggleRepeat, nowPlaying, togglePlay, playerScreen, repeatType, toggleModal} = this.props;
 	  	let playPauseClass = player.playing ? "action--pause" : "action--play";
+		const query = this.props.params.play ? this.props.params.play : '';
 	    return (
 	    		<div>
 				{ player.id ? <div className="videoplayer">
@@ -76,6 +78,7 @@ export default class Player extends Component {
 						<p className="song-info">{get(nowPlaying.queue[nowPlaying.playIndex],'name','')}</p>
 						<p className="artist-info">{get(nowPlaying.queue[nowPlaying.playIndex],'artist','')}</p>
 					</div>
+					<a onClick={()=> dispatch(toggleModal('AboutUs', 'About Us'))}>About Us </a>
 					<div className={classNames("actions")}>
 						<button className={classNames("action--shuffle",{"action--shuffle--active":nowPlaying.shuffle})} onClick={()=>dispatch(toggleShuffle())}></button>
 						<button className={classNames("action--previous")} onClick={()=>dispatch(playPrevious())}></button>
@@ -83,6 +86,7 @@ export default class Player extends Component {
 						<button className={classNames("action--next")} onClick={()=>dispatch(playNext())}></button>
 						<button className={classNames("action--repeat")} onClick={()=>dispatch(toggleRepeat())}></button>
 					</div>
+					
 				</div>
 			</div>
 		);
