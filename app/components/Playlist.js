@@ -6,7 +6,7 @@ import Track from './Track';
 export default class Playlist extends Component {
     
   componentDidMount() {
-    const {trackList, dispatch, getSpotifySearch, searchArtist, playlistName, getRedditList, params, errors} = this.props;
+    const {dispatch, getSpotifySearch, searchArtist, playlistName, getRedditList, params, errors} = this.props;
     switch(playlistName){
       case 'r': {
         return dispatch(getRedditList(params.list));  
@@ -15,7 +15,7 @@ export default class Playlist extends Component {
         let list = params.list.split('-');
         if(!errors){
           if(list[0] === 'track'){
-            return dispatch(getSpotifySearch(list[1]));      
+            return dispatch(getSpotifySearch(list[1]));
           }
           else if(list[0] === 'artist') {
             return dispatch(searchArtist('',list[1], 'artist'));
@@ -35,7 +35,7 @@ export default class Playlist extends Component {
   buildPlaylist(tracks = [], playlistName){
     let fields=[];
     tracks.map((track, key)=>{
-      fields.push({content: (<Track key={key} track={track} playlistName={playlistName} {...this.props}/>)});
+      fields.push({content: (<Track key={key} index={key} track={track} playlistName={playlistName} {...this.props}/>)});
     })
     return fields
   }
@@ -55,7 +55,7 @@ export default class Playlist extends Component {
       </div>);
     return (
       <div>
-        {errors ? empty : tracks}
+        {(errors||!trackList.length) ? empty : tracks}
       </div>
       );
   }

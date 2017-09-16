@@ -11,9 +11,9 @@ import * as RoutingActions from '../actions/routing';
 import * as UserActions from '../actions/user';
 
 
-function getUsersPlaylist(userPlaylist){
+function getUsersPlaylist(userList){
   let list =[];
-  for(let item in userPlaylist){
+  for(let item in userList){
     list.push({ value: item, label: item },)
   }
   return list;
@@ -25,7 +25,8 @@ function mapStateToProps(state, props) {
   let searchView = props.location.pathname.split('/')[1];
   let isPlayerPlaying = (state.nowPlaying.playIndex === 'notSet') ? false: true;
   let searchKey = state.search.searchKey.split('-');
-  let usersPlaylist = getUsersPlaylist(state.playlist.userPlaylist);
+  let usersListOptions = getUsersPlaylist(state.playlist.userList);
+  let userList = state.playlist.userList;
   return {
     app:state.app,
     user:state.user,
@@ -39,9 +40,12 @@ function mapStateToProps(state, props) {
     modal:get(state.app ,'modal', false),
     modalTitle:get(state.app,'title', ''),
     repeatType:state.nowPlaying.repeatType,
+    volume:state.player.volume,
+    selectedTrack:state.playlist.selectedTrack,
     isPlayerInSync,
     isPlayerPlaying,
-    usersPlaylist
+    usersListOptions,
+    userList,
   };
 }
 

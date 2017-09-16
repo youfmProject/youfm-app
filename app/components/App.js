@@ -3,11 +3,27 @@ import SideBar from './SideBar';
 import Player from './Player';
 import Search from './Search';
 import classNames from 'classnames';
+import { batchActions } from 'redux-batched-actions';
+
 export default class App extends Component {
 
   componentDidUpdate(){
     this.checkForPlayerID();
   } 
+
+  componentWillMount(){
+    const {dispatch, setVolume, addToHistory, setLocalStore, user} = this.props;
+    let ls = localStorage.getItem('liveJam');
+    if(ls){
+      ls= JSON.parse(ls);
+      //User login details to be added here
+      dispatch(batchActions([setVolume(ls.volume),addToHistory(ls.history,false)]));
+    }
+    else{
+      setLocalStore({history:[],volume:0.5,userStatus:{userId: user.userId, status: user.status}})
+      dispatch(setVolume(0.5));
+    }
+  }
 
   componentDidMount(){
     const {dispatch,isSearchInSync, getSpotifySearch} = this.props;
